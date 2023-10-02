@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.transversal.accesoADatos;
 
 import java.sql.Connection;
@@ -10,13 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author MiPc
- */
 public class Conexion {
+
     private static final String URL = "jdbc:mariadb://localhost/";
-    private static final String DB = "universidad_grupo26";
+    private static final String DB = "paquetes turisticos";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "";
     private static Connection connection;
