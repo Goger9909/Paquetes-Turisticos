@@ -22,6 +22,11 @@ public class Alojamiento {
         this.ciudadDest = ciudadDest;
     }
 
+    @Override
+    public String toString() {
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaIn=" + fechaIn + ", fechaOn=" + fechaOn + ", estado=" + estado + ", importeDiario=" + importeDiario + ", ciudadDest=" + ciudadDest + '}';
+    }
+
     public Alojamiento() {
     }
 
