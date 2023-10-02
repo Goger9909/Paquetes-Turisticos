@@ -9,6 +9,6 @@ package proyecto.transversal.accesoADatos;
  *
  * @author MiPc
  */
-public class NewClass {
+public class Conexion {
     
 }
