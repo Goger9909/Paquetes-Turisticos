@@ -9,22 +9,31 @@ public class Alojamiento {
     private int idAlojamiento;
     private LocalDate fechaIn;
     private LocalDate fechaOn;
+    private String tipoAlojamiento;
+    private String servicio;
     private boolean estado;
     private double importeDiario;
     private Ciudad ciudadDest;
 
-    public Alojamiento(int idAlojamiento, LocalDate fechaIn, LocalDate fechaOn, boolean estado, double importeDiario, Ciudad ciudadDest) {
+    public Alojamiento(int idAlojamiento, LocalDate fechaIn, LocalDate fechaOn, String tipoAlojamiento, String servicio, boolean estado, double importeDiario, Ciudad ciudadDest) {
         this.idAlojamiento = idAlojamiento;
         this.fechaIn = fechaIn;
         this.fechaOn = fechaOn;
+        this.tipoAlojamiento = tipoAlojamiento;
+        this.servicio = servicio;
         this.estado = estado;
         this.importeDiario = importeDiario;
         this.ciudadDest = ciudadDest;
     }
 
-    @Override
-    public String toString() {
-        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaIn=" + fechaIn + ", fechaOn=" + fechaOn + ", estado=" + estado + ", importeDiario=" + importeDiario + ", ciudadDest=" + ciudadDest + '}';
+    public Alojamiento(LocalDate fechaIn, LocalDate fechaOn, String tipoAlojamiento, String servicio, boolean estado, double importeDiario, Ciudad ciudadDest) {
+        this.fechaIn = fechaIn;
+        this.fechaOn = fechaOn;
+        this.tipoAlojamiento = tipoAlojamiento;
+        this.servicio = servicio;
+        this.estado = estado;
+        this.importeDiario = importeDiario;
+        this.ciudadDest = ciudadDest;
     }
 
     public Alojamiento() {
@@ -54,6 +63,22 @@ public class Alojamiento {
         this.fechaOn = fechaOn;
     }
 
+    public String getTipoAlojamiento() {
+        return tipoAlojamiento;
+    }
+
+    public void setTipoAlojamiento(String tipoAlojamiento) {
+        this.tipoAlojamiento = tipoAlojamiento;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -77,7 +102,11 @@ public class Alojamiento {
     public void setCiudadDest(Ciudad ciudadDest) {
         this.ciudadDest = ciudadDest;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaIn=" + fechaIn + ", fechaOn=" + fechaOn + ", tipoAlojamiento=" + tipoAlojamiento + ", servicio=" + servicio + ", estado=" + estado + ", importeDiario=" + importeDiario + ", ciudadDest=" + ciudadDest + '}';
+    }
+
     
 }
