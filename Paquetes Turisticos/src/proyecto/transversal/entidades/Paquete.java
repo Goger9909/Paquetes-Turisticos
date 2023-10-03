@@ -7,26 +7,26 @@ package proyecto.transversal.entidades;
  */
 public class Paquete {
     
-   private int idPaquete; 
-   private String CuidadOrigen; 
-   private String CuidadDestino; 
-   private Alojamiento alojamiento; 
-   private Pasaje pasaje; 
+  private int idPaquete; 
+  private Ciudad origen; 
+  private Ciudad destino; 
+  private Alojamiento alojamiento; 
+  private Pasaje pasaje; 
 
     public Paquete() {
     }
 
-    public Paquete(String CuidadOrigen, String CuidadDestino, Alojamiento alojamiento, Pasaje pasaje) {
-        this.CuidadOrigen = CuidadOrigen;
-        this.CuidadDestino = CuidadDestino;
+    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+        this.origen = origen;
+        this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
     }
 
-    public Paquete(int idPaquete, String CuidadOrigen, String CuidadDestino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
         this.idPaquete = idPaquete;
-        this.CuidadOrigen = CuidadOrigen;
-        this.CuidadDestino = CuidadDestino;
+        this.origen = origen;
+        this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
     }
@@ -39,20 +39,20 @@ public class Paquete {
         this.idPaquete = idPaquete;
     }
 
-    public String getCuidadOrigen() {
-        return CuidadOrigen;
+    public Ciudad getOrigen() {
+        return origen;
     }
 
-    public void setCuidadOrigen(String CuidadOrigen) {
-        this.CuidadOrigen = CuidadOrigen;
+    public void setOrigen(Ciudad origen) {
+        this.origen = origen;
     }
 
-    public String getCuidadDestino() {
-        return CuidadDestino;
+    public Ciudad getDestino() {
+        return destino;
     }
 
-    public void setCuidadDestino(String CuidadDestino) {
-        this.CuidadDestino = CuidadDestino;
+    public void setDestino(Ciudad destino) {
+        this.destino = destino;
     }
 
     public Alojamiento getAlojamiento() {
@@ -73,7 +73,7 @@ public class Paquete {
 
     @Override
     public String toString() {
-        return "Paquete{" + "idPaquete=" + idPaquete + ", CuidadOrigen=" + CuidadOrigen + ", CuidadDestino=" + CuidadDestino + ", alojamiento=" + alojamiento + ", pasaje=" + pasaje + '}';
+        return "Paquete{" + "idPaquete=" + idPaquete + ", origen=" + origen + ", destino=" + destino + ", alojamiento=" + alojamiento + ", pasaje=" + pasaje + '}';
     }
-
+  
 }
