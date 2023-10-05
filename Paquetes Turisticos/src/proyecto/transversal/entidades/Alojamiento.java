@@ -13,6 +13,17 @@ public class Alojamiento {
     private double importeDiario;
     private Ciudad ciudadDest;
 
+      public Alojamiento() {
+    }
+
+    public Alojamiento(LocalDate fechaIn, LocalDate fechaOn, boolean estado, double importeDiario, Ciudad ciudadDest) {
+        this.fechaIn = fechaIn;
+        this.fechaOn = fechaOn;
+        this.estado = estado;
+        this.importeDiario = importeDiario;
+        this.ciudadDest = ciudadDest;
+    }
+
     public Alojamiento(int idAlojamiento, LocalDate fechaIn, LocalDate fechaOn, boolean estado, double importeDiario, Ciudad ciudadDest) {
         this.idAlojamiento = idAlojamiento;
         this.fechaIn = fechaIn;
@@ -22,14 +33,7 @@ public class Alojamiento {
         this.ciudadDest = ciudadDest;
     }
 
-    @Override
-    public String toString() {
-        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaIn=" + fechaIn + ", fechaOn=" + fechaOn + ", estado=" + estado + ", importeDiario=" + importeDiario + ", ciudadDest=" + ciudadDest + '}';
-    }
-
-    public Alojamiento() {
-    }
-
+  
     public int getIdAlojamiento() {
         return idAlojamiento;
     }
@@ -78,6 +82,10 @@ public class Alojamiento {
         this.ciudadDest = ciudadDest;
     }
     
-    
+      @Override
+    public String toString() {
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaIn=" + fechaIn + ", fechaOn=" + fechaOn + ", estado=" + estado + ", importeDiario=" + importeDiario + ", ciudadDest=" + ciudadDest + '}';
+    }
+
     
 }
