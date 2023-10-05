@@ -14,7 +14,7 @@ public class Pasaje {
     private int idPasaje;
     private String Tipo_Tansporte;
     private double Importe;
-    Ciudad nombre_ciudad_origen;
+    private Ciudad nombre_ciudad_origen;
     private boolean stado;
 
     public Pasaje() {
