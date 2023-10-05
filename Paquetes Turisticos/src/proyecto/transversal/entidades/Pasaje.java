@@ -15,7 +15,7 @@ public class Pasaje {
     private String Tipo_Tansporte;
     private double Importe;
     Ciudad nombre_ciudad_origen;
-    private boolean stado;
+    private boolean Estado;
 
     public Pasaje() {
     }
@@ -24,7 +24,7 @@ public class Pasaje {
         this.Tipo_Tansporte = Tipo_Tansporte;
         this.Importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
-        this.stado = stado;
+        this.Estado = stado;
     }
 
     public Pasaje(int idPasaje, String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean stado) {
@@ -32,7 +32,7 @@ public class Pasaje {
         this.Tipo_Tansporte = Tipo_Tansporte;
         this.Importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
-        this.stado = stado;
+        this.Estado = stado;
     }
 
     public int getIdPasaje() {
@@ -64,14 +64,14 @@ public class Pasaje {
     }
 
     public boolean isStado() {
-        return stado;
+        return Estado;
     }
     public void setStado(boolean stado) {
-        this.stado = stado;
+        this.Estado = Estado;
     }
     
     @Override
     public String toString() {
-        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + Tipo_Tansporte + ", Costo:" + Importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + stado + '}';
+        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + Tipo_Tansporte + ", Costo:" + Importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + Estado + '}';
     }
 }
