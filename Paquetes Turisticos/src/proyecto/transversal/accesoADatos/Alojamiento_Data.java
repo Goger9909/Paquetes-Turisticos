@@ -52,8 +52,19 @@ public class Alojamiento_Data {
         }
     }
     
-    public void modificarAlojamiento(Alojamiento){
+    public void modificarAlojamiento(Alojamiento alojamiento){
+        String sql = " UPDATE alojamiento SET Fecha_Inicio=? , Fecha_Salida=? , Tipo_Alojamiento=? , "
+                    + "Servicio=? , Importe_Diario=? , Ciudad_Destino=? , Estado=?"
+                    + "WHERE idAlojamiento=?";
         
+        try{
+            PreparedStatement ps = con.preparedStatement(sql);
+        
+            ps.setDate(Fecha)
+        
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos");
+        }
     }
     
     
