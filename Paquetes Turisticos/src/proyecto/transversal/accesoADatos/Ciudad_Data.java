@@ -140,7 +140,7 @@ public class Ciudad_Data {
                 nombreCiudad = new Ciudad();
                 nombreCiudad.setNombreCiudad(pais);
                 nombreCiudad.setIdCiudad(rs.getInt("idCiudad"));
-                nombreCiudad.setPais(rs.getString("Nombre"));
+                nombreCiudad.setPais(rs.getString("Pais"));
                 nombreCiudad.setProvincia(rs.getString("Provincia"));
                 nombreCiudad.setEstado(true);
             }
@@ -150,7 +150,30 @@ public class Ciudad_Data {
         }
         return nombreCiudad;
     }
-    //<<<<<<<<<<Buscar Ciudad por Provincia>>>>>>>>>>
+      //<<<<<<<<<<Buscar Ciudad por ID>>>>>>>>>>
+       public Ciudad buscarCiudadPorID(int idCiudad){
+        Ciudad nombreCiudad = null;
+        String sql = "SELECT  Nombre, Provincia, Pais FROM ciudad WHERE idCiudad = ? AND Estado = true";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCiudad);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                nombreCiudad = new Ciudad();
+                nombreCiudad.setIdCiudad(idCiudad);
+                nombreCiudad.setNombreCiudad(rs.getString("Nombre"));
+                nombreCiudad.setPais(rs.getString("Pais"));
+                nombreCiudad.setProvincia(rs.getString("Provincia"));
+                nombreCiudad.setEstado(true);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudad"+ ex.getMessage());
+        }
+        return nombreCiudad;
+    }
+    //<<<<<<<<<<Array Obtener Ciudad>>>>>>>>>>
     public List<Ciudad> obtenerCiudad(){
     ArrayList<Ciudad> nombreCiudad= new ArrayList<>();
     String sql = "SELECT * FROM ciudad WHERE Estado = 1";
