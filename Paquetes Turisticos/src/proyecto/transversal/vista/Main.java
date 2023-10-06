@@ -16,6 +16,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        this.setSize(1000, 1000);
     }
 
     /**
@@ -81,7 +82,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        Seleccion_Ciudad GA = new Seleccion_Ciudad();
+        Pasajes_Visualisacion GA = new Pasajes_Visualisacion();
         GA.setVisible(true);
         jEscritorio.add(GA);
         jEscritorio.moveToFront(GA);
