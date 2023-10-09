@@ -36,17 +36,42 @@ public class Pasaje_Data {
             
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
-            
                 pasaje.setIdPasaje(rs.getInt(1)); // es la primer columna la del id
                 JOptionPane.showMessageDialog(null, "El pasaje se guardo con exito, id: "+pasaje.getIdPasaje());
            }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
         }
     }
-    public Pasaje BuscarPasaje(int idPasaje, double Importe){
+    public Pasaje BuscarPasajePorInporte(double Importe, double Importe2){
+        
+        con = Conexion.getConexion();
+        Pasaje pasaje=null;
+        
+        String sql = "SELECT idPasaje, Tipo_Transporte, Importe, Nombre_Ciudad_Origen, Estado FROM pasaje WHERE Importe>=? and Importe<=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, Importe);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipo_Tansporte(rs.getString("transporte"));
+                pasaje.setImporte(Importe);
+                Ciudad nombre_ciudad_origen= cd.buscarCiudadPorID(rs.getInt("idCiudad"));
+                pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
+                pasaje.setStado(rs.getBoolean("estado"));
+            } else{
+                JOptionPane.showMessageDialog(null, "No existe un pasaje Entre esos valores");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje");
+        }
+            return pasaje;     
+    }
+    public Pasaje BuscarPasajePorId(int idPasaje){
         
         con = Conexion.getConexion();
         Pasaje pasaje=null;
@@ -55,26 +80,23 @@ public class Pasaje_Data {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPasaje);
-            ps.setDouble(2, Importe);
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
-                
                 pasaje = new Pasaje();
                 pasaje.setIdPasaje(idPasaje);
                 pasaje.setTipo_Tansporte(rs.getString("transporte"));
-                pasaje.setImporte(Importe);
+                pasaje.setImporte(rs.getDouble("Importe"));
                 Ciudad nombre_ciudad_origen= cd.buscarCiudadPorID(rs.getInt("idCiudad"));
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setStado(rs.getBoolean("estado"));
-                
             } else{
-            JOptionPane.showMessageDialog(null, "No existe una materia con ese id");
+                JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
             }
             ps.close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje");
         }
-           return pasaje;     
+            return pasaje;     
     }
     public void ModificarPasaje(Pasaje pasaje){
         
@@ -84,7 +106,6 @@ public class Pasaje_Data {
         String sql = "UPDATE pasaje SET Tipo_Transporte= ? , Importe= ? , Nombre_Ciudad_Origen = ?"
                         +" WHERE idPasaje = ? ";
             
-        
          try {
             ps = con.prepareStatement(sql);
             ps.setString(1, pasaje.getTipo_Tansporte());
@@ -102,7 +123,6 @@ public class Pasaje_Data {
         }   
     }
     public void DesabilitarPasaje(int id){
-        
         con = Conexion.getConexion();
         
         String sql = "UPDATE pasaje SET estado = true WHERE idPasaje = ?";
@@ -122,7 +142,6 @@ public class Pasaje_Data {
         }
     }
     public void HabilitarPasaje(int id){
-        
         con = Conexion.getConexion();
         
         String sql = "UPDATE pasaje SET estado = false WHERE idPasaje = ?";
@@ -142,13 +161,13 @@ public class Pasaje_Data {
         }
     }
     public List<Pasaje> ObtenerPasajeHabilitados(int idPasaje, double Importe){
-         ArrayList<Pasaje> pasajes = new ArrayList<>();
-         String sql = "SELECT * FROM pasaje WHERE estado = 1 AND idPasaje not in ";
-         try {
-           PreparedStatement ps = con.prepareStatement(sql);    
-           ps.setInt(1, idPasaje);
-           ResultSet rs = ps.executeQuery();
-           while(rs.next()){
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        String sql = "SELECT * FROM pasaje WHERE estado = 1 AND idPasaje not in ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);    
+            ps.setInt(1, idPasaje);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
                 Pasaje pasaje = new Pasaje();
                 pasaje.setIdPasaje(rs.getInt("idPasaje"));
                 pasaje.setTipo_Tansporte(rs.getString("transporte"));
@@ -157,21 +176,21 @@ public class Pasaje_Data {
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setStado(rs.getBoolean("estado"));
                 pasajes.add(pasaje);
-           }
-           ps.close();
-         } catch (SQLException ex) {
+            }
+            ps.close();
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la base de datos pasaje" + ex.getMessage());
         }
-     return pasajes;
-     }
+        return pasajes;
+        }
     public List<Pasaje> ObtenerPasajesDesabilitados(int idPasaje, double Importe){
-         ArrayList<Pasaje> pasajes = new ArrayList<>();
-         String sql = "SELECT * FROM pasaje WHERE estado = 0 AND idPasaje not in ";
-       try {
-           PreparedStatement ps = con.prepareStatement(sql);    
-           ps.setInt(1, idPasaje);
-           ResultSet rs = ps.executeQuery();
-           while(rs.next()){
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        String sql = "SELECT * FROM pasaje WHERE estado = 0 AND idPasaje not in ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);    
+            ps.setInt(1, idPasaje);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
                 Pasaje pasaje = new Pasaje();
                 pasaje.setIdPasaje(rs.getInt("idPasaje"));
                 pasaje.setTipo_Tansporte(rs.getString("transporte"));
@@ -180,11 +199,11 @@ public class Pasaje_Data {
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setStado(rs.getBoolean("estado"));
                 pasajes.add(pasaje);
-           }
-           ps.close();
-         } catch (SQLException ex) {
+            }
+            ps.close();
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la base de datos pasaje" + ex.getMessage());
         }
-     return pasajes;
-     } 
+    return pasajes;
+    }
 }
