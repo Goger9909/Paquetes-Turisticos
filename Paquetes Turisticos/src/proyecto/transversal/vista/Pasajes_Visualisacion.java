@@ -1,4 +1,5 @@
 package proyecto.transversal.vista;
+
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -6,7 +7,6 @@ import proyecto.transversal.accesoADatos.Ciudad_Data;
 import proyecto.transversal.accesoADatos.Pasaje_Data;
 import proyecto.transversal.entidades.Ciudad;
 import proyecto.transversal.entidades.Pasaje;
-
 
 public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
   private DefaultTableModel modelo = new DefaultTableModel() {
@@ -155,53 +155,53 @@ public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PasajesDeshabilitadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasajesDeshabilitadosActionPerformed
-         PasajesDeshabilitados.setSelected(true); 
-         PasajesHabilitados.setSelected(false);
-         Deshabilitar.setEnabled(false);
-         Habilitar.setEnabled(true);
+        PasajesDeshabilitados.setSelected(true); 
+        PasajesHabilitados.setSelected(false);
+        Deshabilitar.setEnabled(false);
+        Habilitar.setEnabled(true);
         
-         try{
-        Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
-        int idA = pasaje.getIdPasaje();
-        double doe= pasaje.getImporte();
-        Pasaje_Data insc = new Pasaje_Data();
-        BorrarFilas();
+        try{
+            Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
+            int idA = pasaje.getIdPasaje();
+            double doe= pasaje.getImporte();
+            Pasaje_Data insc = new Pasaje_Data();
+            BorrarFilas();
             for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idA,doe)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
             }
-         }catch (NullPointerException ex){
-         JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
-         BorrarFilas();
-         }    
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+            BorrarFilas();
+        }    
     }//GEN-LAST:event_PasajesDeshabilitadosActionPerformed
 
     private void jCBCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBCiudadItemStateChanged
-      try{
-        Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
-        int idA = pasaje.getIdPasaje();
-        double doe= pasaje.getImporte();
-        Pasaje_Data insc = new Pasaje_Data();
-        boolean activo  = PasajesDeshabilitados.isSelected();
-        boolean activo1 = PasajesHabilitados.isSelected();
-        if (activo == true) { 
-            BorrarFilas();
-            for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idA,doe)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+        try{
+            Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
+            int idA = pasaje.getIdPasaje();
+            double doe= pasaje.getImporte();
+            Pasaje_Data insc = new Pasaje_Data();
+            boolean activo  = PasajesDeshabilitados.isSelected();
+            boolean activo1 = PasajesHabilitados.isSelected();
+            if (activo == true) { 
+                BorrarFilas();
+                for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idA,doe)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+                }
+            } else if (activo1 == true) {
+                BorrarFilas();
+                for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idA,doe)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+                }
             }
-        } else if (activo1 == true) {
+        }catch(NullPointerException ex){ 
+            JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
             BorrarFilas();
-            for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idA,doe)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
-            }
-        }
-      }catch(NullPointerException ex){ 
-          JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
-          BorrarFilas();
         }
     }//GEN-LAST:event_jCBCiudadItemStateChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void PasajesHabilitadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasajesHabilitadosActionPerformed
@@ -211,18 +211,18 @@ public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
        Deshabilitar.setEnabled(true);
        
        try{
-        Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
-        int idP = pasaje.getIdPasaje();
-        double doe= pasaje.getImporte();
-        Pasaje_Data insc = new Pasaje_Data();
-         BorrarFilas();
-            for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idP,doe)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
-            }
+            Pasaje pasaje = (Pasaje) jCBCiudad.getSelectedItem();
+            int idP = pasaje.getIdPasaje();
+            double doe= pasaje.getImporte();
+            Pasaje_Data insc = new Pasaje_Data();
+            BorrarFilas();
+                for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idP,doe)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+                }
        }catch (NullPointerException ex){
-         JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
-         BorrarFilas();
-         } 
+            JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+            BorrarFilas();
+        } 
     }//GEN-LAST:event_PasajesHabilitadosActionPerformed
 
     private void HabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabilitarActionPerformed
@@ -232,9 +232,7 @@ public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
             
             //Para obtener los índices de fila.
             int  filaSeleccionada = jTable.getSelectedRow();
-            
             int idM = (int) jTable.getValueAt(filaSeleccionada,0);
-            
             int idP = pasaje.getIdPasaje();
             double doe= pasaje.getImporte();
             
@@ -256,9 +254,7 @@ public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
             
             //Para obtener los índices de fila.
             int  filaSeleccionada = jTable.getSelectedRow();
-            
             int idM = (int) jTable.getValueAt(filaSeleccionada,0);
-            
             int idP = pasaje.getIdPasaje();
             double doe= pasaje.getImporte();
             
@@ -312,7 +308,7 @@ public final class Pasajes_Visualisacion extends javax.swing.JInternalFrame {
     private void BorrarFilas(){
         int filas = jTable.getRowCount()-1;
         for(int f = filas; f >= 0 ; f--){
-        modelo.removeRow(f);
+            modelo.removeRow(f);
         }
     }
 }
