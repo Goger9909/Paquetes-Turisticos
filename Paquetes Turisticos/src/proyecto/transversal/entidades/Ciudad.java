@@ -68,7 +68,7 @@ public class Ciudad {
 
     @Override
     public String toString() {
-        return   nombreCiudad + provincia + ", " + pais;
+        return   nombreCiudad + ", " + provincia + ", " + pais;
     }
     
 }

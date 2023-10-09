@@ -63,10 +63,10 @@ public class Pasaje {
         this.nombre_ciudad_origen = nombre_ciudad_origen;
     }
 
-    public boolean isStado() {
+    public boolean isEstado() {
         return Estado;
     }
-    public void setStado(boolean stado) {
+    public void setEstado(boolean stado) {
         this.Estado = Estado;
     }
     
