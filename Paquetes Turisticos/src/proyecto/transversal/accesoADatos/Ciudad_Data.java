@@ -193,5 +193,53 @@ public class Ciudad_Data {
            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
         }
         return nombreCiudad;
- }      
+ }    
+    public List<Ciudad> arrayBusquedaPais(String pais){
+      ArrayList<Ciudad> nombre = new ArrayList<>();
+        Ciudad nombreCiudad = null;
+        String sql = "SELECT idCiudad, Nombre, Provincia FROM ciudad WHERE Pais LIKE ? AND Estado = true";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%"+pais+"%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                nombreCiudad = new Ciudad();
+                nombreCiudad.setPais(pais);
+                nombreCiudad.setIdCiudad(rs.getInt("idCiudad"));
+                nombreCiudad.setNombreCiudad(rs.getString("Nombre"));
+                nombreCiudad.setProvincia(rs.getString("Provincia"));
+                nombreCiudad.setEstado(true);
+                nombre.add(nombreCiudad);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudad"+ ex.getMessage());
+        }
+        return nombre;
+ }
+ public List<Ciudad> arrayBusquedaProvincia(String provincia){
+      ArrayList<Ciudad> nombre = new ArrayList<>();
+        Ciudad nombreCiudad = null;
+        String sql = "SELECT idCiudad, Nombre, Pais FROM ciudad WHERE Provincia LIKE ? AND Estado = true";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%"+provincia+"%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                nombreCiudad = new Ciudad();
+                nombreCiudad.setProvincia(provincia);
+                nombreCiudad.setIdCiudad(rs.getInt("idCiudad"));
+                nombreCiudad.setNombreCiudad(rs.getString("Nombre"));
+                nombreCiudad.setPais(rs.getString("Pais"));
+                nombreCiudad.setEstado(true);
+                nombre.add(nombreCiudad);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudad"+ ex.getMessage());
+        }
+        return nombre;
+ }
 }
