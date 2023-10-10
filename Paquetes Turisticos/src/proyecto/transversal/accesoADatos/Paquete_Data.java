@@ -9,8 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
 import proyecto.transversal.entidades.Paquete;
+import proyecto.transversal.entidades.Pasaje;
 
 /**
  *
@@ -43,30 +45,33 @@ public class Paquete_Data {
             JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
         }  
     }
-    
-    public List<Paquete> ObtenerPaquete(){
-    ArrayList<Paquete> paquetee = new ArrayList<>();
-    String sql = "SELECT * FROM inscripcion;";
+
+    public List<Paquete> ObtenerPaquete() {
+        con = Conexion.getConexion();
+        ArrayList<Paquete> paquetee = new ArrayList<>();
+        String sql = "SELECT * FROM paquete";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultado = ps.executeQuery();
-                 while(resultado.next()){
-                      Paquete paquete = new  Paquete();
-                     paquete.setIdPaquete(resultado.getInt("idPaquete"));
-                     Ciudad ciudad = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
-                     paquete.setOrigen(ciudad);
-                     Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
-                     paquete.setDestino(ciu);
-//                     Alojamiento al = 
-//                      insc.setMateria(mat);
-//                      cursada.add(insc);
-                 }
-                 ps.close();
-            } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+            while (resultado.next()) {
+                Paquete paquete = new Paquete();
+                paquete.setIdPaquete(resultado.getInt("idPaquete"));
+                Ciudad ciudad = Cd.buscarCiudadPorID(resultado.getInt(19));
+                paquete.setOrigen(ciudad);
+                Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
+                paquete.setDestino(ciu);
+                Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
+                paquete.setAlojamiento(al);
+                Pasaje pa = Pd.BuscarPasajePorId(resultado.getInt("pasaje"));
+                paquete.setPasaje(pa);
+                paquetee.add(paquete);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
         }
         return paquetee;
- }       
+    }     
     
     public void BorrarPaquetePorId(int idPaquete){
            con = Conexion.getConexion();
