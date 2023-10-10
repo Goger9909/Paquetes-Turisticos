@@ -21,19 +21,24 @@ public class main {
         Connection a1=Conexion.getConexion();
         Ciudad_Data cd = new Ciudad_Data();  
         Alojamiento_Data ad = new Alojamiento_Data();
-        Ciudad ciu = new Ciudad(19,"Argentina","Corrientes","Corrientes",true);
-//        cd.agregarCiudad(ciu);
-        Ciudad ci = new Ciudad(20,"Argentina","San Rafael","Mendoza",true);
-//         cd.agregarCiudad(ci);
+        
+//        Ciudad ciu = new Ciudad(19,"Argentina","Corrientes","Corrientes",true);
+////        cd.agregarCiudad(ciu);
+//        Ciudad ci = new Ciudad(20,"Argentina","San Rafael","Mendoza",true);
+////         cd.agregarCiudad(ci);
         Pasaje_Data ps = new Pasaje_Data();
-        Pasaje pd = new Pasaje(18,"tren",20,ciu,true);
-//        ps.GuardarPasaje(pd);
-        Alojamiento al = new  Alojamiento(3,LocalDate.now(),LocalDate.now(),"hotel","con desayuno",true,20000,ci);
-//        ad.guardarAlojamiento(al);
+//        Pasaje pd = new Pasaje(18,"tren",20,ciu,true);
+////        ps.GuardarPasaje(pd);
+//        Alojamiento al = new  Alojamiento(3,LocalDate.now(),LocalDate.now(),"hotel","con desayuno",true,20000,ci);
+////        ad.guardarAlojamiento(al);
         Paquete_Data pq = new Paquete_Data();
 //        Paquete pa = new Paquete(ciu,ci,al,pd);
       //  pq.GuardarPaquete(pa);
-       pq.ObtenerPaquete(); 
-       
+       for(Paquete bus :pq.ObtenerPaquete()){
+           System.out.println(bus.getOrigen());
+       }
+//System.out.println(ad.buscarAlojamientoPorId(2));
+//        System.out.println(cd.buscarCiudadPorID(15));
+//        System.out.println(ps.BuscarPasajePorId(4));
     }
 }
