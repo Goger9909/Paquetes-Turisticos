@@ -130,7 +130,7 @@ public class Alojamiento_Data {
         }
     }
     // BUSQUEDA POR ID DE ALOJAMIENTO - PUEDE QUE NECESITES BUSQUEDA de alojamiento PERO CON LA ID DE LA CIUDAD PARA EL PAQUETE, ASI QUE LOS DEJO MAS ABAJO  A ESOS METODOS JAJA
-    public void buscarAlojamientoPorId(int id){
+    public Alojamiento buscarAlojamientoPorId(int id){
     
         String sql = "SELECT Fecha_Inicio, Fecha_Salida, Tipo_Alojamiento, Servicio, "
                 + "Importe_Diario, Ciudad_Destino, Estado FROM alojamiento WHERE idAlojamiento=?";
@@ -156,6 +156,7 @@ public class Alojamiento_Data {
         }catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos"+ ex);
         }
+        return alojamiento;
     }
     
     // METODO PARA BUSCAR LOS ALOJAMIENTOS PASANDO UN OBJETO DEL TIPO CIUDAD (busca por el id de la ciudad)    
