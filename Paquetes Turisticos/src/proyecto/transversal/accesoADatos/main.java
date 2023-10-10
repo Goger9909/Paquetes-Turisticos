@@ -20,10 +20,10 @@ public class main {
     public static void main(String[] arg){
         Connection a1=Conexion.getConexion();
         Ciudad_Data cd = new Ciudad_Data();  
+  
         Alojamiento_Data ad = new Alojamiento_Data();
         
-//        Ciudad ciu = new Ciudad(19,"Argentina","Corrientes","Corrientes",true);
-////        cd.agregarCiudad(ciu);
+//        Ciudad ciu = new Ciudad(19,"Argentina","Corrientes","Corrientes",true);    cd.agregarCiudad(ciu);
 //        Ciudad ci = new Ciudad(20,"Argentina","San Rafael","Mendoza",true);
 ////         cd.agregarCiudad(ci);
         Pasaje_Data ps = new Pasaje_Data();
@@ -33,9 +33,14 @@ public class main {
 ////        ad.guardarAlojamiento(al);
         Paquete_Data pq = new Paquete_Data();
 //        Paquete pa = new Paquete(ciu,ci,al,pd);
-      //  pq.GuardarPaquete(pa);
-       for(Paquete bus :pq.ObtenerPaquete()){
-           System.out.println(bus.getOrigen());
+//        pq.GuardarPaquete(pa);
+//                pq.ObtenerPaquete();
+       for(Paquete bus : pq.ObtenerPaquete()){
+           System.out.println("---"+bus.getIdPaquete());
+           System.out.println(bus.getOrigen().getNombreCiudad());
+           System.out.println(bus.getDestino().getNombreCiudad());
+           System.out.println(bus.getAlojamiento().getTipoAlojamiento());
+           System.out.println(bus.getPasaje().getTipo_Tansporte()); 
        }
 //System.out.println(ad.buscarAlojamientoPorId(2));
 //        System.out.println(cd.buscarCiudadPorID(15));
