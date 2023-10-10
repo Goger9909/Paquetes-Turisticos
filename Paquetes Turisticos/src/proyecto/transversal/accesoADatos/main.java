@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
+import proyecto.transversal.entidades.Paquete;
+import proyecto.transversal.entidades.Pasaje;
 
 /**
  *
@@ -17,12 +19,21 @@ import proyecto.transversal.entidades.Ciudad;
 public class main {
     public static void main(String[] arg){
         Connection a1=Conexion.getConexion();
-        Ciudad_Data cd = new Ciudad_Data();
-        Ciudad c = new Ciudad(18,"Argentina", "Merlo", "San Luis", true);
-//        cd.agregarCiudad(c);
-        Alojamiento a = new Alojamiento(LocalDate.now(), LocalDate.now(), "Hotel", "Con desayuno", true, 10000, c);
+        Ciudad_Data cd = new Ciudad_Data();  
         Alojamiento_Data ad = new Alojamiento_Data();
-        
-        ad.guardarAlojamiento(a);
+        Ciudad ciu = new Ciudad(19,"Argentina","Corrientes","Corrientes",true);
+//        cd.agregarCiudad(ciu);
+        Ciudad ci = new Ciudad(20,"Argentina","San Rafael","Mendoza",true);
+//         cd.agregarCiudad(ci);
+        Pasaje_Data ps = new Pasaje_Data();
+        Pasaje pd = new Pasaje(18,"tren",20,ciu,true);
+//        ps.GuardarPasaje(pd);
+        Alojamiento al = new  Alojamiento(3,LocalDate.now(),LocalDate.now(),"hotel","con desayuno",true,20000,ci);
+//        ad.guardarAlojamiento(al);
+        Paquete_Data pq = new Paquete_Data();
+//        Paquete pa = new Paquete(ciu,ci,al,pd);
+      //  pq.GuardarPaquete(pa);
+       pq.ObtenerPaquete(); 
+       
     }
 }
