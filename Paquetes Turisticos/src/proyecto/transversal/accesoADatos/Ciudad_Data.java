@@ -166,7 +166,7 @@ public class Ciudad_Data {
         return nombreCiudad;
     }
     //<<<<<<<<<<Array Obtener Ciudad>>>>>>>>>>
-    public List<Ciudad> obtenerCiudad(){
+    public List<Ciudad> obtenerCiudadHabilitada(){
     ArrayList<Ciudad> nombreCiudad= new ArrayList<>();
     String sql = "SELECT * FROM ciudad WHERE Estado = 1";
         try {
