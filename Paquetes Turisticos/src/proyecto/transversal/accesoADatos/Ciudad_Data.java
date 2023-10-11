@@ -121,7 +121,7 @@ public class Ciudad_Data {
     }
     //<<<<<<<<<<Buscar Ciudad por Pais>>>>>>>>>>
      public Ciudad busquedaPorPais(String pais){
-        Ciudad nombreCiudad = null;
+         Ciudad nombreCiudad = null;
         String sql = "SELECT idCiudad, Nombre, Provincia FROM ciudad WHERE Pais LIKE ? AND Estado = true";
         PreparedStatement ps = null;
         try {
@@ -130,9 +130,9 @@ public class Ciudad_Data {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 nombreCiudad = new Ciudad();
-                nombreCiudad.setNombreCiudad(pais);
+                nombreCiudad.setPais(pais);
                 nombreCiudad.setIdCiudad(rs.getInt("idCiudad"));
-                nombreCiudad.setPais(rs.getString("Pais"));
+                nombreCiudad.setNombreCiudad(rs.getString("Nombre"));
                 nombreCiudad.setProvincia(rs.getString("Provincia"));
                 nombreCiudad.setEstado(true);
             }

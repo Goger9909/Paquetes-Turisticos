@@ -4,6 +4,8 @@
  */
 package proyecto.transversal.vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author ferben007
@@ -31,43 +33,84 @@ public class VistaCiudad extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        tfProvincia = new javax.swing.JTextField();
+        tfCiudad = new javax.swing.JTextField();
+        tfPais = new javax.swing.JTextField();
+        panelButtonNuevo = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CIUDAD");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 43, 517, -1));
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel2.setText("Nombre de Pais");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 115, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel3.setText("Nombre de Ciudad");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 231, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jLabel4.setText("Nombre de Provincia");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 173, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+        tfProvincia.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfProvincia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfProvinciaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(tfProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 250, -1));
+
+        tfCiudad.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCiudadActionPerformed(evt);
+            }
+        });
+        tfCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCiudadKeyTyped(evt);
+            }
+        });
+        jPanel1.add(tfCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 250, -1));
+
+        tfPais.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        tfPais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPaisKeyTyped(evt);
+            }
+        });
+        jPanel1.add(tfPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 250, -1));
+
+        panelButtonNuevo.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("NUEVO");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel5MouseEntered(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelButtonNuevoLayout = new javax.swing.GroupLayout(panelButtonNuevo);
+        panelButtonNuevo.setLayout(panelButtonNuevoLayout);
+        panelButtonNuevoLayout.setHorizontalGroup(
+            panelButtonNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel4)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        panelButtonNuevoLayout.setVerticalGroup(
+            panelButtonNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
+
+        jPanel1.add(panelButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,12 +124,56 @@ public class VistaCiudad extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCiudadActionPerformed
+
+    private void tfPaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPaisKeyTyped
+        int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122;
+        boolean letrasMay = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+        if (!(letrasMin || letrasMay || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPaisKeyTyped
+
+    private void tfProvinciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfProvinciaKeyTyped
+        int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122;
+        boolean letrasMay = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+        if (!(letrasMin || letrasMay || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfProvinciaKeyTyped
+
+    private void tfCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCiudadKeyTyped
+        int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122;
+        boolean letrasMay = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+        if (!(letrasMin || letrasMay || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfCiudadKeyTyped
+
+    private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
+        // TODO add your handling code here:
+        panelButtonNuevo.setBackground(Color.yellow);
+    }//GEN-LAST:event_jLabel5MouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panelButtonNuevo;
+    private javax.swing.JTextField tfCiudad;
+    private javax.swing.JTextField tfPais;
+    private javax.swing.JTextField tfProvincia;
     // End of variables declaration//GEN-END:variables
 }
