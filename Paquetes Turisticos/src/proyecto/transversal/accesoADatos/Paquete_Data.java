@@ -21,9 +21,9 @@ import proyecto.transversal.entidades.Pasaje;
 public class Paquete_Data {
     
      private  Connection con = null;
-     private  Ciudad_Data Cd; 
-     private  Alojamiento_Data Ad; 
-     private  Pasaje_Data Pd; 
+     private  Ciudad_Data Cd = new Ciudad_Data(); 
+     private  Alojamiento_Data Ad = new Alojamiento_Data(); 
+     private  Pasaje_Data Pd = new Pasaje_Data(); 
        
     public void GuardarPaquete(Paquete paquete){
             con = Conexion.getConexion();
@@ -56,7 +56,7 @@ public class Paquete_Data {
             while (resultado.next()) {
                 Paquete paquete = new Paquete();
                 paquete.setIdPaquete(resultado.getInt("idPaquete"));
-                Ciudad ciudad = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
+                Ciudad ciudad =  Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
                 paquete.setOrigen(ciudad);
                 Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
                 paquete.setDestino(ciu);
@@ -72,7 +72,7 @@ public class Paquete_Data {
         }
         return paquetee; 
  }       
-    
+
     public void BorrarPaquetePorId(int idPaquete){
            con = Conexion.getConexion();
      String sql = "DELETE FROM paquete WHERE idPaquete = ?";
