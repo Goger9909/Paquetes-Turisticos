@@ -165,10 +165,52 @@ public class Ciudad_Data {
         }
         return nombreCiudad;
     }
-    //<<<<<<<<<<Array Obtener Ciudad>>>>>>>>>>
+    //<<<<<<<<<<Array Obtener Ciudad Habilitadas>>>>>>>>>>
     public List<Ciudad> obtenerCiudadHabilitada(){
     ArrayList<Ciudad> nombreCiudad= new ArrayList<>();
     String sql = "SELECT * FROM ciudad WHERE Estado = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultado = ps.executeQuery();
+                 while(resultado.next()){
+                      Ciudad ciud = new  Ciudad();
+                      ciud.setIdCiudad(resultado.getInt("idCiudad"));
+                      ciud.setNombreCiudad(resultado.getString("Nombre"));
+                      ciud.setPais(resultado.getString("Pais"));
+                      ciud.setProvincia(resultado.getString("Provincia"));
+                      nombreCiudad.add(ciud);
+                 }
+                 ps.close();
+            } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+        return nombreCiudad;
+ }  
+    //<<<<<<<<<<Array Obtener Ciudad Desabilitadas>>>>>>>>>>
+    public List<Ciudad> obtenerCiudadDesabilitada(){
+    ArrayList<Ciudad> nombreCiudad= new ArrayList<>();
+    String sql = "SELECT * FROM ciudad WHERE Estado = 0";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultado = ps.executeQuery();
+                 while(resultado.next()){
+                      Ciudad ciud = new  Ciudad();
+                      ciud.setIdCiudad(resultado.getInt("idCiudad"));
+                      ciud.setNombreCiudad(resultado.getString("Nombre"));
+                      ciud.setPais(resultado.getString("Pais"));
+                      ciud.setProvincia(resultado.getString("Provincia"));
+                      nombreCiudad.add(ciud);
+                 }
+                 ps.close();
+            } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+        return nombreCiudad;
+ }    
+     //<<<<<<<<<<Array Obtener Ciudad>>>>>>>>>>
+     public List<Ciudad> obtenerCiudad(){
+    ArrayList<Ciudad> nombreCiudad= new ArrayList<>();
+    String sql = "SELECT * FROM ciudad ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultado = ps.executeQuery();
