@@ -1,38 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.transversal.entidades;
 
-/**
- *
- * @author MiPc
- */
 public class Pasaje {
     
     private int idPasaje;
-    private String Tipo_Tansporte;
-    private double Importe;
-    Ciudad nombre_ciudad_origen;
-    private boolean Estado;
+    private String tipo_tansporte;
+    private double importe;
+    private Ciudad nombre_ciudad_origen;
+    private boolean estado;
 
     public Pasaje() {
     }
 
-    public Pasaje(String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean stado) {
-        this.Tipo_Tansporte = Tipo_Tansporte;
-        this.Importe = Importe;
+    public Pasaje(String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean Estado) {
+        this.tipo_tansporte = Tipo_Tansporte;
+        this.importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
-        this.Estado = stado;
+        this.estado = Estado;
     }
 
-    public Pasaje(int idPasaje, String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean stado) {
+    public Pasaje(int idPasaje, String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean Estado) {
         this.idPasaje = idPasaje;
-        this.Tipo_Tansporte = Tipo_Tansporte;
-        this.Importe = Importe;
+        this.tipo_tansporte = Tipo_Tansporte;
+        this.importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
-        this.Estado = stado;
+        this.estado = Estado;
     }
 
     public int getIdPasaje() {
@@ -43,17 +34,17 @@ public class Pasaje {
     }
 
     public String getTipo_Tansporte() {
-        return Tipo_Tansporte;
+        return tipo_tansporte;
     }
     public void setTipo_Tansporte(String Tipo_Tansporte) {
-        this.Tipo_Tansporte = Tipo_Tansporte;
+        this.tipo_tansporte = Tipo_Tansporte;
     }
 
     public double getImporte() {
-        return Importe;
+        return importe;
     }
     public void setImporte(double Importe) {
-        this.Importe = Importe;
+        this.importe = Importe;
     }
 
     public Ciudad getNombre_ciudad_origen() {
@@ -62,16 +53,16 @@ public class Pasaje {
     public void setNombre_ciudad_origen(Ciudad nombre_ciudad_origen) {
         this.nombre_ciudad_origen = nombre_ciudad_origen;
     }
-
+    
     public boolean isEstado() {
-        return Estado;
+        return estado;
     }
-    public void setEstado(boolean stado) {
-        this.Estado = Estado;
+    public void setEstado(boolean Estado) {
+        this.estado = Estado;
     }
     
     @Override
     public String toString() {
-        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + Tipo_Tansporte + ", Costo:" + Importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + Estado + '}';
+        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + tipo_tansporte + ", Costo:" + importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + estado + '}';
     }
 }
