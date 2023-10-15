@@ -7,6 +7,7 @@ package proyecto.transversal.vista;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -21,11 +22,9 @@ import proyecto.transversal.entidades.Ciudad;
 public class VistaCiudad extends javax.swing.JPanel {
 
     private Ciudad_Data cd = new Ciudad_Data();
-//    public DefaultListModel limpiarList(){
-//    DefaultListModel modelo = new DefaultListModel();
-//    listCiudades.setModel(modelo);
-//    return modelo;
-//    }
+    private DefaultListModel modeloHabi = new DefaultListModel();
+    private DefaultListModel modeloDesah = new DefaultListModel();
+    private int id;
 
     /**
      * Creates new form VistaCiudad
@@ -33,9 +32,14 @@ public class VistaCiudad extends javax.swing.JPanel {
     public VistaCiudad() {
 
         initComponents();
-        cargarCiudades();
+        //cargarCiudades();
         desabilitaButton();
         desabilitarTexField();
+        jScrollPane3.setVisible(false);
+        cerrarBusqueda();
+        panelCerrar.setVisible(false);
+        //cargarCiudadesDeshabilitadas();
+
     }
 
     /**
@@ -47,10 +51,11 @@ public class VistaCiudad extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listCiudades = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,33 +81,51 @@ public class VistaCiudad extends javax.swing.JPanel {
         panelXProvincia = new javax.swing.JPanel();
         labelXProvincia = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
+        panelMosCiudadesHabilitadas = new javax.swing.JPanel();
+        labelMosCiudadesHabilitadas = new javax.swing.JLabel();
+        panelMosCiudadesDeshabilitadas = new javax.swing.JPanel();
+        labelMosCiudadesDeshabilitadas = new javax.swing.JLabel();
+        labelInfo = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listaDeshabilitadas = new javax.swing.JList<>();
+        labeCiudad = new javax.swing.JLabel();
+        panelCerrar = new javax.swing.JPanel();
+        labelCerrar = new javax.swing.JLabel();
+        panelSalir = new javax.swing.JPanel();
+        labelSalir = new javax.swing.JLabel();
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setText("jLabel1");
+
+        panelPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         listCiudades.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        listCiudades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listCiudadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listCiudades);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 240, 240));
+        panelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 280, 180));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CIUDAD");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 43, 517, -1));
+        labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labelTitulo.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("CIUDAD");
+        panelPrincipal.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 43, 517, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel2.setText("Nombre de Pais");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 115, -1, -1));
+        panelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 115, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel3.setText("Nombre de Ciudad");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        panelPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel4.setText("Nombre de Provincia");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        panelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jtexProvincia.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jtexProvincia.setForeground(java.awt.Color.gray);
@@ -117,7 +140,7 @@ public class VistaCiudad extends javax.swing.JPanel {
                 jtexProvinciaKeyTyped(evt);
             }
         });
-        jPanel1.add(jtexProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 250, -1));
+        panelPrincipal.add(jtexProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 250, -1));
 
         jtexCiudad.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jtexCiudad.setForeground(java.awt.Color.gray);
@@ -137,7 +160,7 @@ public class VistaCiudad extends javax.swing.JPanel {
                 jtexCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(jtexCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 250, -1));
+        panelPrincipal.add(jtexCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 250, -1));
 
         jtexPais.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jtexPais.setForeground(java.awt.Color.gray);
@@ -152,7 +175,7 @@ public class VistaCiudad extends javax.swing.JPanel {
                 jtexPaisKeyTyped(evt);
             }
         });
-        jPanel1.add(jtexPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 250, -1));
+        panelPrincipal.add(jtexPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 250, -1));
 
         panelEliminar.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -162,6 +185,9 @@ public class VistaCiudad extends javax.swing.JPanel {
         labelEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelEliminarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelEliminarMouseEntered(evt);
             }
@@ -181,7 +207,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
+        panelPrincipal.add(panelEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
 
         panelGuardar.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -213,7 +239,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 30));
+        panelPrincipal.add(panelGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 30));
 
         panelModificar.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -223,6 +249,9 @@ public class VistaCiudad extends javax.swing.JPanel {
         labelModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelModificarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelModificarMouseEntered(evt);
             }
@@ -242,7 +271,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 110, 30));
+        panelPrincipal.add(panelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 30));
 
         panelNuevo.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -274,7 +303,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 30));
+        panelPrincipal.add(panelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 30));
 
         panelBusProvincia.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -306,7 +335,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelBusProvincia, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelBusProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, 185, 30));
+        panelPrincipal.add(panelBusProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 185, 30));
 
         panelBusPais.setBackground(new java.awt.Color(244, 231, 187));
 
@@ -338,13 +367,31 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelBusPais, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelBusPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 185, 30));
+        panelPrincipal.add(panelBusPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 185, 30));
 
-        jtexBusProvincia.setText("jTextField1");
-        jPanel1.add(jtexBusProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, 185, 30));
+        jtexBusProvincia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtexBusProvinciaFocusGained(evt);
+            }
+        });
+        jtexBusProvincia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtexBusProvinciaKeyReleased(evt);
+            }
+        });
+        panelPrincipal.add(jtexBusProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 640, 185, 30));
 
-        jtexBusPais.setText("jTextField1");
-        jPanel1.add(jtexBusPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 185, 30));
+        jtexBusPais.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtexBusPaisFocusGained(evt);
+            }
+        });
+        jtexBusPais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtexBusPaisKeyReleased(evt);
+            }
+        });
+        panelPrincipal.add(jtexBusPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 185, 30));
 
         labelXPais.setFont(new java.awt.Font("Segoe Script", 0, 22)); // NOI18N
         labelXPais.setForeground(new java.awt.Color(255, 51, 51));
@@ -368,7 +415,7 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelXPais, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelXPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 30, 30));
+        panelPrincipal.add(panelXPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 540, 30, 30));
 
         labelXProvincia.setFont(new java.awt.Font("Segoe Script", 0, 22)); // NOI18N
         labelXProvincia.setForeground(new java.awt.Color(255, 51, 51));
@@ -392,31 +439,164 @@ public class VistaCiudad extends javax.swing.JPanel {
             .addComponent(labelXProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panelXProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 600, 30, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 580, 10));
+        panelPrincipal.add(panelXProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 640, 30, 30));
+        panelPrincipal.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 580, 10));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+        panelMosCiudadesHabilitadas.setBackground(new java.awt.Color(244, 231, 187));
+
+        labelMosCiudadesHabilitadas.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labelMosCiudadesHabilitadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMosCiudadesHabilitadas.setText("MOSTRAR CIUDADES HABILITADAS");
+        labelMosCiudadesHabilitadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelMosCiudadesHabilitadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelMosCiudadesHabilitadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesHabilitadasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesHabilitadasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesHabilitadasMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMosCiudadesHabilitadasLayout = new javax.swing.GroupLayout(panelMosCiudadesHabilitadas);
+        panelMosCiudadesHabilitadas.setLayout(panelMosCiudadesHabilitadasLayout);
+        panelMosCiudadesHabilitadasLayout.setHorizontalGroup(
+            panelMosCiudadesHabilitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMosCiudadesHabilitadas, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+        panelMosCiudadesHabilitadasLayout.setVerticalGroup(
+            panelMosCiudadesHabilitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMosCiudadesHabilitadas, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 240, 30));
+        panelPrincipal.add(panelMosCiudadesHabilitadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 300, 30));
+
+        panelMosCiudadesDeshabilitadas.setBackground(new java.awt.Color(244, 231, 187));
+
+        labelMosCiudadesDeshabilitadas.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labelMosCiudadesDeshabilitadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMosCiudadesDeshabilitadas.setText("MOSTRAR CIUDADES DESHABILITADAS");
+        labelMosCiudadesDeshabilitadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelMosCiudadesDeshabilitadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelMosCiudadesDeshabilitadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesDeshabilitadasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesDeshabilitadasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelMosCiudadesDeshabilitadasMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMosCiudadesDeshabilitadasLayout = new javax.swing.GroupLayout(panelMosCiudadesDeshabilitadas);
+        panelMosCiudadesDeshabilitadas.setLayout(panelMosCiudadesDeshabilitadasLayout);
+        panelMosCiudadesDeshabilitadasLayout.setHorizontalGroup(
+            panelMosCiudadesDeshabilitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMosCiudadesDeshabilitadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelMosCiudadesDeshabilitadasLayout.setVerticalGroup(
+            panelMosCiudadesDeshabilitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelMosCiudadesDeshabilitadas, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        panelPrincipal.add(panelMosCiudadesDeshabilitadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 300, 30));
+
+        labelInfo.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        labelInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelPrincipal.add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 280, 20));
+
+        listaDeshabilitadas.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        listaDeshabilitadas.setForeground(new java.awt.Color(255, 0, 51));
+        listaDeshabilitadas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaDeshabilitadasMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(listaDeshabilitadas);
+
+        panelPrincipal.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 540, 200));
+
+        labeCiudad.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        panelPrincipal.add(labeCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 300, 20));
+
+        panelCerrar.setBackground(new java.awt.Color(244, 231, 187));
+
+        labelCerrar.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labelCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCerrar.setText("CERRAR MUESTRAS");
+        labelCerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelCerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelCerrarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCerrarLayout = new javax.swing.GroupLayout(panelCerrar);
+        panelCerrar.setLayout(panelCerrarLayout);
+        panelCerrarLayout.setHorizontalGroup(
+            panelCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+        );
+        panelCerrarLayout.setVerticalGroup(
+            panelCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        panelPrincipal.add(panelCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 170, 30));
+
+        panelSalir.setBackground(new java.awt.Color(244, 231, 187));
+
+        labelSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSalir.setText("SALIR");
+        labelSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelSalirMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelSalirLayout = new javax.swing.GroupLayout(panelSalir);
+        panelSalir.setLayout(panelSalirLayout);
+        panelSalirLayout.setHorizontalGroup(
+            panelSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        panelSalirLayout.setVerticalGroup(
+            panelSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        panelPrincipal.add(panelSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -468,17 +648,17 @@ public class VistaCiudad extends javax.swing.JPanel {
 
     private void jtexPaisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtexPaisMousePressed
         // TODO add your handling code here:
-       limpiarPais();
+        limpiarPais();
     }//GEN-LAST:event_jtexPaisMousePressed
 
     private void jtexProvinciaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtexProvinciaMousePressed
         // TODO add your handling code here:
-       limpiarProvincia();
+        limpiarProvincia();
     }//GEN-LAST:event_jtexProvinciaMousePressed
 
     private void jtexCiudadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtexCiudadMousePressed
         // TODO add your handling code here:
-      limpiarCiudad();
+        limpiarCiudad();
     }//GEN-LAST:event_jtexCiudadMousePressed
 
     private void labelGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseEntered
@@ -519,7 +699,7 @@ public class VistaCiudad extends javax.swing.JPanel {
 
     private void labelNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNuevoMouseClicked
         // TODO add your handling code here:
-
+        limpiarTodo();
     }//GEN-LAST:event_labelNuevoMouseClicked
 
     private void labelBusPaisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBusPaisMouseExited
@@ -549,15 +729,21 @@ public class VistaCiudad extends javax.swing.JPanel {
     private void labelXPaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelXPaisMouseClicked
         // TODO add your handling code here:
         jtexBusPais.setVisible(false);
+        jtexBusPais.setText("");
         panelXPais.setVisible(false);
         labelXPais.setVisible(false);
+        modeloHabi.removeAllElements();
+        cargarCiudades();
     }//GEN-LAST:event_labelXPaisMouseClicked
 
     private void labelXProvinciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelXProvinciaMouseClicked
         // TODO add your handling code here:
         jtexBusProvincia.setVisible(false);
+        jtexBusProvincia.setText("");
         panelXProvincia.setVisible(false);
         labelXProvincia.setVisible(false);
+        modeloHabi.removeAllElements();
+        cargarCiudades();
 
     }//GEN-LAST:event_labelXProvinciaMouseClicked
 
@@ -569,6 +755,10 @@ public class VistaCiudad extends javax.swing.JPanel {
         jtexBusProvincia.setVisible(false);
         panelXProvincia.setVisible(false);
         labelXProvincia.setVisible(false);
+        jtexBusProvincia.setText("");
+        modeloHabi.removeAllElements();
+        //cargarCiudades();
+        limpiarTodo();
 
     }//GEN-LAST:event_labelBusPaisMouseClicked
 
@@ -580,6 +770,10 @@ public class VistaCiudad extends javax.swing.JPanel {
         jtexBusPais.setVisible(false);
         panelXPais.setVisible(false);
         labelXPais.setVisible(false);
+        jtexBusPais.setText("");
+        modeloHabi.removeAllElements();
+        //cargarCiudades();
+        limpiarTodo();
     }//GEN-LAST:event_labelBusProvinciaMouseClicked
 
     private void labelGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseClicked
@@ -592,23 +786,228 @@ public class VistaCiudad extends javax.swing.JPanel {
             String provincia = jtexProvincia.getText();
             String ciudad = jtexCiudad.getText();
             boolean repetido = false;
-            for(Ciudad bus: cd.obtenerCiudad()){
-                if(ciudad.equalsIgnoreCase(bus.getNombreCiudad())){
+            for (Ciudad bus : cd.obtenerCiudad()) {
+                if (ciudad.equalsIgnoreCase(bus.getNombreCiudad())) {
                     repetido = true;
                     JOptionPane.showMessageDialog(null, "La Ciudad ya EXISTE!!!");
                 }
             }
             System.out.println(repetido);
-            if(repetido == false){
+            if (repetido == false) {
                 Ciudad carga = new Ciudad(pais, ciudad, provincia, true);
                 cd.agregarCiudad(carga);
-                limpiarPais();
-                limpiarProvincia();
-                limpiarCiudad();
-                
+                modeloHabi.removeAllElements();
+                cargarCiudades();
+                limpiarTodo();
             }
         }
     }//GEN-LAST:event_labelGuardarMouseClicked
+
+    private void listCiudadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCiudadesMouseClicked
+
+        if (evt.getClickCount() == 2) { // Doble clic
+            int idCiudad = listCiudades.getSelectedValue().getIdCiudad();
+            Ciudad carga = cd.buscarCiudadPorID(idCiudad);
+            jtexPais.setForeground(Color.black);
+            jtexProvincia.setForeground(Color.black);
+            jtexCiudad.setForeground(Color.black);
+            jtexPais.setText(carga.getPais());
+            jtexProvincia.setText(carga.getProvincia());
+            jtexCiudad.setText(carga.getNombreCiudad());
+            id = carga.getIdCiudad();
+            panelGuardar.setVisible(false);
+            panelModificar.setVisible(true);
+            labelModificar.setVisible(true);
+            panelEliminar.setVisible(true);
+            labelEliminar.setVisible(true);
+            desabilitarTexField();
+            
+        }
+    }//GEN-LAST:event_listCiudadesMouseClicked
+
+    private void labelMosCiudadesHabilitadasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesHabilitadasMouseEntered
+        // TODO add your handling code here:
+        panelMosCiudadesHabilitadas.setBackground(new Color(103, 71, 48));
+        labelMosCiudadesHabilitadas.setForeground(Color.white);
+    }//GEN-LAST:event_labelMosCiudadesHabilitadasMouseEntered
+
+    private void labelMosCiudadesHabilitadasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesHabilitadasMouseExited
+        // TODO add your handling code here:
+        panelMosCiudadesHabilitadas.setBackground(new Color(244, 231, 187));
+        labelMosCiudadesHabilitadas.setForeground(Color.black);
+    }//GEN-LAST:event_labelMosCiudadesHabilitadasMouseExited
+
+    private void labelMosCiudadesHabilitadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesHabilitadasMouseClicked
+        // TODO add your handling code here:
+        modeloHabi.removeAllElements();
+        cargarCiudades();
+        labeCiudad.setText("CIUDADES HABILITADAS");
+        labelInfo.setText("Hacer doble click para cargarlas.");
+        jScrollPane1.setVisible(true);
+        panelBusPais.setVisible(true);
+        panelBusProvincia.setVisible(true);
+        jScrollPane3.setVisible(false);
+        panelMosCiudadesHabilitadas.setVisible(false);
+        panelMosCiudadesDeshabilitadas.setVisible(true);
+        limpiarTodo();
+        panelCerrar.setVisible(true);
+
+    }//GEN-LAST:event_labelMosCiudadesHabilitadasMouseClicked
+
+    private void labelMosCiudadesDeshabilitadasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesDeshabilitadasMouseEntered
+        // TODO add your handling code here:
+        panelMosCiudadesDeshabilitadas.setBackground(new Color(103, 71, 48));
+        labelMosCiudadesDeshabilitadas.setForeground(Color.white);
+    }//GEN-LAST:event_labelMosCiudadesDeshabilitadasMouseEntered
+
+    private void labelMosCiudadesDeshabilitadasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesDeshabilitadasMouseExited
+        // TODO add your handling code here:
+        panelMosCiudadesDeshabilitadas.setBackground(new Color(244, 231, 187));
+        labelMosCiudadesDeshabilitadas.setForeground(Color.black);
+    }//GEN-LAST:event_labelMosCiudadesDeshabilitadasMouseExited
+
+    private void labelMosCiudadesDeshabilitadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMosCiudadesDeshabilitadasMouseClicked
+        // TODO add your handling code here:
+        modeloDesah.removeAllElements();
+        cargarCiudadesDeshabilitadas();
+        labeCiudad.setText("CIUDADES ELIMINADAS");
+        labelInfo.setText("Hacer doble click para añadirlas.");
+        jScrollPane3.setVisible(true);
+        cerrarBusqueda();
+        limpiarTodo();
+    }//GEN-LAST:event_labelMosCiudadesDeshabilitadasMouseClicked
+
+    private void listaDeshabilitadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeshabilitadasMouseClicked
+        // TODO add your handling code here:
+
+        if (evt.getClickCount() == 2) { // Doble clic
+            int idCiudad = listaDeshabilitadas.getSelectedValue().getIdCiudad();
+            int op = JOptionPane.showConfirmDialog(null, "Esta seguro de AGREGAR la ciudad", "Gracias", JOptionPane.YES_NO_OPTION);
+            if (op == 0) {
+                cd.rehabilitarCiudad(idCiudad);
+                refrescarTablas();
+            }
+        }
+
+    }//GEN-LAST:event_listaDeshabilitadasMouseClicked
+
+    private void labelEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelEliminarMouseClicked
+        // Elimina la ciudad
+
+                int op = JOptionPane.showConfirmDialog(null, "Esta seguro que decea ELIMINAR la ciudad", "Gracias", JOptionPane.YES_NO_OPTION);
+                if (op == 0) {
+                    cd.eliminarCiudad(id);
+                    refrescarTablas();
+                    limpiarTodo();
+                    panelGuardar.setVisible(true);
+                    labelGuardar.setVisible(true);
+                    panelEliminar.setVisible(false);
+                    labelEliminar.setVisible(false);
+                    panelModificar.setVisible(false);
+                    labelModificar.setVisible(false);
+                }
+    }//GEN-LAST:event_labelEliminarMouseClicked
+
+    private void jtexBusPaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtexBusPaisKeyReleased
+        //Busca una ciudad al ingresa la primera letra
+        if (jtexBusPais.getText().isEmpty()) {
+            modeloHabi.removeAllElements();
+        } else {
+            modeloHabi.removeAllElements();
+            for (Ciudad bus : cd.obtenerCiudadHabilitada()) {
+                if (bus.getPais().toUpperCase().startsWith(jtexBusPais.getText().toUpperCase())) {
+                    modeloHabi.addElement(bus);
+                }
+            }
+        }
+
+    }//GEN-LAST:event_jtexBusPaisKeyReleased
+
+    private void jtexBusProvinciaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtexBusProvinciaKeyReleased
+        // Busca una Provincia la ingresar la primera letra
+         if (jtexBusProvincia.getText().isEmpty()) {
+            modeloHabi.removeAllElements();
+        } else {
+            modeloHabi.removeAllElements();
+            for (Ciudad bus : cd.obtenerCiudadHabilitada()) {
+                if (bus.getProvincia().toUpperCase().startsWith(jtexBusProvincia.getText().toUpperCase())) {
+                    modeloHabi.addElement(bus);
+                }
+            }
+        }
+    }//GEN-LAST:event_jtexBusProvinciaKeyReleased
+
+    private void jtexBusPaisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtexBusPaisFocusGained
+        // Cuando hace foco limpia la lista
+        modeloHabi.removeAllElements();
+    }//GEN-LAST:event_jtexBusPaisFocusGained
+
+    private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
+        // modifica la ciudad
+        
+        String pais = jtexPais.getText().trim();
+        String provincia = jtexProvincia.getText().trim();
+        String ciudad = jtexCiudad.getText().trim();
+        Ciudad carga = new Ciudad(id, pais, ciudad, provincia, true);
+        cd.modificarCiudad(carga);
+        modeloHabi.removeAllElements();
+        cargarCiudades();//metodo que carga la lista de ciudad
+        limpiarTodo();//limpia los capos de creacion de la ciudad
+        
+            
+       
+    }//GEN-LAST:event_labelModificarMouseClicked
+
+    private void jtexBusProvinciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtexBusProvinciaFocusGained
+        // Cuando hace foco limpia la lista:
+        modeloHabi.removeAllElements();
+    }//GEN-LAST:event_jtexBusProvinciaFocusGained
+
+    private void labelCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCerrarMouseExited
+        // TODO add your handling code here:
+        panelCerrar.setBackground(new Color(244,231,187));
+        labelCerrar.setForeground(Color.black);
+    }//GEN-LAST:event_labelCerrarMouseExited
+
+    private void labelCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCerrarMouseClicked
+        // TODO add your handling code here:
+        jScrollPane1.setVisible(false);
+        panelBusPais.setVisible(false);
+        jtexBusPais.setVisible(false);
+        panelBusProvincia.setVisible(false);
+        jtexBusProvincia.setVisible(false);
+        panelXPais.setVisible(false);
+        panelXProvincia.setVisible(false);
+        panelMosCiudadesHabilitadas.setVisible(true);
+        panelMosCiudadesDeshabilitadas.setVisible(false);
+        jScrollPane3.setVisible(false);
+        labelInfo.setText("");
+        labeCiudad.setText("");
+        panelCerrar.setVisible(false);
+    }//GEN-LAST:event_labelCerrarMouseClicked
+
+    private void labelCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCerrarMouseEntered
+        // TODO add your handling code here:
+        panelCerrar.setBackground(new Color(103,71,48));
+        labelCerrar.setForeground(Color.white);
+    }//GEN-LAST:event_labelCerrarMouseEntered
+
+    private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseClicked
+        // TODO add your handling code here:
+        panelPrincipal.setVisible(false);
+    }//GEN-LAST:event_labelSalirMouseClicked
+
+    private void labelSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseEntered
+        // TODO add your handling code here:
+        panelSalir.setBackground(new Color(103,71,48));
+        labelSalir.setForeground(Color.white);
+    }//GEN-LAST:event_labelSalirMouseEntered
+
+    private void labelSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseExited
+        // TODO add your handling code here:
+        panelSalir.setBackground(new Color(244,231,187));
+        labelSalir.setForeground(Color.black);
+    }//GEN-LAST:event_labelSalirMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -616,40 +1015,62 @@ public class VistaCiudad extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jtexBusPais;
     private javax.swing.JTextField jtexBusProvincia;
     private javax.swing.JTextField jtexCiudad;
     private javax.swing.JTextField jtexPais;
     private javax.swing.JTextField jtexProvincia;
+    private javax.swing.JLabel labeCiudad;
     private javax.swing.JLabel labelBusPais;
     private javax.swing.JLabel labelBusProvincia;
+    private javax.swing.JLabel labelCerrar;
     private javax.swing.JLabel labelEliminar;
     private javax.swing.JLabel labelGuardar;
+    private javax.swing.JLabel labelInfo;
     private javax.swing.JLabel labelModificar;
+    private javax.swing.JLabel labelMosCiudadesDeshabilitadas;
+    private javax.swing.JLabel labelMosCiudadesHabilitadas;
     private javax.swing.JLabel labelNuevo;
+    private javax.swing.JLabel labelSalir;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelXPais;
     private javax.swing.JLabel labelXProvincia;
-    private javax.swing.JList<String> listCiudades;
+    private javax.swing.JList<Ciudad> listCiudades;
+    private javax.swing.JList<Ciudad> listaDeshabilitadas;
     private javax.swing.JPanel panelBusPais;
     private javax.swing.JPanel panelBusProvincia;
+    private javax.swing.JPanel panelCerrar;
     private javax.swing.JPanel panelEliminar;
     private javax.swing.JPanel panelGuardar;
     private javax.swing.JPanel panelModificar;
+    private javax.swing.JPanel panelMosCiudadesDeshabilitadas;
+    private javax.swing.JPanel panelMosCiudadesHabilitadas;
     private javax.swing.JPanel panelNuevo;
+    private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSalir;
     private javax.swing.JPanel panelXPais;
     private javax.swing.JPanel panelXProvincia;
     // End of variables declaration//GEN-END:variables
- public DefaultListModel cargarCiudades() {
-        DefaultListModel modelo = new DefaultListModel();
-        listCiudades.setModel(modelo);
+ //metodo para cargar la lista de ciudades habilitadas
+    public DefaultListModel cargarCiudades() {
+
+        listCiudades.setModel(modeloHabi);
         for (Ciudad carg : cd.obtenerCiudadHabilitada()) {
-            modelo.addElement(carg.getNombreCiudad());
+            modeloHabi.addElement(carg);
         }
-        return modelo;
+        return modeloHabi;
+    }
+    //metodo para cargar la ciudades deshabilitadas
+    public DefaultListModel cargarCiudadesDeshabilitadas() {
+
+        listaDeshabilitadas.setModel(modeloDesah);
+        for (Ciudad carg : cd.obtenerCiudadDesabilitada()) {
+            modeloDesah.addElement(carg);
+        }
+        return modeloDesah;
     }
 
     public void desabilitaButton() {
@@ -666,9 +1087,14 @@ public class VistaCiudad extends javax.swing.JPanel {
     public void desabilitarTexField() {
         jtexBusPais.setVisible(false);
         jtexBusProvincia.setVisible(false);
+        panelXPais.setVisible(false);
+        panelXProvincia.setVisible(false);
+        labelXPais.setVisible(false);
+        labelXProvincia.setVisible(false);
     }
-    public void limpiarPais(){
-         if (jtexPais.getText().equals("Ingrese un Pais")) {
+
+    public void limpiarPais() {
+        if (jtexPais.getText().equals("Ingrese un Pais")) {
             jtexPais.setText("");
             jtexPais.setForeground(Color.black);
         }
@@ -681,8 +1107,9 @@ public class VistaCiudad extends javax.swing.JPanel {
             jtexCiudad.setForeground(Color.gray);
         }
     }
-    public void limpiarProvincia(){
-         if (jtexProvincia.getText().equals("Ingrese una Provincia")) {
+
+    public void limpiarProvincia() {
+        if (jtexProvincia.getText().equals("Ingrese una Provincia")) {
             jtexProvincia.setText("");
             jtexProvincia.setForeground(Color.black);
         }
@@ -695,8 +1122,9 @@ public class VistaCiudad extends javax.swing.JPanel {
             jtexCiudad.setForeground(Color.gray);
         }
     }
-    public void limpiarCiudad(){
-          if (jtexCiudad.getText().equals("Ingrese una Ciudad")) {
+
+    public void limpiarCiudad() {
+        if (jtexCiudad.getText().equals("Ingrese una Ciudad")) {
             jtexCiudad.setText("");
             jtexCiudad.setForeground(Color.black);
         }
@@ -708,5 +1136,42 @@ public class VistaCiudad extends javax.swing.JPanel {
             jtexPais.setText("Ingrese un Pais");
             jtexPais.setForeground(Color.gray);
         }
+    }
+
+    public void cerrarBusqueda() {
+        jScrollPane1.setVisible(false);
+        panelBusPais.setVisible(false);
+        jtexBusPais.setVisible(false);
+        panelBusProvincia.setVisible(false);
+        jtexBusProvincia.setVisible(false);
+        panelXPais.setVisible(false);
+        panelXProvincia.setVisible(false);
+        panelMosCiudadesHabilitadas.setVisible(true);
+        panelMosCiudadesDeshabilitadas.setVisible(false);
+    }
+
+    
+
+    public void refrescarTablas() {
+        modeloDesah.removeAllElements();
+        cargarCiudadesDeshabilitadas();
+        modeloHabi.removeAllElements();
+        cargarCiudades();
+    }
+    public void limpiarTodo(){
+          jtexProvincia.setText("");
+        jtexCiudad.setText("");
+        jtexPais.setText("");
+        limpiarCiudad();
+        limpiarProvincia();
+        limpiarPais();
+        jtexPais.setText("Ingrese un Pais");
+        jtexPais.setForeground(Color.gray);
+        panelGuardar.setVisible(true);
+        labelGuardar.setVisible(true);
+        panelEliminar.setVisible(false);
+        labelEliminar.setVisible(false);
+        panelModificar.setVisible(false);
+        labelModificar.setVisible(false);
     }
 }

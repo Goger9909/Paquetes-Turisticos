@@ -35,15 +35,16 @@ public class main {
 //        Paquete pa = new Paquete(ciu,ci,al,pd);
 //        pq.GuardarPaquete(pa);
 //                pq.ObtenerPaquete();
-       for(Paquete bus : pq.ObtenerPaquete()){
-           System.out.println("---"+bus.getIdPaquete());
-           System.out.println(bus.getOrigen().getNombreCiudad());
-           System.out.println(bus.getDestino().getNombreCiudad());
-           System.out.println(bus.getAlojamiento().getTipoAlojamiento());
-           System.out.println(bus.getPasaje().getTipo_Tansporte()); 
-       }
+//       for(Paquete bus : pq.ObtenerPaquete()){
+//           System.out.println("---"+bus.getIdPaquete());
+//           System.out.println(bus.getOrigen().getNombreCiudad());
+//           System.out.println(bus.getDestino().getNombreCiudad());
+//           System.out.println(bus.getAlojamiento().getTipoAlojamiento());
+//           System.out.println(bus.getPasaje().getTipo_Tansporte()); 
+//       }
 //System.out.println(ad.buscarAlojamientoPorId(2));
 //        System.out.println(cd.buscarCiudadPorID(15));
 //        System.out.println(ps.BuscarPasajePorId(4));
+cd.rehabilitarCiudad(18);
     }
 }
