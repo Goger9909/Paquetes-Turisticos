@@ -50,14 +50,14 @@ public class Menu extends javax.swing.JFrame {
         Estado.setLayout(EstadoLayout);
         EstadoLayout.setHorizontalGroup(
             EstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         EstadoLayout.setVerticalGroup(
             EstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 50));
+        jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 50));
 
         panelButton.setBackground(new java.awt.Color(153, 255, 255));
         panelButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,6 +88,15 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PASAJE");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setMaximumSize(new java.awt.Dimension(70, 22));
+        jLabel2.setMinimumSize(new java.awt.Dimension(70, 22));
+        jLabel2.setPreferredSize(new java.awt.Dimension(70, 22));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -122,6 +131,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PAQUETE");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -162,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,12 +184,20 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
+        Paquete pd = new Paquete();
+        pd.removeAll();
+        pd.setSize(600, 700);
+        pd.setLocation(0, 0);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pd,BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-          VistaCiudad pd = new VistaCiudad();
+        VistaCiudad pd = new VistaCiudad();
         pd.removeAll();
         pd.setSize(600, 700);
         pd.setLocation(0, 0);
@@ -188,6 +206,18 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        CreacionPasaje cp = new CreacionPasaje();
+        cp.removeAll();
+        cp.setSize(600, 700);
+        cp.setLocation(0, 0);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(cp,BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
