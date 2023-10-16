@@ -2,6 +2,10 @@
 package proyecto.transversal.vista;
 
 import java.awt.Color;
+import java.util.HashSet;
+import java.util.Set;
+import proyecto.transversal.accesoADatos.Ciudad_Data;
+import proyecto.transversal.entidades.Ciudad;
 
 /**
  *
@@ -11,6 +15,8 @@ public class Paquete extends javax.swing.JPanel {
 
     public Paquete() {
         initComponents();
+        cargaPais();
+        cargaPais2();
     }
 
     @SuppressWarnings("unchecked")
@@ -18,7 +24,6 @@ public class Paquete extends javax.swing.JPanel {
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Ciudad_Origen = new javax.swing.JComboBox<>();
         Ciudad_Destino = new javax.swing.JComboBox<>();
@@ -32,30 +37,40 @@ public class Paquete extends javax.swing.JPanel {
         jLEliminar = new javax.swing.JLabel();
         Salir = new javax.swing.JPanel();
         jLSalir = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        FechaEntrada = new com.toedter.calendar.JDateChooser();
+        FechaSalida = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLBuscar = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jCCuidad_deOrigen = new javax.swing.JComboBox<>();
+        jCiudad_Destino = new javax.swing.JComboBox<>();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         Fondo.setBackground(new java.awt.Color(102, 102, 102));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 110, 162, 26));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Paquete");
         Fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 20, 108, 33));
 
-        Fondo.add(Ciudad_Origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 110, 170, -1));
+        Ciudad_Origen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ciudad_OrigenActionPerformed(evt);
+            }
+        });
+        Fondo.add(Ciudad_Origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 140, -1));
 
-        Fondo.add(Ciudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 110, 170, -1));
+        Ciudad_Destino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ciudad_DestinoActionPerformed(evt);
+            }
+        });
+        Fondo.add(Ciudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 140, -1));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -151,12 +166,12 @@ public class Paquete extends javax.swing.JPanel {
         );
 
         Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 610, 60, -1));
-        Fondo.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
-        Fondo.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+        Fondo.add(FechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+        Fondo.add(FechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Llegada");
+        jLabel2.setText("Entrada");
         Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -171,6 +186,9 @@ public class Paquete extends javax.swing.JPanel {
         jLBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLBuscarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLBuscarMouseEntered(evt);
             }
@@ -192,6 +210,27 @@ public class Paquete extends javax.swing.JPanel {
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, 30));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Cuidad de origen");
+        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 20));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setText("Cuidad de destino");
+        Fondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 140, 20));
+
+        Fondo.add(jCCuidad_deOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 250, -1));
+
+        Fondo.add(jCiudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 250, -1));
+        Fondo.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setText("Cantidad de Personas");
+        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 160, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setText("Precio: ");
+        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,53 +239,70 @@ public class Paquete extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jLSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSalirMouseClicked
-        // TODO add your handling code here:
-        Fondo.setVisible(false);
+           Fondo.setVisible(false);
     }//GEN-LAST:event_jLSalirMouseClicked
 
     private void jLBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLBuscarMouseEntered
-        // TODO add your handling code here:
-        jLBuscar.setBackground(new Color(103, 71, 48));
+         jLBuscar.setBackground(new Color(103, 71, 48));
         jLBuscar.setForeground(Color.white);
     }//GEN-LAST:event_jLBuscarMouseEntered
 
     private void jLBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLBuscarMouseExited
-        // TODO add your handling code here:
         jLBuscar.setBackground(new Color(244, 231, 187));
         jLBuscar.setForeground(Color.black);
     }//GEN-LAST:event_jLBuscarMouseExited
 
     private void jLSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSalirMouseEntered
-        // TODO add your handling code here:
         jLSalir.setBackground(new Color(103, 71, 48));
         jLSalir.setForeground(Color.white);
     }//GEN-LAST:event_jLSalirMouseEntered
 
     private void jLSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLSalirMouseExited
-        // TODO add your handling code here:
         jLSalir.setBackground(new Color(244, 231, 187));
         jLSalir.setForeground(Color.black);
     }//GEN-LAST:event_jLSalirMouseExited
+
+    private void Ciudad_DestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ciudad_DestinoActionPerformed
+         String pais =  (String)  Ciudad_Destino.getSelectedItem();
+         Ciudad_Data cd = new Ciudad_Data();
+           jCiudad_Destino.removeAllItems();
+             for ( Ciudad ciudad: cd.arrayBusquedaPais(pais)){
+           jCiudad_Destino.addItem(ciudad.getProvincia()+"-"+ciudad.getNombreCiudad());
+           }
+   
+    }//GEN-LAST:event_Ciudad_DestinoActionPerformed
+
+    private void Ciudad_OrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ciudad_OrigenActionPerformed
+         String pais =  (String) Ciudad_Origen.getSelectedItem();
+         Ciudad_Data cd = new Ciudad_Data();
+         jCCuidad_deOrigen.removeAllItems();
+            for ( Ciudad ciudad: cd.arrayBusquedaPais(pais)){
+         jCCuidad_deOrigen.addItem(ciudad.getProvincia()+"-"+ciudad.getNombreCiudad());
+           }
+    }//GEN-LAST:event_Ciudad_OrigenActionPerformed
+
+    private void jLBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLBuscarMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jLBuscarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Destino;
     private javax.swing.JComboBox<String> Ciudad_Origen;
     private javax.swing.JPanel Eliminar;
+    private com.toedter.calendar.JDateChooser FechaEntrada;
+    private com.toedter.calendar.JDateChooser FechaSalida;
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel Guardar;
     private javax.swing.JPanel Modificar;
     private javax.swing.JPanel Salir;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JComboBox<String> jCCuidad_deOrigen;
+    private javax.swing.JComboBox<String> jCiudad_Destino;
     private javax.swing.JLabel jLBuscar;
     private javax.swing.JLabel jLEliminar;
     private javax.swing.JLabel jLGuardar;
@@ -255,9 +311,39 @@ public class Paquete extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+ public void cargaPais() {
+        Ciudad_Data cd = new Ciudad_Data();
+        Set<String> paisAgregadas = new HashSet<>(); // Utilizamos un conjunto para evitar duplicados
+        Ciudad_Origen.addItem(Ciudad_Origen.getItemAt(-1));
+        for (Ciudad bus : cd.obtenerCiudadHabilitada()) {
+            String paices = bus.getPais();
+            if (!paisAgregadas.contains(paices)) {
+               Ciudad_Origen.addItem(paices);
+                paisAgregadas.add(paices); // Agrega la provincia al conjunto
+            }
+        }
+    }
+ 
+  public void cargaPais2() {
+        Ciudad_Data cd = new Ciudad_Data();
+        Set<String> paisAgregadas = new HashSet<>(); // Utilizamos un conjunto para evitar duplicados
+        Ciudad_Destino.addItem(Ciudad_Destino.getItemAt(-1));
+        for (Ciudad bus : cd.obtenerCiudadHabilitada()) {
+            String paices = bus.getPais();
+            if (!paisAgregadas.contains(paices)) {
+              Ciudad_Destino.addItem(paices);
+                paisAgregadas.add(paices); // Agrega el pais al conjunto
+            }
+        }
+    }
 }
