@@ -1,4 +1,3 @@
-
 package proyecto.transversal.accesoADatos;
 
 import java.sql.Connection;
@@ -23,7 +22,7 @@ public class Pasaje_Data {
         con = Conexion.getConexion();
         
         String sql= "INSERT INTO pasaje(Tipo_Transporte, Importe, Nombre_Ciudad_Origen, Estado)"
-                + "VALUES (?,?,?,?,?)";
+                + "VALUES (?,?,?,?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
