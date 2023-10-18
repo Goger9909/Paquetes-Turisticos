@@ -1,11 +1,20 @@
 
 package proyecto.transversal.vista;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
+import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
+import proyecto.transversal.accesoADatos.Pasaje_Data;
+import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
+import proyecto.transversal.entidades.Pasaje;
 
 /**
  *
@@ -17,6 +26,7 @@ public class Paquete extends javax.swing.JPanel {
         initComponents();
         cargaPais();
         cargaPais2();
+        CargarPasaje();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,8 +37,6 @@ public class Paquete extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Ciudad_Origen = new javax.swing.JComboBox<>();
         Ciudad_Destino = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         Guardar = new javax.swing.JPanel();
         jLGuardar = new javax.swing.JLabel();
         Modificar = new javax.swing.JPanel();
@@ -47,9 +55,13 @@ public class Paquete extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jCCuidad_deOrigen = new javax.swing.JComboBox<>();
         jCiudad_Destino = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jCTipodPasaje = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         Fondo.setBackground(new java.awt.Color(102, 102, 102));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,12 +84,6 @@ public class Paquete extends javax.swing.JPanel {
         });
         Fondo.add(Ciudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 140, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 270, 260));
-
         jLGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLGuardar.setText("Guardar");
@@ -88,14 +94,18 @@ public class Paquete extends javax.swing.JPanel {
         Guardar.setLayout(GuardarLayout);
         GuardarLayout.setHorizontalGroup(
             GuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GuardarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         GuardarLayout.setVerticalGroup(
             GuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GuardarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 611, -1, -1));
+        Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, -1, -1));
 
         jLModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,14 +117,16 @@ public class Paquete extends javax.swing.JPanel {
         Modificar.setLayout(ModificarLayout);
         ModificarLayout.setHorizontalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(jLModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
         );
         ModificarLayout.setVerticalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addGroup(ModificarLayout.createSequentialGroup()
+                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 610, -1, 31));
+        Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, -1, 31));
 
         jLEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -126,14 +138,18 @@ public class Paquete extends javax.swing.JPanel {
         Eliminar.setLayout(EliminarLayout);
         EliminarLayout.setHorizontalGroup(
             EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         EliminarLayout.setVerticalGroup(
             EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 610, -1, -1));
+        Fondo.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 650, -1, -1));
 
         jLSalir.setBackground(new java.awt.Color(0, 0, 255));
         jLSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -158,14 +174,18 @@ public class Paquete extends javax.swing.JPanel {
         Salir.setLayout(SalirLayout);
         SalirLayout.setHorizontalGroup(
             SalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         SalirLayout.setVerticalGroup(
             SalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalirLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 610, 60, -1));
+        Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, 60, -1));
         Fondo.add(FechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
         Fondo.add(FechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
@@ -221,15 +241,32 @@ public class Paquete extends javax.swing.JPanel {
         Fondo.add(jCCuidad_deOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 250, -1));
 
         Fondo.add(jCiudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 250, -1));
-        Fondo.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Cantidad de Personas");
-        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 160, -1));
+        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 160, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setText("Precio: ");
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, -1, -1));
+        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 70, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setText("Tipo de pasaje");
+        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+
+        jCTipodPasaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTipodPasajeActionPerformed(evt);
+            }
+        });
+        Fondo.add(jCTipodPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 180, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 270, 560, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -287,9 +324,24 @@ public class Paquete extends javax.swing.JPanel {
     }//GEN-LAST:event_Ciudad_OrigenActionPerformed
 
     private void jLBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLBuscarMouseClicked
-        // TODO add your handling code here:
-        
+       
+        java.util.Date fechaentradaUtil = FechaEntrada.getDate();
+        Instant instant = fechaentradaUtil.toInstant();
+        LocalDate fechaEntrada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+        java.util.Date fechasalidaUtil = FechaSalida.getDate();
+        Instant instantt = fechasalidaUtil.toInstant();
+        LocalDate fechaSalida = instantt.atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Alojamiento_Data al = new Alojamiento_Data();
+        for (Alojamiento alo : al.buscarAlojamientofecha(fechaEntrada, fechaSalida)) {
+            jTextArea1.setText(alo.toString());
+        }
     }//GEN-LAST:event_jLBuscarMouseClicked
+
+    private void jCTipodPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipodPasajeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTipodPasajeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Destino;
@@ -302,6 +354,7 @@ public class Paquete extends javax.swing.JPanel {
     private javax.swing.JPanel Modificar;
     private javax.swing.JPanel Salir;
     private javax.swing.JComboBox<String> jCCuidad_deOrigen;
+    private javax.swing.JComboBox<String> jCTipodPasaje;
     private javax.swing.JComboBox<String> jCiudad_Destino;
     private javax.swing.JLabel jLBuscar;
     private javax.swing.JLabel jLEliminar;
@@ -315,10 +368,11 @@ public class Paquete extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
  public void cargaPais() {
@@ -346,4 +400,17 @@ public class Paquete extends javax.swing.JPanel {
             }
         }
     }
+
+
+public void CargarPasaje(){
+    Pasaje_Data pd = new Pasaje_Data();
+    for(Pasaje PD : pd.BuscarPasaje()){
+       jCTipodPasaje.addItem(PD.getTipo_Tansporte());
+    }
 }
+
+
+}
+
+
+

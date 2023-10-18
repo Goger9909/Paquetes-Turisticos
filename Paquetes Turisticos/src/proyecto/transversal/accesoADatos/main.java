@@ -45,6 +45,13 @@ public class main {
 //System.out.println(ad.buscarAlojamientoPorId(2));
 //        System.out.println(cd.buscarCiudadPorID(15));
 //        System.out.println(ps.BuscarPasajePorId(4));
-cd.rehabilitarCiudad(18);
+//cd.rehabilitarCiudad(18);
+//   ad.buscarAlojamientofecha(LocalDate.now(),LocalDate.now());
+      
+//        System.out.println(ad.buscarAlojamientofecha(LocalDate.now(),LocalDate.now()).getIdAlojamiento());
+//
+    for(Pasaje pa : ps.BuscarPasaje()){
+        System.out.println(pa.getIdPasaje());
     }
+}
 }

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -224,5 +225,32 @@ public class Alojamiento_Data {
 //        }
 //        return ciudades;
 //    } 
-
+public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fechaSa){
+     ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+     String sql = "SELECT idAlojamiento, Tipo_Alojamiento, Servicio, Importe_Diario, "
+        + "Ciudad_Destino, Estado FROM alojamiento WHERE Fecha_Inicio = ? AND Fecha_Salida = ?";          
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+           ps.setDate(1, java.sql.Date.valueOf(fechain));
+           ps.setDate(2, java.sql.Date.valueOf(fechaSa));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Ciudad_Data cd= new Ciudad_Data();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(fechain);
+                alojamiento.setFechaOn(fechaSa);
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                ciudad = cd.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                alojamientos.add(alojamiento);
+            }
+            ps.close();
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos"+ ex);
+        }
+        return alojamientos;
+    }
 }

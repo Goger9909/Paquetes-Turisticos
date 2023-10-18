@@ -245,4 +245,30 @@ public class Pasaje_Data {
         }
     return pasajes;
     }
+    
+    
+    public List<Pasaje> BuscarPasaje(){
+     ArrayList<Pasaje> pasajes = new ArrayList<>();
+    con = Conexion.getConexion();
+    String sql = "SELECT * FROM pasaje ";
+    try {
+       PreparedStatement ps = con.prepareStatement(sql);
+       ResultSet rs= ps.executeQuery();
+        if(rs.next()){
+            Pasaje pasaje = new Pasaje();
+            pasaje.setIdPasaje(rs.getInt("idPasaje"));
+            pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
+            pasaje.setImporte(rs.getDouble("Importe"));
+            Ciudad nombre_ciudad_origen= cd.buscarCiudadPorID(rs.getInt("Nombre_Ciudad_Origen"));
+            pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
+            pasaje.setEstado(rs.getBoolean("Estado"));
+            pasajes.add(pasaje);
+        } else{
+            JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje"+ ex.getMessage());
+    }
+    return pasajes;
+}
 }
