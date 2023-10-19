@@ -173,7 +173,7 @@ public class Alojamiento_Data {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1,ciudad.getIdCiudad());
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
                 alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
@@ -234,7 +234,7 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
            ps.setDate(1, java.sql.Date.valueOf(fechain));
            ps.setDate(2, java.sql.Date.valueOf(fechaSa));
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 Ciudad_Data cd= new Ciudad_Data();
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
                 alojamiento.setFechaIn(fechain);
