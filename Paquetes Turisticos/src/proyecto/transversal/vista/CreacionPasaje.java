@@ -1,6 +1,8 @@
 package proyecto.transversal.vista;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
@@ -9,19 +11,20 @@ import proyecto.transversal.entidades.Ciudad;
 import proyecto.transversal.entidades.Pasaje;
 
 public class CreacionPasaje extends javax.swing.JPanel {
+
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int filas, int columnas) {
             return false;
         }
     };
-    
+
     public CreacionPasaje() {
         initComponents();
         CargarComboCiudadOrigen();
         CargarComboCiudad();
         ArmarCabezera();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,13 +60,10 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(600, 700));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pasaje");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 590, -1));
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,14 +76,16 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 590, 373));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Pasajes Creados");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 219, 590, -1));
 
         labeBuscarCiudad.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labeBuscarCiudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,9 +93,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labeBuscarCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labeBuscarCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labeBuscarCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labeBuscarCiudadMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labeBuscarCiudadMouseEntered(evt);
             }
@@ -101,7 +100,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labeBuscarCiudadMouseExited(evt);
             }
         });
-        jPanel1.add(labeBuscarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 242, -1, 25));
 
         labelImporte.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labelImporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -109,9 +107,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labelImporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelImporte.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelImporteMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelImporteMouseEntered(evt);
             }
@@ -119,13 +114,13 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labelImporteMouseExited(evt);
             }
         });
-        jPanel1.add(labelImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 171, 26));
 
         labeDeshabilitar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labeDeshabilitar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labeDeshabilitar.setText("DESHABILITAR");
         labeDeshabilitar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labeDeshabilitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labeDeshabilitar.setEnabled(false);
         labeDeshabilitar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labeDeshabilitarMouseClicked(evt);
@@ -137,13 +132,13 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labeDeshabilitarMouseExited(evt);
             }
         });
-        jPanel1.add(labeDeshabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 659, -1, 30));
 
         labelHabilitar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelHabilitar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelHabilitar.setText("HABILITAR");
         labelHabilitar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelHabilitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelHabilitar.setEnabled(false);
         labelHabilitar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelHabilitarMouseClicked(evt);
@@ -155,13 +150,13 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labelHabilitarMouseExited(evt);
             }
         });
-        jPanel1.add(labelHabilitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 659, 136, 30));
 
         labelModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelModificar.setText("MODIFICAR");
         labelModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelModificar.setEnabled(false);
         labelModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelModificarMouseClicked(evt);
@@ -173,7 +168,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labelModificarMouseExited(evt);
             }
         });
-        jPanel1.add(labelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 183, 110, 30));
 
         labelGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,36 +185,42 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labelGuardarMouseExited(evt);
             }
         });
-        jPanel1.add(labelGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("Tipo de Tansporte");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 63, 133, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Importe");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 143, 133, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Nombre de Ciudad");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 103, -1, -1));
 
-        jTransporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colectivo", "Avion", "Tren", "Barco" }));
-        jPanel1.add(jTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 65, 270, -1));
+        jTransporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Colectivo", "Avion", "Tren", "Barco" }));
 
-        jPanel1.add(jCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 105, 270, -1));
-        jPanel1.add(jImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 145, 270, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 242, 65, 27));
+        jImporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jImporteKeyTyped(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("a");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 245, -1, 20));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 242, 65, 27));
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         labelSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -238,12 +238,10 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 labelSalirMouseExited(evt);
             }
         });
-        jPanel1.add(labelSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 659, 100, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Cliquear 2 veses para modificar");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 666, -1, -1));
 
         jBuscarCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -255,13 +253,110 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 jBuscarCiudadActionPerformed(evt);
             }
         });
-        jPanel1.add(jBuscarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 242, 108, 27));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(69, 69, 69)
+                        .addComponent(jCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(labeDeshabilitar)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jLabel2)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labeDeshabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(labelSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,10 +364,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelImporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseClicked
-        labelSalir.setBackground(new Color(244, 231, 187));
-        labelSalir.setForeground(Color.black);
-    }//GEN-LAST:event_labelImporteMouseClicked
+    private boolean modificacion = false;
 
     private void labelImporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseEntered
         labelSalir.setBackground(new Color(103, 71, 48));
@@ -287,22 +379,25 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private void labeDeshabilitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeDeshabilitarMouseClicked
         labeDeshabilitar.setBackground(new Color(244, 231, 187));
         labeDeshabilitar.setForeground(Color.black);
-        try{
-            Pasaje pasaje = (Pasaje) jBuscarCiudad.getSelectedItem();
+        try {
             Pasaje_Data insc = new Pasaje_Data();
-            
+            Ciudad_Data cd = new Ciudad_Data();
             //Para obtener los índices de fila.
-            int  filaSeleccionada = jTable.getSelectedRow();
-            int idM = (int) jTable.getValueAt(filaSeleccionada,0);
-            int idP = pasaje.getIdPasaje();
+            int filaSeleccionada = jTable.getSelectedRow();
+            int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
+            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+            insc.deshabilitarPasaje(idM);
             
-            insc.DesabilitarPasaje(idP);
-            
+            Ciudad ciudad = new Ciudad();
+            ciudad = cd.busquedaPorCiudad(ciudad2);
+            int ciu = ciudad.getIdCiudad();
+
             BorrarFilas();
-            for (Pasaje ins : insc.ObtenerPasajeHabilitados(idM)){
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
         }
     }//GEN-LAST:event_labeDeshabilitarMouseClicked
@@ -318,25 +413,27 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labeDeshabilitarMouseExited
 
     private void labelHabilitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHabilitarMouseClicked
-        labelHabilitar.setBackground(new Color(244, 231, 187));
-        labelHabilitar.setForeground(Color.black);
-        try{
-            Pasaje pasaje = (Pasaje) jBuscarCiudad.getSelectedItem();
+        labeDeshabilitar.setBackground(new Color(244, 231, 187));
+        labeDeshabilitar.setForeground(Color.black);
+        try {
             Pasaje_Data insc = new Pasaje_Data();
-            
-            
+            Ciudad_Data cd = new Ciudad_Data();
             //Para obtener los índices de fila.
-            int  filaSeleccionada = jTable.getSelectedRow();
-            int idM = (int) jTable.getValueAt(filaSeleccionada,0);
-            int idP = pasaje.getIdPasaje();
+            int filaSeleccionada = jTable.getSelectedRow();
+            int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
+            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+            insc.habilitarPasaje(idM);
             
-            insc.HabilitarPasaje(idP);
-            
+            Ciudad ciudad = new Ciudad();
+            ciudad = cd.busquedaPorCiudad(ciudad2);
+            int ciu = ciudad.getIdCiudad();
+
             BorrarFilas();
-            for (Pasaje ins : insc.ObtenerPasajesDesabilitados(idM)){
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getImporte(), ins.getNombre_ciudad_origen(),ins.getTipo_Tansporte()});
+            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
         }
     }//GEN-LAST:event_labelHabilitarMouseClicked
@@ -352,18 +449,29 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelHabilitarMouseExited
 
     private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
-        labelModificar.setBackground(new Color(244, 231, 187));
-        labelModificar.setForeground(Color.black);
+
+        labelGuardar.setBackground(new Color(244, 231, 187));
+        labelGuardar.setForeground(Color.black);
         Pasaje_Data pd = new Pasaje_Data();
-        
+        Ciudad_Data cd = new Ciudad_Data();
+        int filaSeleccionada = jTable.getSelectedRow();
+
+        int id = (int) jTable.getValueAt(filaSeleccionada, 0);
+
         String tp = (String) jTransporte.getSelectedItem();
         Double imp = Double.parseDouble(jImporte.getText());
-        Ciudad ciu = (Ciudad) jCiudad.getSelectedItem();
+        String ciu1 = (String) jCiudad.getSelectedItem();
+        Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
+
         boolean e = true;
-        
-        Pasaje pasaje = new Pasaje(tp,imp,ciu,e);
-        
+
+        Pasaje pasaje = new Pasaje(id, tp, imp, ciu, e);
+
         pd.ModificarPasaje(pasaje);
+        limpiarTodo();
+        labelModificar.setEnabled(false);
+        labelGuardar.setEnabled(true);
+
     }//GEN-LAST:event_labelModificarMouseClicked
 
     private void labelModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseEntered
@@ -380,15 +488,18 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labelGuardar.setBackground(new Color(244, 231, 187));
         labelGuardar.setForeground(Color.black);
         Pasaje_Data pd = new Pasaje_Data();
-        
+        Ciudad_Data cd = new Ciudad_Data();
+
         String tp = (String) jTransporte.getSelectedItem();
         Double imp = Double.parseDouble(jImporte.getText());
-        Ciudad ciu = (Ciudad) jCiudad.getSelectedItem();
+        String ciu1 = (String) jCiudad.getSelectedItem();
+        Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
         boolean e = true;
-        
-        Pasaje pasaje = new Pasaje(tp,imp,ciu,e);
-        
+
+        Pasaje pasaje = new Pasaje(tp, imp, ciu, e);
+
         pd.GuardarPasaje(pasaje);
+        limpiarTodo();
     }//GEN-LAST:event_labelGuardarMouseClicked
 
     private void labelGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseEntered
@@ -424,11 +535,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarCiudadActionPerformed
 
-    private void labeBuscarCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeBuscarCiudadMouseClicked
-        labeBuscarCiudad.setBackground(new Color(244, 231, 187));
-        labeBuscarCiudad.setForeground(Color.black);
-    }//GEN-LAST:event_labeBuscarCiudadMouseClicked
-
     private void labeBuscarCiudadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeBuscarCiudadMouseEntered
         labeBuscarCiudad.setBackground(new Color(103, 71, 48));
         labeBuscarCiudad.setForeground(Color.white);
@@ -440,28 +546,100 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labeBuscarCiudadMouseExited
 
     private void jBuscarCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jBuscarCiudadItemStateChanged
-        try{
+        try {
+            BorrarFilas();
             Ciudad_Data cd = new Ciudad_Data();
-            Ciudad ciudad = new Ciudad();
             String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
             
+            Ciudad ciudad = new Ciudad();
             ciudad = cd.busquedaPorCiudad(ciudad2);
-            
             int ciu = ciudad.getIdCiudad();
+            
             Pasaje_Data insc = new Pasaje_Data();
+
             BorrarFilas();
-            for (Pasaje ins : insc.BuscarPasajePorCiudad(ciu)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(),ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte()});
+            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
-            BorrarFilas();
         }
     }//GEN-LAST:event_jBuscarCiudadItemStateChanged
 
+    private void jImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jImporteKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+        if (!(numeros || punto)) {
+            evt.consume();
+        }
+        jImporte.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                if (jImporte.getText().length() >= 6) {
+                    evt.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_jImporteKeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+        if (!(numeros || punto)) {
+            evt.consume();
+        }
+        jTextField2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                if (jTextField2.getText().length() >= 6) {
+                    evt.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+        if (!(numeros || punto)) {
+            evt.consume();
+        }
+        jTextField3.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                if (jTextField3.getText().length() >= 6) {
+                    evt.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = jTable.getSelectedRow();
+            String t = (String) jTable.getValueAt(filaSeleccionada, 2);
+            Ciudad c = (Ciudad) jTable.getValueAt(filaSeleccionada, 1);
+            Double i = (Double) jTable.getValueAt(filaSeleccionada, 3);
+            jTransporte.setSelectedItem(t);
+            jCiudad.setSelectedItem(c.getNombreCiudad());
+            jImporte.setText(String.valueOf(i));
+            labelModificar.setEnabled(true);
+            modificacion = true;
+            labelHabilitar.setEnabled(false);
+            labeDeshabilitar.setEnabled(false);
+            labelGuardar.setEnabled(false);
+        } else if (evt.getClickCount() == 1) {
+            labelHabilitar.setEnabled(true);
+            labeDeshabilitar.setEnabled(true);
+        }
+    }//GEN-LAST:event_jTableMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jBuscarCiudad;
-    private javax.swing.JComboBox<Ciudad> jCiudad;
+    private javax.swing.JComboBox<String> jCiudad;
     private javax.swing.JTextField jImporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -485,32 +663,53 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JLabel labelModificar;
     private javax.swing.JLabel labelSalir;
     // End of variables declaration//GEN-END:variables
-    
-    public void CargarComboCiudadOrigen(){
+
+    public void CargarComboCiudadOrigen() {
         Ciudad_Data cd = new Ciudad_Data();
         jCiudad.addItem(jCiudad.getItemAt(-1));
-        for ( Ciudad ciudad : cd.obtenerCiudad()){
-            jCiudad.addItem(ciudad);
+        jCiudad.addItem("");
+        for (Ciudad ciudad : cd.obtenerCiudad()) {
+            jCiudad.addItem(ciudad.getNombreCiudad());
         }
     }
-    public void CargarComboCiudad(){
+
+    public void CargarComboCiudad() {
         Ciudad_Data cd = new Ciudad_Data();
         jBuscarCiudad.addItem(jBuscarCiudad.getItemAt(-1));
-        for ( Ciudad ciudad : cd.obtenerCiudad()){
+        for (Ciudad ciudad : cd.obtenerCiudad()) {
             jBuscarCiudad.addItem(ciudad.getNombreCiudad());
         }
     }
-    private void ArmarCabezera(){
-       modelo.addColumn("Ciudad");
-       modelo.addColumn("Transporte");
-       modelo.addColumn("Importe");
-       modelo.addColumn("Estado");
-       jTable.setModel(modelo);
+
+    private void ArmarCabezera() {
+        modelo.addColumn("id Pasaje");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Transporte");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Estado");
+        jTable.setModel(modelo);
+        jTable.setModel(modelo);
+
+        // Asumiendo que tienes tres columnas y quieres configurar
+        // los anchos respectivamente a 100, 150 y 200 píxeles.
+        int[] anchos = {75, 320, 100, 100, 60};
+
+        for (int i = 0; i < jTable.getColumnCount(); i++) {
+            jTable.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+        }
+
     }
-    private void BorrarFilas(){
-        int filas = jTable.getRowCount()-1;
-        for(int f = filas; f >= 0 ; f--){
+
+    private void BorrarFilas() {
+        int filas = jTable.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
             modelo.removeRow(f);
         }
+    }
+
+    public void limpiarTodo() {
+        jTransporte.setSelectedItem("");
+        jCiudad.setSelectedItem("");
+        jImporte.setText("");
     }
 }

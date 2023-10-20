@@ -3,7 +3,7 @@ package proyecto.transversal.entidades;
 public class Pasaje {
     
     private int idPasaje;
-    private String tipo_tansporte;
+    private String tipo_transporte;
     private double importe;
     private Ciudad nombre_ciudad_origen;
     private boolean estado;
@@ -12,7 +12,7 @@ public class Pasaje {
     }
 
     public Pasaje(String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean Estado) {
-        this.tipo_tansporte = Tipo_Tansporte;
+        this.tipo_transporte = Tipo_Tansporte;
         this.importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
         this.estado = Estado;
@@ -20,7 +20,7 @@ public class Pasaje {
 
     public Pasaje(int idPasaje, String Tipo_Tansporte, double Importe, Ciudad nombre_ciudad_origen, boolean Estado) {
         this.idPasaje = idPasaje;
-        this.tipo_tansporte = Tipo_Tansporte;
+        this.tipo_transporte = Tipo_Tansporte;
         this.importe = Importe;
         this.nombre_ciudad_origen = nombre_ciudad_origen;
         this.estado = Estado;
@@ -34,10 +34,10 @@ public class Pasaje {
     }
 
     public String getTipo_Tansporte() {
-        return tipo_tansporte;
+        return tipo_transporte;
     }
     public void setTipo_Tansporte(String Tipo_Tansporte) {
-        this.tipo_tansporte = Tipo_Tansporte;
+        this.tipo_transporte = Tipo_Tansporte;
     }
 
     public double getImporte() {
@@ -63,6 +63,6 @@ public class Pasaje {
     
     @Override
     public String toString() {
-        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + tipo_tansporte + ", Costo:" + importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + estado + '}';
+        return "Pasaje{" + "id Pasaje:" + idPasaje + ", Tipo de Transporte:" + tipo_transporte + ", Costo:" + importe + ", Ciudad origen:" + nombre_ciudad_origen + ", stado:" + estado + '}';
     }
 }
