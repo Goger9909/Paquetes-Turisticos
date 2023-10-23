@@ -254,7 +254,6 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         return alojamientos;
     }
 
-<<<<<<< HEAD
     public List<Alojamiento> buscarAlojamiento() {
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
         String sql = "SELECT * FROM alojamiento";
@@ -281,6 +280,5 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         }
         return alojamientos;
     }
-=======
->>>>>>> b266eab4f7097c18d9d80f2ef6d68cdf3c139b9b
+
 }

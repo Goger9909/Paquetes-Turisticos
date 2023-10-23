@@ -49,9 +49,5 @@ public class main {
 //   ad.buscarAlojamientofecha(LocalDate.now(),LocalDate.now());
       
 //        System.out.println(ad.buscarAlojamientofecha(LocalDate.now(),LocalDate.now()).getIdAlojamiento());
-//
-    for(Pasaje pa : ps.BuscarPasaje()){
-        System.out.println(pa.getIdPasaje());
-    }
 }
 }
