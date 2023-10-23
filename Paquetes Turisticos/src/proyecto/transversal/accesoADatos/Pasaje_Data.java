@@ -159,7 +159,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Modificar Pasaje>>>>>>>>>>
-    public void DesabilitarPasaje(int id) {
+    public void desabilitarPasaje(int id) {
         con = Conexion.getConexion();
 
         String sql = "UPDATE pasaje SET Estado = false WHERE idPasaje = ?";
@@ -180,7 +180,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Habilitar Pasaje>>>>>>>>>>
-    public void HabilitarPasaje(int id) {
+    public void habilitarPasaje(int id) {
         con = Conexion.getConexion();
 
         String sql = "UPDATE pasaje SET Estado = true WHERE idPasaje = ?";
@@ -275,6 +275,34 @@ public class Pasaje_Data {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
+        }
+        return pasajes;
+    }
+    
+
+    public List<Pasaje> buscarPasajePorCiudad(int ciudad) {
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        Pasaje pasaje = null;
+
+        String sql = "SELECT * FROM pasaje WHERE Nombre_Ciudad_Origen = ?";
+        try {
+            con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, ciudad);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
+                pasaje.setImporte(rs.getDouble("Importe"));
+                Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(ciudad);
+                pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
+                pasaje.setEstado(rs.getBoolean("Estado"));
+                pasajes.add(pasaje);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje: " + ex.getMessage());
         }
         return pasajes;
     }
