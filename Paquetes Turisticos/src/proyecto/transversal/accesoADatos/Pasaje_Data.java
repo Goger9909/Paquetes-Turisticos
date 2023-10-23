@@ -17,7 +17,7 @@ public class Pasaje_Data {
     private Ciudad_Data cd = new Ciudad_Data();
 
     //<<<<<<<<<<Guardar Pasaje>>>>>>>>>>
-    public void GuardarPasaje(Pasaje pasaje) {
+    public void guardarPasaje(Pasaje pasaje) {
 
         con = Conexion.getConexion();
 
@@ -45,7 +45,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Modificar Pasaje>>>>>>>>>>
-    public void ModificarPasaje(Pasaje pasaje) {
+    public void modificarPasaje(Pasaje pasaje) {
 
         con = Conexion.getConexion();
         PreparedStatement ps = null;
@@ -71,7 +71,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Buscar Pasaje por Importe>>>>>>>>>>
-    public Pasaje BuscarPasajePorImporte(double Importe, double Importe2) {
+    public Pasaje buscarPasajePorImporte(double Importe, double Importe2) {
 
         con = Conexion.getConexion();
         Pasaje pasaje = null;
@@ -101,7 +101,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Buscar Pasaje por Id>>>>>>>>>>
-    public Pasaje BuscarPasajePorId(int idPasaje) {
+    public Pasaje buscarPasajePorId(int idPasaje) {
 
         con = Conexion.getConexion();
         Pasaje pasaje = null;
@@ -121,7 +121,7 @@ public class Pasaje_Data {
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
+                JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id2");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -131,7 +131,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Buscar Pasaje por Ciudad>>>>>>>>>>
-    public List<Pasaje> BuscarPasajePorCiudad(int ciudad) {
+    public List<Pasaje> buscarPasajePorCiudad(int ciudad) {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         con = Conexion.getConexion();
         Pasaje pasaje = null;
@@ -201,7 +201,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Obtener Pasajes Habilitados>>>>>>>>>>
-    public List<Pasaje> ObtenerPasajeHabilitados(int id) {
+    public List<Pasaje> obtenerPasajeHabilitados(int id) {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         con = Conexion.getConexion();
         Pasaje pasaje = null;
@@ -228,7 +228,7 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Obtener Pasajes Desabilitados>>>>>>>>>>
-    public List<Pasaje> ObtenerPasajesDesabilitados(int id) {
+    public List<Pasaje> obtenerPasajesDesabilitados(int id) {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         con = Conexion.getConexion();
         Pasaje pasaje = null;
@@ -254,7 +254,7 @@ public class Pasaje_Data {
         return pasajes;
     }
 
-    public List<Pasaje> BuscarPasaje() {
+    public List<Pasaje> buscarPasaje() {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         con = Conexion.getConexion();
         String sql = "SELECT * FROM pasaje ";
@@ -271,13 +271,17 @@ public class Pasaje_Data {
                 pasaje.setEstado(rs.getBoolean("Estado"));
                 pasajes.add(pasaje);
             } 
+<<<<<<< HEAD
 //            JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
+=======
+>>>>>>> 9bb37e305e89fc8e4f567771e6441d0106069761
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
         }
         return pasajes;
     }
+<<<<<<< HEAD
     
 <<<<<<< HEAD
      public List<Pasaje> ObtenerPasajes(String Tipo) {
@@ -334,4 +338,6 @@ public class Pasaje_Data {
         return pasajes;
     }
 >>>>>>> b266eab4f7097c18d9d80f2ef6d68cdf3c139b9b
+=======
+>>>>>>> 9bb37e305e89fc8e4f567771e6441d0106069761
 }

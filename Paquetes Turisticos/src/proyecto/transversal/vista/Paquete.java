@@ -453,6 +453,7 @@ public void cargaPais2() {
 
 public void CargarPasaje(){
     Pasaje_Data pd = new Pasaje_Data();
+<<<<<<< HEAD
     Set<String> Pasaje = new HashSet<>();
     jCTipodPasaje.addItem(jCTipodPasaje.getItemAt(-1));
     for(Pasaje PD : pd.BuscarPasaje()){
@@ -461,6 +462,10 @@ public void CargarPasaje(){
          jCTipodPasaje.addItem(nombrepasaje);
          Pasaje.add(nombrepasaje);
         }
+=======
+    for(Pasaje PD : pd.buscarPasaje()){
+       jCTipodPasaje.addItem(PD.getTipo_Tansporte());
+>>>>>>> 9bb37e305e89fc8e4f567771e6441d0106069761
     }
 }
 
