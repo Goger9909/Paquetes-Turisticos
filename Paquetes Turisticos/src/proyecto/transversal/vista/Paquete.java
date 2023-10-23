@@ -384,7 +384,7 @@ public class Paquete extends javax.swing.JPanel {
         Ciudad ciudad1 = (Ciudad) cd.busquedaPorCiudad(ci);
         System.out.println(ciudad1);
         String pas = (String) jCTipodPasaje.getSelectedItem();
-        Pasaje pasaje = (Pasaje) ps.ObtenerPasajes(pas);
+        Pasaje pasaje = (Pasaje) ps.obtenerPasajes(pas);
         System.out.println(pasaje);
 //        Alojamiento al = CargarAlojamiento.getSelectedValue(); 
 //        System.out.println(al);
