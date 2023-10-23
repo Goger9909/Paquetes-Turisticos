@@ -253,4 +253,31 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         }
         return alojamientos;
     }
+
+    public List<Alojamiento> buscarAlojamiento() {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+        String sql = "SELECT * FROM alojamiento";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudad_Data cd = new Ciudad_Data();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                ciudad = cd.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                alojamientos.add(alojamiento);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
+        return alojamientos;
+    }
 }

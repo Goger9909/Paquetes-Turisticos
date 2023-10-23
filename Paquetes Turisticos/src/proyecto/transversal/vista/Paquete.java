@@ -9,8 +9,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
+import proyecto.transversal.accesoADatos.Paquete_Data;
 import proyecto.transversal.accesoADatos.Pasaje_Data;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
@@ -21,12 +24,21 @@ import proyecto.transversal.entidades.Pasaje;
  * @author YamilaAlejandra
  */
 public class Paquete extends javax.swing.JPanel {
-
+  private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int filas, int columnas) {
+            return false;
+        }
+    };
+  
     public Paquete() {
         initComponents();
         cargaPais();
         cargaPais2();
         CargarPasaje();
+//        cargarAlojamiento();
+        ArmarCabezera();
+        
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -61,7 +73,7 @@ public class Paquete extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jCTipodPasaje = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTable1 = new javax.swing.JTable();
 
         Fondo.setBackground(new java.awt.Color(102, 102, 102));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,6 +101,11 @@ public class Paquete extends javax.swing.JPanel {
         jLGuardar.setText("Guardar");
         jLGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLGuardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout GuardarLayout = new javax.swing.GroupLayout(Guardar);
         Guardar.setLayout(GuardarLayout);
@@ -105,7 +122,7 @@ public class Paquete extends javax.swing.JPanel {
                 .addComponent(jLGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, -1, -1));
+        Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, -1, -1));
 
         jLModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -117,16 +134,18 @@ public class Paquete extends javax.swing.JPanel {
         Modificar.setLayout(ModificarLayout);
         ModificarLayout.setHorizontalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         ModificarLayout.setVerticalGroup(
             ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ModificarLayout.createSequentialGroup()
-                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, -1, 31));
+        Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, -1, 31));
 
         jLEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,7 +168,7 @@ public class Paquete extends javax.swing.JPanel {
                 .addComponent(jLEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 650, -1, -1));
+        Fondo.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, -1, -1));
 
         jLSalir.setBackground(new java.awt.Color(0, 0, 255));
         jLSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -174,9 +193,9 @@ public class Paquete extends javax.swing.JPanel {
         Salir.setLayout(SalirLayout);
         SalirLayout.setHorizontalGroup(
             SalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SalirLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(SalirLayout.createSequentialGroup()
+                .addComponent(jLSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         SalirLayout.setVerticalGroup(
             SalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +204,7 @@ public class Paquete extends javax.swing.JPanel {
                 .addComponent(jLSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, 60, -1));
+        Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 600, 60, -1));
         Fondo.add(FechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
         Fondo.add(FechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
@@ -244,29 +263,38 @@ public class Paquete extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Cantidad de Personas");
-        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 160, -1));
+        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 160, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setText("Precio: ");
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, -1, -1));
-        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 70, 30));
+        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
+        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, 70, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Tipo de pasaje");
-        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         jCTipodPasaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCTipodPasajeActionPerformed(evt);
             }
         });
-        Fondo.add(jCTipodPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 180, -1));
+        Fondo.add(jCTipodPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 180, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
-        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 270, 560, 300));
+        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 560, 250));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -276,7 +304,7 @@ public class Paquete extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -309,7 +337,7 @@ public class Paquete extends javax.swing.JPanel {
          Ciudad_Data cd = new Ciudad_Data();
            jCiudad_Destino.removeAllItems();
              for ( Ciudad ciudad: cd.arrayBusquedaPais(pais)){
-           jCiudad_Destino.addItem(ciudad.getProvincia()+"-"+ciudad.getNombreCiudad());
+           jCiudad_Destino.addItem(ciudad.getNombreCiudad());
            }
    
     }//GEN-LAST:event_Ciudad_DestinoActionPerformed
@@ -319,12 +347,12 @@ public class Paquete extends javax.swing.JPanel {
          Ciudad_Data cd = new Ciudad_Data();
          jCCuidad_deOrigen.removeAllItems();
             for ( Ciudad ciudad: cd.arrayBusquedaPais(pais)){
-         jCCuidad_deOrigen.addItem(ciudad.getProvincia()+"-"+ciudad.getNombreCiudad());
+         jCCuidad_deOrigen.addItem(ciudad.getNombreCiudad());
            }
     }//GEN-LAST:event_Ciudad_OrigenActionPerformed
 
     private void jLBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLBuscarMouseClicked
-       
+
         java.util.Date fechaentradaUtil = FechaEntrada.getDate();
         Instant instant = fechaentradaUtil.toInstant();
         LocalDate fechaEntrada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
@@ -335,13 +363,35 @@ public class Paquete extends javax.swing.JPanel {
 
         Alojamiento_Data al = new Alojamiento_Data();
         for (Alojamiento alo : al.buscarAlojamientofecha(fechaEntrada, fechaSalida)) {
-            jTextArea1.setText(alo.toString());
+            modelo.addRow(new Object[]{alo.getIdAlojamiento(),alo.getFechaIn(),alo.getFechaOn(),
+                alo.getTipoAlojamiento(),alo.getServicio(),alo.getImporteDiario()});
         }
+        
     }//GEN-LAST:event_jLBuscarMouseClicked
 
     private void jCTipodPasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipodPasajeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCTipodPasajeActionPerformed
+
+    private void jLGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLGuardarMouseClicked
+        // TODO add your handling code here:
+        Ciudad_Data cd = new Ciudad_Data(); 
+        Pasaje_Data ps = new Pasaje_Data();
+        String ciu = (String) jCCuidad_deOrigen.getSelectedItem();
+        Ciudad ciudad = (Ciudad) cd.busquedaPorCiudad(ciu);
+        System.out.println(ciudad);
+        String ci = (String) jCiudad_Destino.getSelectedItem();
+        Ciudad ciudad1 = (Ciudad) cd.busquedaPorCiudad(ci);
+        System.out.println(ciudad1);
+        String pas = (String) jCTipodPasaje.getSelectedItem();
+        Pasaje pasaje = (Pasaje) ps.ObtenerPasajes(pas);
+        System.out.println(pasaje);
+//        Alojamiento al = CargarAlojamiento.getSelectedValue(); 
+//        System.out.println(al);
+//        Paquete pa = new Paquete(ciudad,ciudad1,al,pasaje);
+        Paquete_Data Pd = new Paquete_Data();  
+//        Pd.GuardarPaquete(pa);
+    }//GEN-LAST:event_jLGuardarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Destino;
@@ -371,7 +421,7 @@ public class Paquete extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
@@ -388,7 +438,7 @@ public class Paquete extends javax.swing.JPanel {
         }
     }
  
-  public void cargaPais2() {
+public void cargaPais2() {
         Ciudad_Data cd = new Ciudad_Data();
         Set<String> paisAgregadas = new HashSet<>(); // Utilizamos un conjunto para evitar duplicados
         Ciudad_Destino.addItem(Ciudad_Destino.getItemAt(-1));
@@ -401,16 +451,40 @@ public class Paquete extends javax.swing.JPanel {
         }
     }
 
-
 public void CargarPasaje(){
     Pasaje_Data pd = new Pasaje_Data();
+    Set<String> Pasaje = new HashSet<>();
+    jCTipodPasaje.addItem(jCTipodPasaje.getItemAt(-1));
     for(Pasaje PD : pd.BuscarPasaje()){
-       jCTipodPasaje.addItem(PD.getTipo_Tansporte());
+        String nombrepasaje = PD.getTipo_Tansporte();
+        if(!Pasaje.contains(nombrepasaje)){
+         jCTipodPasaje.addItem(nombrepasaje);
+         Pasaje.add(nombrepasaje);
+        }
     }
 }
 
+//public DefaultListModel cargarAlojamiento() {
+//       Alojamiento_Data Ad = new Alojamiento_Data();
+////      .setModel(modelo);
+//      return modelo;
+//    }
 
+ 
+ private void ArmarCabezera(){
+     modelo.addColumn("id");
+     modelo.addColumn("Fecha Entrada");
+     modelo.addColumn("Fecha Salida");
+     modelo.addColumn("Alojamiento");
+     modelo.addColumn("Servicio");
+     modelo.addColumn("Importe");
+     jTable1.setModel(modelo);
+ }
+ 
+ private void BorrarFilas(){
+        int filas = jTable1.getRowCount()-1;
+        for(int f = filas; f >= 0 ; f--){
+            modelo.removeRow(f);
+        }
+    }
 }
-
-
-
