@@ -206,7 +206,7 @@ public class Alojamiento_Data {
 //            ps.setString(2, txt);
 //            ps.setString(3, txt);
 //            ResultSet rs = ps.executeQuery();
-//        if(rs.next()){
+//        while(rs.next()){
 //            ciudad.setIdCiudad(rs.getInt("idCiudad"));
 //            ciudad.setNombreCiudad(rs.getString("Nombre"));
 //            ciudad.setPais(rs.getString("Pais"));
