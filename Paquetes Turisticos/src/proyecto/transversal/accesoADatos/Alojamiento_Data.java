@@ -206,7 +206,7 @@ public class Alojamiento_Data {
 //            ps.setString(2, txt);
 //            ps.setString(3, txt);
 //            ResultSet rs = ps.executeQuery();
-//        if(rs.next()){
+//        while(rs.next()){
 //            ciudad.setIdCiudad(rs.getInt("idCiudad"));
 //            ciudad.setNombreCiudad(rs.getString("Nombre"));
 //            ciudad.setPais(rs.getString("Pais"));
@@ -254,6 +254,7 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         return alojamientos;
     }
 
+<<<<<<< HEAD
     public List<Alojamiento> buscarAlojamiento() {
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
         String sql = "SELECT * FROM alojamiento";
@@ -280,4 +281,6 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         }
         return alojamientos;
     }
+=======
+>>>>>>> b266eab4f7097c18d9d80f2ef6d68cdf3c139b9b
 }

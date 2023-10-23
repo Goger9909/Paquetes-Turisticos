@@ -20,9 +20,10 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     public CreacionPasaje() {
         initComponents();
-        CargarComboCiudadOrigen();
-        CargarComboCiudad();
-        ArmarCabezera();
+        cargarComboCiudadOrigen();
+        cargarComboCiudad();
+        armarCabezera();
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +31,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,10 +55,16 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labelSalir = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jBuscarCiudad = new javax.swing.JComboBox<>();
+        labeLimpiar = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Pasajes Creados");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Pasajes Creados");
 
         setPreferredSize(new java.awt.Dimension(600, 700));
 
@@ -83,7 +91,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Pasajes Creados");
 
@@ -92,32 +100,16 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labeBuscarCiudad.setText("BUSCAR POR Ciudad");
         labeBuscarCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labeBuscarCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labeBuscarCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labeBuscarCiudadMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labeBuscarCiudadMouseExited(evt);
-            }
-        });
 
         labelImporte.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labelImporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelImporte.setText("BUSCAR POR IMPORTE");
         labelImporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelImporte.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelImporteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelImporteMouseExited(evt);
-            }
-        });
 
         labeDeshabilitar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labeDeshabilitar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labeDeshabilitar.setText("DESHABILITAR");
+        labeDeshabilitar.setText("DESAHABILITAR");
         labeDeshabilitar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labeDeshabilitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labeDeshabilitar.setEnabled(false);
@@ -254,54 +246,82 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         });
 
+        labeLimpiar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labeLimpiar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeLimpiar.setText("LIMPIAR");
+        labeLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labeLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labeLimpiar.setEnabled(false);
+        labeLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labeLimpiarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labeLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labeLimpiarMouseExited(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Limpiar para dejar de modificar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labeLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
                         .addComponent(jTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(69, 69, 69)
-                        .addComponent(jCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(labeDeshabilitar)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jLabel5)
+                            .addGap(69, 69, 69)
+                            .addComponent(jCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69)
+                            .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(labeDeshabilitar)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(21, 21, 21))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,13 +345,15 @@ public class CreacionPasaje extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(labelGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jLabel2)
-                .addGap(6, 6, 6)
+                    .addComponent(labelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labeLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,25 +378,13 @@ public class CreacionPasaje extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private boolean modificacion = false;
-
-    private void labelImporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseEntered
-        labelSalir.setBackground(new Color(103, 71, 48));
-        labelSalir.setForeground(Color.white);
-    }//GEN-LAST:event_labelImporteMouseEntered
-
-    private void labelImporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseExited
-        labelSalir.setBackground(new Color(244, 231, 187));
-        labelSalir.setForeground(Color.black);
-    }//GEN-LAST:event_labelImporteMouseExited
 
     private void labeDeshabilitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeDeshabilitarMouseClicked
         labeDeshabilitar.setBackground(new Color(244, 231, 187));
@@ -387,13 +397,13 @@ public class CreacionPasaje extends javax.swing.JPanel {
             int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
             String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-            insc.deshabilitarPasaje(idM);
-            
+            insc.desabilitarPasaje(idM);
+
             Ciudad ciudad = new Ciudad();
             ciudad = cd.busquedaPorCiudad(ciudad2);
             int ciu = ciudad.getIdCiudad();
 
-            BorrarFilas();
+            borrarFilas();
             for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
@@ -424,12 +434,12 @@ public class CreacionPasaje extends javax.swing.JPanel {
             String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
             insc.habilitarPasaje(idM);
-            
+
             Ciudad ciudad = new Ciudad();
             ciudad = cd.busquedaPorCiudad(ciudad2);
             int ciu = ciudad.getIdCiudad();
 
-            BorrarFilas();
+            borrarFilas();
             for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
@@ -517,6 +527,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseClicked
+        jPanel1.setVisible(false);
         labelSalir.setBackground(new Color(244, 231, 187));
         labelSalir.setForeground(Color.black);
     }//GEN-LAST:event_labelSalirMouseClicked
@@ -535,34 +546,31 @@ public class CreacionPasaje extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBuscarCiudadActionPerformed
 
-    private void labeBuscarCiudadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeBuscarCiudadMouseEntered
-        labeBuscarCiudad.setBackground(new Color(103, 71, 48));
-        labeBuscarCiudad.setForeground(Color.white);
-    }//GEN-LAST:event_labeBuscarCiudadMouseEntered
-
-    private void labeBuscarCiudadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeBuscarCiudadMouseExited
-        labeBuscarCiudad.setBackground(new Color(244, 231, 187));
-        labeBuscarCiudad.setForeground(Color.black);
-    }//GEN-LAST:event_labeBuscarCiudadMouseExited
-
     private void jBuscarCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jBuscarCiudadItemStateChanged
-        try {
-            BorrarFilas();
-            Ciudad_Data cd = new Ciudad_Data();
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-            
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu = ciudad.getIdCiudad();
-            
+        if (jBuscarCiudad.getSelectedItem() == null) {
             Pasaje_Data insc = new Pasaje_Data();
-
-            BorrarFilas();
-            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+            for (Pasaje ins : insc.BuscarPasaje()) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+        } else {
+            try {
+                borrarFilas();
+                Ciudad_Data cd = new Ciudad_Data();
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu = ciudad.getIdCiudad();
+
+                Pasaje_Data insc = new Pasaje_Data();
+
+                borrarFilas();
+                for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+            }
         }
     }//GEN-LAST:event_jBuscarCiudadItemStateChanged
 
@@ -576,7 +584,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jImporte.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jImporte.getText().length() >= 6) {
+                if (jImporte.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -593,7 +601,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTextField2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jTextField2.getText().length() >= 6) {
+                if (jTextField2.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -610,7 +618,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTextField3.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jTextField3.getText().length() >= 6) {
+                if (jTextField3.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -623,25 +631,51 @@ public class CreacionPasaje extends javax.swing.JPanel {
             String t = (String) jTable.getValueAt(filaSeleccionada, 2);
             Ciudad c = (Ciudad) jTable.getValueAt(filaSeleccionada, 1);
             Double i = (Double) jTable.getValueAt(filaSeleccionada, 3);
+            labeDeshabilitar.setEnabled(false);
+            labelHabilitar.setEnabled(false);
             jTransporte.setSelectedItem(t);
             jCiudad.setSelectedItem(c.getNombreCiudad());
             jImporte.setText(String.valueOf(i));
             labelModificar.setEnabled(true);
-            modificacion = true;
-            labelHabilitar.setEnabled(false);
-            labeDeshabilitar.setEnabled(false);
+            labeLimpiar.setEnabled(true);
             labelGuardar.setEnabled(false);
-        } else if (evt.getClickCount() == 1) {
-            labelHabilitar.setEnabled(true);
-            labeDeshabilitar.setEnabled(true);
+        }
+        if (evt.getClickCount() == 1) {
+            int filaSeleccionada = jTable.getSelectedRow();
+            Boolean comprobacion = (boolean) jTable.getValueAt(filaSeleccionada, 4);
+            if (comprobacion == true) {
+                labeDeshabilitar.setEnabled(true);
+                labelHabilitar.setEnabled(false);
+            } else {
+                labelHabilitar.setEnabled(true);
+                labeDeshabilitar.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_jTableMouseClicked
+
+    private void labeLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeLimpiarMouseClicked
+        limpiarTodo();
+        labelModificar.setEnabled(false);
+        labeLimpiar.setEnabled(false);
+        labelGuardar.setEnabled(true);
+    }//GEN-LAST:event_labeLimpiarMouseClicked
+
+    private void labeLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeLimpiarMouseEntered
+        labeLimpiar.setBackground(new Color(103, 71, 48));
+        labeLimpiar.setForeground(Color.white);
+    }//GEN-LAST:event_labeLimpiarMouseEntered
+
+    private void labeLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeLimpiarMouseExited
+        labeLimpiar.setBackground(new Color(244, 231, 187));
+        labeLimpiar.setForeground(Color.black);
+    }//GEN-LAST:event_labeLimpiarMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jBuscarCiudad;
     private javax.swing.JComboBox<String> jCiudad;
     private javax.swing.JTextField jImporte;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -649,6 +683,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
@@ -657,6 +692,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jTransporte;
     private javax.swing.JLabel labeBuscarCiudad;
     private javax.swing.JLabel labeDeshabilitar;
+    private javax.swing.JLabel labeLimpiar;
     private javax.swing.JLabel labelGuardar;
     private javax.swing.JLabel labelHabilitar;
     private javax.swing.JLabel labelImporte;
@@ -664,7 +700,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JLabel labelSalir;
     // End of variables declaration//GEN-END:variables
 
-    public void CargarComboCiudadOrigen() {
+    public void cargarComboCiudadOrigen() {
         Ciudad_Data cd = new Ciudad_Data();
         jCiudad.addItem(jCiudad.getItemAt(-1));
         jCiudad.addItem("");
@@ -673,7 +709,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         }
     }
 
-    public void CargarComboCiudad() {
+    public void cargarComboCiudad() {
         Ciudad_Data cd = new Ciudad_Data();
         jBuscarCiudad.addItem(jBuscarCiudad.getItemAt(-1));
         for (Ciudad ciudad : cd.obtenerCiudad()) {
@@ -681,7 +717,14 @@ public class CreacionPasaje extends javax.swing.JPanel {
         }
     }
 
-    private void ArmarCabezera() {
+    public void cargarTabla() {
+        Pasaje_Data insc = new Pasaje_Data();
+        for (Pasaje ins : insc.BuscarPasaje()) {
+            modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+        }
+    }
+
+    private void armarCabezera() {
         modelo.addColumn("id Pasaje");
         modelo.addColumn("Ciudad");
         modelo.addColumn("Transporte");
@@ -690,8 +733,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTable.setModel(modelo);
         jTable.setModel(modelo);
 
-        // Asumiendo que tienes tres columnas y quieres configurar
-        // los anchos respectivamente a 100, 150 y 200 píxeles.
         int[] anchos = {75, 320, 100, 100, 60};
 
         for (int i = 0; i < jTable.getColumnCount(); i++) {
@@ -700,7 +741,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     }
 
-    private void BorrarFilas() {
+    private void borrarFilas() {
         int filas = jTable.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
             modelo.removeRow(f);
