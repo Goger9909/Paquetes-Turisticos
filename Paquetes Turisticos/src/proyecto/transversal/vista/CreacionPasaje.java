@@ -415,7 +415,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         }
         labeDeshabilitar.setEnabled(false);
-        hd=false;
     }//GEN-LAST:event_labeDeshabilitarMouseClicked
 
     private void labeDeshabilitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeDeshabilitarMouseEntered
@@ -455,7 +454,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         }
         labelHabilitar.setEnabled(false);
-        hd=false;
     }//GEN-LAST:event_labelHabilitarMouseClicked
 
     private void labelHabilitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHabilitarMouseEntered
@@ -686,7 +684,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             labelModificar.setEnabled(true);
             labeLimpiar.setEnabled(true);
             labelGuardar.setEnabled(false);
-            hd=false;
         }
         if (evt.getClickCount() == 1) {
             int filaSeleccionada = jTable.getSelectedRow();
