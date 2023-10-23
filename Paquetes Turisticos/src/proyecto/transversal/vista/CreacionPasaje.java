@@ -20,9 +20,10 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     public CreacionPasaje() {
         initComponents();
-        CargarComboCiudadOrigen();
-        CargarComboCiudad();
-        ArmarCabezera();
+        cargarComboCiudadOrigen();
+        cargarComboCiudad();
+        armarCabezera();
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -402,7 +403,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
             ciudad = cd.busquedaPorCiudad(ciudad2);
             int ciu = ciudad.getIdCiudad();
 
-            BorrarFilas();
+            borrarFilas();
             for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
@@ -438,7 +439,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
             ciudad = cd.busquedaPorCiudad(ciudad2);
             int ciu = ciudad.getIdCiudad();
 
-            BorrarFilas();
+            borrarFilas();
             for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
@@ -546,23 +547,30 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_jBuscarCiudadActionPerformed
 
     private void jBuscarCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jBuscarCiudadItemStateChanged
-        try {
-            BorrarFilas();
-            Ciudad_Data cd = new Ciudad_Data();
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu = ciudad.getIdCiudad();
-
+        if (jBuscarCiudad.getSelectedItem() == null) {
             Pasaje_Data insc = new Pasaje_Data();
-
-            BorrarFilas();
-            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+            for (Pasaje ins : insc.BuscarPasaje()) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+        } else {
+            try {
+                borrarFilas();
+                Ciudad_Data cd = new Ciudad_Data();
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu = ciudad.getIdCiudad();
+
+                Pasaje_Data insc = new Pasaje_Data();
+
+                borrarFilas();
+                for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+            }
         }
     }//GEN-LAST:event_jBuscarCiudadItemStateChanged
 
@@ -576,7 +584,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jImporte.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jImporte.getText().length() >= 6) {
+                if (jImporte.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -593,7 +601,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTextField2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jTextField2.getText().length() >= 6) {
+                if (jTextField2.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -610,7 +618,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTextField3.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent evt) {
-                if (jTextField3.getText().length() >= 6) {
+                if (jTextField3.getText().length() >= 8) {
                     evt.consume();
                 }
             }
@@ -692,7 +700,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JLabel labelSalir;
     // End of variables declaration//GEN-END:variables
 
-    public void CargarComboCiudadOrigen() {
+    public void cargarComboCiudadOrigen() {
         Ciudad_Data cd = new Ciudad_Data();
         jCiudad.addItem(jCiudad.getItemAt(-1));
         jCiudad.addItem("");
@@ -701,7 +709,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         }
     }
 
-    public void CargarComboCiudad() {
+    public void cargarComboCiudad() {
         Ciudad_Data cd = new Ciudad_Data();
         jBuscarCiudad.addItem(jBuscarCiudad.getItemAt(-1));
         for (Ciudad ciudad : cd.obtenerCiudad()) {
@@ -709,7 +717,14 @@ public class CreacionPasaje extends javax.swing.JPanel {
         }
     }
 
-    private void ArmarCabezera() {
+    public void cargarTabla() {
+        Pasaje_Data insc = new Pasaje_Data();
+        for (Pasaje ins : insc.BuscarPasaje()) {
+            modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+        }
+    }
+
+    private void armarCabezera() {
         modelo.addColumn("id Pasaje");
         modelo.addColumn("Ciudad");
         modelo.addColumn("Transporte");
@@ -726,7 +741,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     }
 
-    private void BorrarFilas() {
+    private void borrarFilas() {
         int filas = jTable.getRowCount() - 1;
         for (int f = filas; f >= 0; f--) {
             modelo.removeRow(f);
