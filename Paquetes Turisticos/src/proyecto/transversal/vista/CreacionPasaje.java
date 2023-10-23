@@ -758,7 +758,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     public void cargarComboCiudad() {
         Ciudad_Data cd = new Ciudad_Data();
         jBuscarCiudad.addItem(jBuscarCiudad.getItemAt(-1));
-        for (Ciudad ciudad : cd.obtenerCiudad()) {
+        for (Ciudad ciudad : cd.obtenerCiudadHabilitada()) {
             jBuscarCiudad.addItem(ciudad.getNombreCiudad());
         }
     }
