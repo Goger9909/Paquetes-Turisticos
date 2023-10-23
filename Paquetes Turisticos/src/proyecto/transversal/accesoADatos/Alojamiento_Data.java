@@ -253,4 +253,5 @@ public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain , LocalDate fe
         }
         return alojamientos;
     }
+
 }
