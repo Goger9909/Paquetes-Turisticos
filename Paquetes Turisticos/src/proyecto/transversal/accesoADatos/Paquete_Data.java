@@ -62,7 +62,7 @@ public class Paquete_Data {
                 paquete.setDestino(ciu);
                 Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
                 paquete.setAlojamiento(al);
-                Pasaje pa = Pd.BuscarPasajePorId(resultado.getInt("pasaje"));
+                Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
                 paquete.setPasaje(pa);
                 paquetee.add(paquete);
             }

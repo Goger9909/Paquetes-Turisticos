@@ -433,7 +433,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
             int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
             String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-            insc.habilitarPasaje(idM);
+            insc.desabilitarPasaje(idM);
 
             Ciudad ciudad = new Ciudad();
             ciudad = cd.busquedaPorCiudad(ciudad2);
@@ -477,7 +477,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
         Pasaje pasaje = new Pasaje(id, tp, imp, ciu, e);
 
-        pd.ModificarPasaje(pasaje);
+        pd.modificarPasaje(pasaje);
         limpiarTodo();
         labelModificar.setEnabled(false);
         labelGuardar.setEnabled(true);
@@ -508,7 +508,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
         Pasaje pasaje = new Pasaje(tp, imp, ciu, e);
 
-        pd.GuardarPasaje(pasaje);
+        pd.guardarPasaje(pasaje);
         limpiarTodo();
     }//GEN-LAST:event_labelGuardarMouseClicked
 
@@ -549,7 +549,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private void jBuscarCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jBuscarCiudadItemStateChanged
         if (jBuscarCiudad.getSelectedItem() == null) {
             Pasaje_Data insc = new Pasaje_Data();
-            for (Pasaje ins : insc.BuscarPasaje()) {
+            for (Pasaje ins : insc.buscarPasaje()) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
         } else {
@@ -703,7 +703,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
     public void cargarComboCiudadOrigen() {
         Ciudad_Data cd = new Ciudad_Data();
         jCiudad.addItem(jCiudad.getItemAt(-1));
-        jCiudad.addItem("");
         for (Ciudad ciudad : cd.obtenerCiudad()) {
             jCiudad.addItem(ciudad.getNombreCiudad());
         }
@@ -719,7 +718,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     public void cargarTabla() {
         Pasaje_Data insc = new Pasaje_Data();
-        for (Pasaje ins : insc.BuscarPasaje()) {
+        for (Pasaje ins : insc.buscarPasaje()) {
             modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
         }
     }
@@ -750,7 +749,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
     public void limpiarTodo() {
         jTransporte.setSelectedItem("");
-        jCiudad.setSelectedItem("");
+        jCiudad.setSelectedItem(null);
         jImporte.setText("");
     }
 }

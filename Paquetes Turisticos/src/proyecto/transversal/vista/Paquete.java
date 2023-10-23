@@ -404,7 +404,7 @@ public class Paquete extends javax.swing.JPanel {
 
 public void CargarPasaje(){
     Pasaje_Data pd = new Pasaje_Data();
-    for(Pasaje PD : pd.BuscarPasaje()){
+    for(Pasaje PD : pd.buscarPasaje()){
        jCTipodPasaje.addItem(PD.getTipo_Tansporte());
     }
 }
