@@ -441,7 +441,7 @@ public class Paquete extends javax.swing.JPanel {
 public void cargaPais2() {
         Ciudad_Data cd = new Ciudad_Data();
         Set<String> paisAgregadas = new HashSet<>(); // Utilizamos un conjunto para evitar duplicados
-        Ciudad_Destino.addItem(Ciudad_Destino.getItemAt(-1));
+//        Ciudad_Destino.addItem(Ciudad_Destino.getItemAt(-1));
         for (Ciudad bus : cd.obtenerCiudadHabilitada()) {
             String paices = bus.getPais();
             if (!paisAgregadas.contains(paices)) {
@@ -453,27 +453,24 @@ public void cargaPais2() {
 
 public void CargarPasaje(){
     Pasaje_Data pd = new Pasaje_Data();
-<<<<<<< HEAD
     Set<String> Pasaje = new HashSet<>();
     jCTipodPasaje.addItem(jCTipodPasaje.getItemAt(-1));
-    for(Pasaje PD : pd.BuscarPasaje()){
+    for(Pasaje PD : pd.buscarPasaje()){
         String nombrepasaje = PD.getTipo_Tansporte();
         if(!Pasaje.contains(nombrepasaje)){
          jCTipodPasaje.addItem(nombrepasaje);
          Pasaje.add(nombrepasaje);
         }
-=======
-    for(Pasaje PD : pd.buscarPasaje()){
-       jCTipodPasaje.addItem(PD.getTipo_Tansporte());
->>>>>>> 9bb37e305e89fc8e4f567771e6441d0106069761
-    }
+//    for(Pasaje PD : pd.buscarPasaje()){
+//       jCTipodPasaje.addItem(PD.getTipo_Tansporte());
+//    }
 }
 
 //public DefaultListModel cargarAlojamiento() {
 //       Alojamiento_Data Ad = new Alojamiento_Data();
 ////      .setModel(modelo);
 //      return modelo;
-//    }
+  }
 
  
  private void ArmarCabezera(){
