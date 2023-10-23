@@ -26,6 +26,8 @@ public class CreacionPasaje extends javax.swing.JPanel {
         cargarTabla();
     }
 
+    private boolean activo = false;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -387,29 +389,33 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labeDeshabilitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeDeshabilitarMouseClicked
-        labeDeshabilitar.setBackground(new Color(244, 231, 187));
-        labeDeshabilitar.setForeground(Color.black);
-        try {
-            Pasaje_Data insc = new Pasaje_Data();
-            Ciudad_Data cd = new Ciudad_Data();
-            //Para obtener los índices de fila.
-            int filaSeleccionada = jTable.getSelectedRow();
-            int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+        if (activo == false && labeDeshabilitar.isEnabled()) {
+            labeDeshabilitar.setBackground(new Color(244, 231, 187));
+            labeDeshabilitar.setForeground(Color.black);
+            try {
+                Pasaje_Data insc = new Pasaje_Data();
+                Ciudad_Data cd = new Ciudad_Data();
+                //Para obtener los índices de fila.
+                int filaSeleccionada = jTable.getSelectedRow();
+                int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-            insc.desabilitarPasaje(idM);
+                insc.desabilitarPasaje(idM);
 
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu = ciudad.getIdCiudad();
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu = ciudad.getIdCiudad();
 
-            borrarFilas();
-            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                borrarFilas();
+                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
         }
+        labeDeshabilitar.setEnabled(false);
+        hd=false;
     }//GEN-LAST:event_labeDeshabilitarMouseClicked
 
     private void labeDeshabilitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labeDeshabilitarMouseEntered
@@ -423,29 +429,33 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labeDeshabilitarMouseExited
 
     private void labelHabilitarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHabilitarMouseClicked
-        labeDeshabilitar.setBackground(new Color(244, 231, 187));
-        labeDeshabilitar.setForeground(Color.black);
-        try {
-            Pasaje_Data insc = new Pasaje_Data();
-            Ciudad_Data cd = new Ciudad_Data();
-            //Para obtener los índices de fila.
-            int filaSeleccionada = jTable.getSelectedRow();
-            int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+        if (activo == true && labelHabilitar.isEnabled()) {
+            labeDeshabilitar.setBackground(new Color(244, 231, 187));
+            labeDeshabilitar.setForeground(Color.black);
+            try {
+                Pasaje_Data insc = new Pasaje_Data();
+                Ciudad_Data cd = new Ciudad_Data();
+                //Para obtener los índices de fila.
+                int filaSeleccionada = jTable.getSelectedRow();
+                int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-            insc.desabilitarPasaje(idM);
+                insc.desabilitarPasaje(idM);
 
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu = ciudad.getIdCiudad();
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu = ciudad.getIdCiudad();
 
-            borrarFilas();
-            for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                borrarFilas();
+                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
         }
+        labelHabilitar.setEnabled(false);
+        hd=false;
     }//GEN-LAST:event_labelHabilitarMouseClicked
 
     private void labelHabilitarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHabilitarMouseEntered
@@ -459,8 +469,8 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelHabilitarMouseExited
 
     private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
-
-        labelGuardar.setBackground(new Color(244, 231, 187));
+        if(labelModificar.isEnabled()){
+            labelGuardar.setBackground(new Color(244, 231, 187));
         labelGuardar.setForeground(Color.black);
         Pasaje_Data pd = new Pasaje_Data();
         Ciudad_Data cd = new Ciudad_Data();
@@ -481,7 +491,26 @@ public class CreacionPasaje extends javax.swing.JPanel {
         limpiarTodo();
         labelModificar.setEnabled(false);
         labelGuardar.setEnabled(true);
+        if (jBuscarCiudad.getSelectedItem() == null) {
+            Pasaje_Data insc = new Pasaje_Data();
+            for (Pasaje ins : insc.buscarPasaje()) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            }
+        } else {
+            borrarFilas();
+            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
+            Ciudad ciudad = new Ciudad();
+            ciudad = cd.busquedaPorCiudad(ciudad2);
+            int ciu2 = ciudad.getIdCiudad();
+
+            Pasaje_Data insc = new Pasaje_Data();
+
+            borrarFilas();
+            for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            }
+        }}
     }//GEN-LAST:event_labelModificarMouseClicked
 
     private void labelModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseEntered
@@ -495,7 +524,8 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelModificarMouseExited
 
     private void labelGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseClicked
-        labelGuardar.setBackground(new Color(244, 231, 187));
+        if (labelGuardar.isEnabled()){
+            labelGuardar.setBackground(new Color(244, 231, 187));
         labelGuardar.setForeground(Color.black);
         Pasaje_Data pd = new Pasaje_Data();
         Ciudad_Data cd = new Ciudad_Data();
@@ -510,6 +540,27 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
         pd.guardarPasaje(pasaje);
         limpiarTodo();
+        if (jBuscarCiudad.getSelectedItem() == null) {
+            Pasaje_Data insc = new Pasaje_Data();
+            for (Pasaje ins : insc.buscarPasaje()) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            }
+        } else {
+            borrarFilas();
+            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+            Ciudad ciudad = new Ciudad();
+            ciudad = cd.busquedaPorCiudad(ciudad2);
+            int ciu2 = ciudad.getIdCiudad();
+
+            Pasaje_Data insc = new Pasaje_Data();
+
+            borrarFilas();
+            for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            }
+        }
+        }
     }//GEN-LAST:event_labelGuardarMouseClicked
 
     private void labelGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseEntered
@@ -553,23 +604,19 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
         } else {
-            try {
-                borrarFilas();
-                Ciudad_Data cd = new Ciudad_Data();
-                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+            borrarFilas();
+            Ciudad_Data cd = new Ciudad_Data();
+            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-                Ciudad ciudad = new Ciudad();
-                ciudad = cd.busquedaPorCiudad(ciudad2);
-                int ciu = ciudad.getIdCiudad();
+            Ciudad ciudad = new Ciudad();
+            ciudad = cd.busquedaPorCiudad(ciudad2);
+            int ciu = ciudad.getIdCiudad();
 
-                Pasaje_Data insc = new Pasaje_Data();
+            Pasaje_Data insc = new Pasaje_Data();
 
-                borrarFilas();
-                for (Pasaje ins : insc.buscarPasajePorCiudad(ciu)) {
-                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                }
-            } catch (NullPointerException ex) {
-                JOptionPane.showMessageDialog(null, "Seleccione una Ciudad");
+            borrarFilas();
+            for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
+                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
         }
     }//GEN-LAST:event_jBuscarCiudadItemStateChanged
@@ -639,6 +686,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
             labelModificar.setEnabled(true);
             labeLimpiar.setEnabled(true);
             labelGuardar.setEnabled(false);
+            hd=false;
         }
         if (evt.getClickCount() == 1) {
             int filaSeleccionada = jTable.getSelectedRow();
@@ -646,9 +694,11 @@ public class CreacionPasaje extends javax.swing.JPanel {
             if (comprobacion == true) {
                 labeDeshabilitar.setEnabled(true);
                 labelHabilitar.setEnabled(false);
+                activo = false;
             } else {
                 labelHabilitar.setEnabled(true);
                 labeDeshabilitar.setEnabled(false);
+                activo = true;
             }
         }
     }//GEN-LAST:event_jTableMouseClicked
