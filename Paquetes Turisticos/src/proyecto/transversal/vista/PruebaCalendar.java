@@ -4,6 +4,10 @@
  */
 package proyecto.transversal.vista;
 
+import java.sql.Date;
+import proyecto.transversal.accesoADatos.Alojamiento_Data;
+import proyecto.transversal.entidades.Alojamiento;
+
 /**
  *
  * @author matia
@@ -32,6 +36,11 @@ public class PruebaCalendar extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jbEjecutar.setText("Ejecutar");
+        jbEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEjecutarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("ID Alojamiento:");
 
@@ -51,7 +60,7 @@ public class PruebaCalendar extends javax.swing.JPanel {
                         .addGap(60, 60, 60)
                         .addComponent(jLabel1)
                         .addGap(26, 26, 26)
-                        .addComponent(jtfIdAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtfIdAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -68,6 +77,19 @@ public class PruebaCalendar extends javax.swing.JPanel {
                 .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEjecutarActionPerformed
+        // TODO add your handling code here:
+       
+        int id= Integer.parseInt(jtfIdAlojamiento.getText());
+        Alojamiento al = new Alojamiento();
+        Alojamiento_Data ad = new Alojamiento_Data();
+        al = ad.buscarAlojamientoPorId(id);
+        
+        jdcCalendario.setMinSelectableDate(Date.valueOf(al.getFechaIn()));
+        jdcCalendario.setMaxSelectableDate(Date.valueOf(al.getFechaOn()));
+        
+    }//GEN-LAST:event_jbEjecutarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

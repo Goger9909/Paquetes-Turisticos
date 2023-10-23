@@ -97,6 +97,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ALOJAMIENTO");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -201,6 +206,19 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // Alojamiento
+        PruebaCalendar pd = new PruebaCalendar();
+        pd.removeAll();
+        pd.setSize(600, 700);
+        pd.setLocation(0, 0);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pd,BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+        
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
