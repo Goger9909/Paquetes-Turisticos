@@ -1,11 +1,20 @@
 package proyecto.transversal.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Menu extends javax.swing.JFrame {
-
+    private static Menu instancia;
+    private boolean permitir = true;
+    public int XMouse, yMouse;//pocicion del mouse
+    
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
+        anularButton();
+        //permitir = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -14,30 +23,123 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Estado = new javax.swing.JPanel();
+        labelPrecentacion = new javax.swing.JLabel();
+        panelSesion = new javax.swing.JPanel();
+        labelSesion = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        labelSalir = new javax.swing.JLabel();
         panelButton = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        panelCiudad = new javax.swing.JPanel();
+        labelCiudad = new javax.swing.JLabel();
+        panelPasaje = new javax.swing.JPanel();
+        labelPasaje = new javax.swing.JLabel();
+        panelAlojamiento = new javax.swing.JPanel();
+        labelAlojamiento = new javax.swing.JLabel();
+        panelPaquete = new javax.swing.JPanel();
+        labelPaquete = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Estado.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                EstadoMouseDragged(evt);
+            }
+        });
+        Estado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EstadoMousePressed(evt);
+            }
+        });
+
+        labelPrecentacion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelPrecentacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        labelSesion.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        labelSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSesion.setText("CERRAR SESIÓN");
+        labelSesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelSesionMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelSesionLayout = new javax.swing.GroupLayout(panelSesion);
+        panelSesion.setLayout(panelSesionLayout);
+        panelSesionLayout.setHorizontalGroup(
+            panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSesionLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelSesionLayout.setVerticalGroup(
+            panelSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        );
+
+        labelSalir.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
+        labelSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSalir.setText("X");
+        labelSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelSalirMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout EstadoLayout = new javax.swing.GroupLayout(Estado);
         Estado.setLayout(EstadoLayout);
         EstadoLayout.setHorizontalGroup(
             EstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(EstadoLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(labelPrecentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         EstadoLayout.setVerticalGroup(
             EstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstadoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(EstadoLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(EstadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPrecentacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
 
         jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 50));
@@ -45,99 +147,128 @@ public class Menu extends javax.swing.JFrame {
         panelButton.setBackground(new java.awt.Color(153, 255, 255));
         panelButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CIUDAD");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelCiudad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelCiudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCiudad.setText("CIUDAD");
+        labelCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelCiudad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                labelCiudadMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelCiudadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelCiudadMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelCiudadLayout = new javax.swing.GroupLayout(panelCiudad);
+        panelCiudad.setLayout(panelCiudadLayout);
+        panelCiudadLayout.setHorizontalGroup(
+            panelCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+        panelCiudadLayout.setVerticalGroup(
+            panelCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        panelButton.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 517, -1, -1));
+        panelButton.add(panelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 517, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PASAJE");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.setMaximumSize(new java.awt.Dimension(70, 22));
-        jLabel2.setMinimumSize(new java.awt.Dimension(70, 22));
-        jLabel2.setPreferredSize(new java.awt.Dimension(70, 22));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelPasaje.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelPasaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPasaje.setText("PASAJE");
+        labelPasaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelPasaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPasaje.setMaximumSize(new java.awt.Dimension(70, 22));
+        labelPasaje.setMinimumSize(new java.awt.Dimension(70, 22));
+        labelPasaje.setPreferredSize(new java.awt.Dimension(70, 22));
+        labelPasaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                labelPasajeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelPasajeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelPasajeMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelPasajeLayout = new javax.swing.GroupLayout(panelPasaje);
+        panelPasaje.setLayout(panelPasajeLayout);
+        panelPasajeLayout.setHorizontalGroup(
+            panelPasajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        panelPasajeLayout.setVerticalGroup(
+            panelPasajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        panelButton.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 459, 218, -1));
+        panelButton.add(panelPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 459, 218, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("ALOJAMIENTO");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelAlojamiento.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelAlojamiento.setText("ALOJAMIENTO");
+        labelAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelAlojamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelAlojamiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                labelAlojamientoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelAlojamientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelAlojamientoMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelAlojamientoLayout = new javax.swing.GroupLayout(panelAlojamiento);
+        panelAlojamiento.setLayout(panelAlojamientoLayout);
+        panelAlojamientoLayout.setHorizontalGroup(
+            panelAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        panelAlojamientoLayout.setVerticalGroup(
+            panelAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        panelButton.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 401, 218, -1));
+        panelButton.add(panelAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 401, 218, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PAQUETE");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelPaquete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelPaquete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPaquete.setText("PAQUETE");
+        labelPaquete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelPaquete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelPaquete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                labelPaqueteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelPaqueteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelPaqueteMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelPaqueteLayout = new javax.swing.GroupLayout(panelPaquete);
+        panelPaquete.setLayout(panelPaqueteLayout);
+        panelPaqueteLayout.setHorizontalGroup(
+            panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        panelPaqueteLayout.setVerticalGroup(
+            panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        panelButton.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 40));
+        panelButton.add(panelPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 40));
 
         jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 700));
 
@@ -170,8 +301,9 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void labelPaqueteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPaqueteMouseClicked
         // TODO add your handling code here:
+        if (permitir) {
         Paquete pd = new Paquete();
         pd.removeAll();
         pd.setSize(600, 700);
@@ -180,11 +312,13 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.add(pd, BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        }
 
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_labelPaqueteMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void labelCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCiudadMouseClicked
         // TODO add your handling code here:
+        if (permitir) {
         VistaCiudad pd = new VistaCiudad();
         pd.removeAll();
         pd.setSize(600, 700);
@@ -193,10 +327,12 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.add(pd, BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-    }//GEN-LAST:event_jLabel3MouseClicked
+        }
+    }//GEN-LAST:event_labelCiudadMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void labelPasajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPasajeMouseClicked
         // TODO add your handling code here:
+        if (permitir) {
         CreacionPasaje cp = new CreacionPasaje();
         cp.removeAll();
         cp.setSize(600, 700);
@@ -205,10 +341,12 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.add(cp, BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-    }//GEN-LAST:event_jLabel2MouseClicked
+        }
+    }//GEN-LAST:event_labelPasajeMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void labelAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseClicked
         // Alojamiento
+        if (permitir) {
         PruebaCalendar pd = new PruebaCalendar();
         pd.removeAll();
         pd.setSize(600, 700);
@@ -217,8 +355,119 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.add(pd,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        }
         
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_labelAlojamientoMouseClicked
+
+    private void labelSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSesionMouseClicked
+        // TODO add your handling code here:
+
+        Menu.getInstancia().repaint();
+        Menu.getInstancia().revalidate();
+
+        if (labelSesion.getText().equalsIgnoreCase("CERRAR SESIÓN")) {
+            //permitir = true;
+            labelPrecentacion.setText("");
+            labelSesion.setText(correcto());
+        } else if (labelSesion.getText().equalsIgnoreCase("INICIAR SESIÓN")) {
+            //permitir = false;
+            labelSesion.setText(incorrecto());
+
+            //                java.awt.EventQueue.invokeLater(new Runnable() {//verifica la clave
+                //                    public void run() {
+                    new Login().setVisible(true);
+
+                    //                    }
+                //                });
+
+        }
+    }//GEN-LAST:event_labelSesionMouseClicked
+
+    private void labelSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSesionMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelSesionMouseEntered
+
+    private void labelSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSesionMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelSesionMouseExited
+
+    private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_labelSalirMouseClicked
+
+    private void labelSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseEntered
+        // TODO add your handling code here:
+        labelSalir.setFont(labelSalir.getFont().deriveFont(Font.BOLD));
+        labelSalir.setFont(new java.awt.Font("Arial", 0, 36));
+    }//GEN-LAST:event_labelSalirMouseEntered
+
+    private void labelSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseExited
+        // TODO add your handling code here:
+        labelSalir.setFont(labelSalir.getFont().deriveFont(Font.PLAIN));
+        labelSalir.setFont(new java.awt.Font("Arial", 0, 32));
+    }//GEN-LAST:event_labelSalirMouseExited
+
+    private void EstadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstadoMousePressed
+        // TODO add your handling code here:
+         XMouse = evt.getX();
+         yMouse = evt.getY();
+    }//GEN-LAST:event_EstadoMousePressed
+
+    private void EstadoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstadoMouseDragged
+        // TODO add your handling code here:
+         int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - XMouse, y - yMouse);
+    }//GEN-LAST:event_EstadoMouseDragged
+
+    private void labelPaqueteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPaqueteMouseEntered
+        // TODO add your handling code here:
+        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
+        labelPaquete.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_labelPaqueteMouseEntered
+
+    private void labelPaqueteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPaqueteMouseExited
+        // TODO add your handling code here:
+        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
+        labelPaquete.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_labelPaqueteMouseExited
+
+    private void labelAlojamientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseEntered
+        // TODO add your handling code here:
+         labelAlojamiento.setFont(labelAlojamiento.getFont().deriveFont(Font.PLAIN));
+        labelAlojamiento.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_labelAlojamientoMouseEntered
+
+    private void labelAlojamientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseExited
+        // TODO add your handling code here:
+        labelAlojamiento.setFont(labelAlojamiento.getFont().deriveFont(Font.PLAIN));
+        labelAlojamiento.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_labelAlojamientoMouseExited
+
+    private void labelPasajeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPasajeMouseEntered
+        // TODO add your handling code here:
+         labelPasaje.setFont(labelPasaje.getFont().deriveFont(Font.PLAIN));
+        labelPasaje.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_labelPasajeMouseEntered
+
+    private void labelPasajeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPasajeMouseExited
+        // TODO add your handling code here:
+        labelPasaje.setFont(labelPasaje.getFont().deriveFont(Font.PLAIN));
+        labelPasaje.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_labelPasajeMouseExited
+
+    private void labelCiudadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCiudadMouseEntered
+        // TODO add your handling code here:
+         labelCiudad.setFont(labelCiudad.getFont().deriveFont(Font.PLAIN));
+        labelCiudad.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_labelCiudadMouseEntered
+
+    private void labelCiudadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCiudadMouseExited
+        // TODO add your handling code here:
+        labelCiudad.setFont(labelCiudad.getFont().deriveFont(Font.PLAIN));
+        labelCiudad.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_labelCiudadMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -245,25 +494,79 @@ public class Menu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+         java.awt.EventQueue.invokeLater(new Runnable() {//verifica la clave
             public void run() {
-                new Menu().setVisible(true);
+                Menu.getInstancia();
+                new Login().setVisible(true);
+                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Estado;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel labelAlojamiento;
+    private javax.swing.JLabel labelCiudad;
+    private javax.swing.JLabel labelPaquete;
+    private javax.swing.JLabel labelPasaje;
+    private javax.swing.JLabel labelPrecentacion;
+    private javax.swing.JLabel labelSalir;
+    private javax.swing.JLabel labelSesion;
+    private javax.swing.JPanel panelAlojamiento;
     private javax.swing.JPanel panelButton;
+    private javax.swing.JPanel panelCiudad;
+    private javax.swing.JPanel panelPaquete;
+    private javax.swing.JPanel panelPasaje;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSesion;
     // End of variables declaration//GEN-END:variables
+public void setNombrePersona(String nombre, String apellido) {
+        labelPrecentacion.setText("¡Bienvenido, " + apellido + ", " + nombre + "!");
+    }
+
+ public void iniciarSesion(){
+     labelSesion.setText("INICIAR SESIÓN");
+     
+ }
+
+    public void anularButton() {
+        permitir = false;
+        labelPaquete.setEnabled(false);
+        labelCiudad.setEnabled(false);
+        labelAlojamiento.setEnabled(false);
+        labelPasaje.setEnabled(false);
+    }
+
+    public void activarButton() {
+        permitir = true;
+        labelPaquete.setEnabled(true);
+        labelCiudad.setEnabled(true);
+        labelAlojamiento.setEnabled(true);
+        labelPasaje.setEnabled(true);
+    }
+    /*
+        El código que has proporcionado implementa un patrón de diseño conocido como "Singleton". 
+        El patrón Singleton se utiliza para garantizar que una clase tenga una sola instancia y 
+        proporcionar un punto de acceso global a esa instancia desde cualquier parte de tu programa. 
+        En el contexto de tu código, estás aplicando el patrón Singleton para la clase Menu.
+        */
+    public static Menu getInstancia(){//crea una sola ventana "PATRON DE SINGLETON"
+        if(instancia == null){
+            instancia = new Menu();
+            getInstancia().setVisible(true);
+        }
+        return instancia;
+    }
+   
+    public static String incorrecto (){
+        return "CERRAR SESIÓN";
+    }
+    public static String correcto (){
+        return "INICIAR SESIÓN";
+    }
+
+
 }

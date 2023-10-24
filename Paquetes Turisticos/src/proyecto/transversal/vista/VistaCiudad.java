@@ -783,8 +783,11 @@ public class VistaCiudad extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Todos los Campos deben estar LLenos!!!");
         } else {
             String pais = jtexPais.getText();
+            pais = convierteMayuscula(pais);
             String provincia = jtexProvincia.getText();
+            provincia = convierteMayuscula(provincia);
             String ciudad = jtexCiudad.getText();
+            ciudad = convierteMayuscula(ciudad);
             boolean repetido = false;
             for (Ciudad bus : cd.obtenerCiudad()) {
                 if (ciudad.equalsIgnoreCase(bus.getNombreCiudad())) {
@@ -1173,5 +1176,18 @@ public class VistaCiudad extends javax.swing.JPanel {
         labelEliminar.setVisible(false);
         panelModificar.setVisible(false);
         labelModificar.setVisible(false);
+    }
+       public String convierteMayuscula(String texto) {
+        String[] palabras = texto.split(" ");  // Dividir el texto en palabras usando el espacio como separador
+        StringBuilder nombreFormateado = new StringBuilder();
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                String primeraLetra = palabra.substring(0, 1).toUpperCase();
+                String restoPalabra = palabra.substring(1).toLowerCase();
+                nombreFormateado.append(primeraLetra).append(restoPalabra).append(" ");
+            }
+        }
+        String nombreFinal = nombreFormateado.toString().trim();
+        return nombreFinal;
     }
 }
