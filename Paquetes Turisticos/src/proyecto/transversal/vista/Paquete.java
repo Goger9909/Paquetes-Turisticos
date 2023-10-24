@@ -51,23 +51,16 @@ public class Paquete extends javax.swing.JPanel {
         jLGuardar = new javax.swing.JLabel();
         Modificar = new javax.swing.JPanel();
         jLModificar = new javax.swing.JLabel();
-        Eliminar = new javax.swing.JPanel();
-        jLEliminar = new javax.swing.JLabel();
         Salir = new javax.swing.JPanel();
         jLSalir = new javax.swing.JLabel();
         FechaEntrada = new com.toedter.calendar.JDateChooser();
-        FechaSalida = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLBuscar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jCCuidad_deOrigen = new javax.swing.JComboBox<>();
         jCiudad_Destino = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jCTipodPasaje = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -147,34 +140,6 @@ public class Paquete extends javax.swing.JPanel {
 
         Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, -1, 31));
 
-        jLEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLEliminar.setText("Eliminar");
-        jLEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLEliminarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EliminarLayout = new javax.swing.GroupLayout(Eliminar);
-        Eliminar.setLayout(EliminarLayout);
-        EliminarLayout.setHorizontalGroup(
-            EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EliminarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        EliminarLayout.setVerticalGroup(
-            EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EliminarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        Fondo.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, -1, -1));
-
         jLSalir.setBackground(new java.awt.Color(0, 0, 255));
         jLSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -210,18 +175,12 @@ public class Paquete extends javax.swing.JPanel {
         );
 
         Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 600, 60, -1));
-        Fondo.add(FechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
-        Fondo.add(FechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        Fondo.add(FechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Entrada");
-        Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 80, 30));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Salida");
-        Fondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 60, 30));
+        Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 80, 30));
 
         jLBuscar.setBackground(new java.awt.Color(0, 51, 255));
         jLBuscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -256,7 +215,7 @@ public class Paquete extends javax.swing.JPanel {
                 .addComponent(jLBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, 30));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Cuidad de origen");
@@ -270,18 +229,9 @@ public class Paquete extends javax.swing.JPanel {
 
         Fondo.add(jCiudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 250, -1));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("Cantidad de Personas");
-        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 160, -1));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setText("Precio: ");
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
-        Fondo.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 70, 30));
-
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Tipo de pasaje");
-        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 20));
 
         jCTipodPasaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,17 +253,17 @@ public class Paquete extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 580, 230));
+        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 580, 260));
 
         jScrollPane3.setViewportView(jList1);
 
-        Fondo.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 580, 70));
+        Fondo.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 380, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,14 +319,14 @@ public class Paquete extends javax.swing.JPanel {
         java.util.Date fechaentradaUtil = FechaEntrada.getDate();
         Instant instant = fechaentradaUtil.toInstant();
         LocalDate fechaEntrada = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-
-        java.util.Date fechasalidaUtil = FechaSalida.getDate();
-        Instant instantt = fechasalidaUtil.toInstant();
-        LocalDate fechaSalida = instantt.atZone(ZoneId.systemDefault()).toLocalDate();
-        
+//
+//        java.util.Date fechasalidaUtil = FechaSalida.getDate();
+//        Instant instantt = fechasalidaUtil.toInstant();
+//        LocalDate fechaSalida = instantt.atZone(ZoneId.systemDefault()).toLocalDate();
+//        
         Alojamiento_Data al = new Alojamiento_Data();
          jList1.setModel(modeloA);
-        for (Alojamiento alo : al.buscarAlojamientofecha(fechaEntrada, fechaSalida)) {
+        for (Alojamiento alo : al.buscarAlojamientofecha(fechaEntrada)) {
          modeloA.addElement(alo.getTipoAlojamiento()+" - "+alo.getServicio()+" - Importe: "+alo.getImporteDiario());
         }
            
@@ -408,25 +358,10 @@ public class Paquete extends javax.swing.JPanel {
 //        Pd.GuardarPaquete(pa);
     }//GEN-LAST:event_jLGuardarMouseClicked
 
-    private void jLEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLEliminarMouseClicked
-        // TODO add your handling code here:
-        Paquete_Data pd = new Paquete_Data();
-        int filaSeleccionada  =  jTable1.getSelectedRow();
-        int id = (int) jTable1.getValueAt(filaSeleccionada , 0);
-           pd.BorrarPaquetePorId(id);
-        BorrarFilas(); 
-      for(proyecto.transversal.entidades.Paquete alo : pd.ObtenerPaquete()){
-       modelo.addRow(new Object[]{alo.getIdPaquete(),alo.getOrigen().getNombreCiudad(),
-       alo.getDestino().getNombreCiudad(), alo.getAlojamiento().getTipoAlojamiento(),alo.getPasaje().getTipo_Tansporte()});
-    }
-    }//GEN-LAST:event_jLEliminarMouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Destino;
     private javax.swing.JComboBox<String> Ciudad_Origen;
-    private javax.swing.JPanel Eliminar;
     private com.toedter.calendar.JDateChooser FechaEntrada;
-    private com.toedter.calendar.JDateChooser FechaSalida;
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel Guardar;
     private javax.swing.JPanel Modificar;
@@ -435,24 +370,19 @@ public class Paquete extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jCTipodPasaje;
     private javax.swing.JComboBox<String> jCiudad_Destino;
     private javax.swing.JLabel jLBuscar;
-    private javax.swing.JLabel jLEliminar;
     private javax.swing.JLabel jLGuardar;
     private javax.swing.JLabel jLModificar;
     private javax.swing.JLabel jLSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
  public void cargaPais() {

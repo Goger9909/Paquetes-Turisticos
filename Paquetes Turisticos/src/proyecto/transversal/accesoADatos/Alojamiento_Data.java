@@ -216,20 +216,19 @@ public class Alojamiento_Data {
 //        }
 //        return ciudades;
 //    } 
-    public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain, LocalDate fechaSa) {
+    public List<Alojamiento> buscarAlojamientofecha(LocalDate fechain) {
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
-        String sql = "SELECT idAlojamiento, Tipo_Alojamiento, Servicio, Importe_Diario, "
-                + "Ciudad_Destino, Estado FROM alojamiento WHERE Fecha_Inicio = ? AND Fecha_Salida = ?";
+        String sql = "SELECT idAlojamiento, Tipo_Alojamiento, Servicio, Importe_Diario,Fecha_Salida, "
+                + "Ciudad_Destino, Estado FROM alojamiento WHERE Fecha_Inicio = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, java.sql.Date.valueOf(fechain));
-            ps.setDate(2, java.sql.Date.valueOf(fechaSa));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Ciudad_Data cd = new Ciudad_Data();
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
                 alojamiento.setFechaIn(fechain);
-                alojamiento.setFechaOn(fechaSa);
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
                 alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
                 alojamiento.setServicio(rs.getString("Servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));

@@ -37,6 +37,8 @@ public class Menu extends javax.swing.JFrame {
         labelAlojamiento = new javax.swing.JLabel();
         panelPaquete = new javax.swing.JPanel();
         labelPaquete = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -270,6 +272,27 @@ public class Menu extends javax.swing.JFrame {
 
         panelButton.add(panelPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 40));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setText("                INICIO");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        panelButton.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 220, 40));
+
         jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 700));
 
         panelPrincipal.setBackground(new java.awt.Color(102, 255, 102));
@@ -469,6 +492,20 @@ public class Menu extends javax.swing.JFrame {
         labelCiudad.setFont(new java.awt.Font("Arial", 0, 18));
     }//GEN-LAST:event_labelCiudadMouseExited
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+         if (permitir) {
+        Paquete2 pd = new Paquete2();
+        pd.removeAll();
+        pd.setSize(600, 700);
+        pd.setLocation(0, 0);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pd, BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -506,7 +543,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Estado;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelAlojamiento;
     private javax.swing.JLabel labelCiudad;
