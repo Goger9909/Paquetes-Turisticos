@@ -4,7 +4,13 @@
  */
 package proyecto.transversal.vista;
 
+import com.toedter.calendar.*;
+import com.toedter.calendar.demo.DateChooserPanel;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.entidades.Alojamiento;
 
@@ -85,9 +91,22 @@ public class PruebaCalendar extends javax.swing.JPanel {
         Alojamiento al = new Alojamiento();
         Alojamiento_Data ad = new Alojamiento_Data();
         al = ad.buscarAlojamientoPorId(id);
+        LocalDate fecha1= LocalDate.parse("2023-10-15");
+        
+        LocalDate fecha2= LocalDate.parse("2023-10-19");
+        ArrayList <Date> fechasnodisp = new ArrayList<>();
+        fechasnodisp.add(Date.valueOf(fecha1));
+        fechasnodisp.add(Date.valueOf(fecha2));
+        
+        for(Date e: fechasnodisp){
+        System.out.println("e: "+ e);
+        }
         
         jdcCalendario.setMinSelectableDate(Date.valueOf(al.getFechaIn()));
         jdcCalendario.setMaxSelectableDate(Date.valueOf(al.getFechaOn()));
+        jdcCalendario.setSelectableDateRange(Date.valueOf(fecha1), Date.valueOf(fecha2));
+        
+        
         
     }//GEN-LAST:event_jbEjecutarActionPerformed
 

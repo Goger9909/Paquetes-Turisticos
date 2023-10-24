@@ -27,29 +27,33 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private void initComponents() {
 
         jlTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jlTemporada = new javax.swing.JLabel();
+        jlInicio = new javax.swing.JLabel();
+        jdcInicio = new com.toedter.calendar.JDateChooser();
+        jlFin = new javax.swing.JLabel();
+        jdcFin = new com.toedter.calendar.JDateChooser();
+        jlNombreAlojamiento = new javax.swing.JLabel();
+        jlTipo = new javax.swing.JLabel();
+        jtfNombreAlojamiento = new javax.swing.JTextField();
+        jtfTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        jtaDescServicio = new javax.swing.JTextArea();
+        jlDescServicio = new javax.swing.JLabel();
+        jcbHabilitado = new javax.swing.JCheckBox();
+        jlPrecio = new javax.swing.JLabel();
+        jtfPrecio = new javax.swing.JTextField();
+        jpNuevo = new javax.swing.JPanel();
+        jlNuevo = new javax.swing.JLabel();
+        jpBuscar = new javax.swing.JPanel();
+        jlBuscar = new javax.swing.JLabel();
+        jpGuardar = new javax.swing.JPanel();
+        jlGuardar = new javax.swing.JLabel();
+        jpEliminar = new javax.swing.JPanel();
+        jlEliminar = new javax.swing.JLabel();
+        jlEtc = new javax.swing.JLabel();
+        jsCantHabitaciones = new javax.swing.JSpinner();
+        jlHabitaciones = new javax.swing.JLabel();
+        jlCantidadDe = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setMinimumSize(new java.awt.Dimension(600, 700));
@@ -59,103 +63,227 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlTitulo.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("ALOJAMIENTO");
-        add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 260, 20));
+        add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
 
-        jLabel1.setText("Temporada:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jlTemporada.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlTemporada.setText("Temporada:");
+        add(jlTemporada, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
-        jLabel2.setText("Inicio:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 140, 30));
+        jlInicio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlInicio.setText("Inicio:");
+        add(jlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
-        jLabel3.setText("Fin:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 50, 20));
-        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 140, 30));
+        jdcInicio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        add(jdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 150, 30));
 
-        jLabel4.setText("Nombre de Alojamiento:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jlFin.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlFin.setText("Fin:");
+        add(jlFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 30, 20));
 
-        jLabel5.setText("Tipo (Hotel, Depto, Casa, etc):");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        jdcFin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        add(jdcFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 150, 30));
 
-        jTextField1.setText("Concatenar con tipo usando \"-\"");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 310, -1));
+        jlNombreAlojamiento.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlNombreAlojamiento.setText("Nombre de Alojamiento:");
+        add(jlNombreAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        jTextField2.setText("Concatenar y condicionar para txt null");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 230, -1));
+        jlTipo.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlTipo.setText("Tipo:");
+        add(jlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 40, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtfNombreAlojamiento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jtfNombreAlojamiento.setText("Concatenar con tipo usando \"-\"");
+        add(jtfNombreAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 320, 30));
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, 250));
+        jtfTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jtfTipo.setText("Concatenar y condicionar para txt null");
+        add(jtfTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 320, 30));
 
-        jLabel6.setText("Descripcion del Servicio:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        jtaDescServicio.setColumns(20);
+        jtaDescServicio.setRows(5);
+        jScrollPane1.setViewportView(jtaDescServicio);
 
-        jCheckBox1.setText("Habilitado");
-        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 260, 250));
 
-        jLabel7.setText("Precio:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
+        jlDescServicio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlDescServicio.setText("Descripcion del Servicio:");
+        add(jlDescServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
-        jTextField3.setText("Convertir txt a double");
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 130, -1));
+        jcbHabilitado.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jcbHabilitado.setText("Habilitado");
+        add(jcbHabilitado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 110, 30));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jlPrecio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlPrecio.setText("Precio:");
+        add(jlPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
 
-        jLabel11.setText("Nuevo");
-        jPanel1.add(jLabel11);
+        jtfPrecio.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jtfPrecio.setText("Convertir txt a double");
+        add(jtfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 170, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 610, 80, 30));
+        jpNuevo.setBackground(new java.awt.Color(244, 231, 187));
+        jpNuevo.setMinimumSize(new java.awt.Dimension(0, 0));
+        jpNuevo.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jlNuevo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNuevo.setText("Nuevo");
+        jlNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlNuevo.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlNuevo.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlNuevo.setPreferredSize(new java.awt.Dimension(67, 24));
 
-        jLabel8.setText("Buscar");
-        jPanel2.add(jLabel8);
+        javax.swing.GroupLayout jpNuevoLayout = new javax.swing.GroupLayout(jpNuevo);
+        jpNuevo.setLayout(jpNuevoLayout);
+        jpNuevoLayout.setHorizontalGroup(
+            jpNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpNuevoLayout.setVerticalGroup(
+            jpNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 80, 30));
+        add(jpNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 660, -1, 30));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jpBuscar.setBackground(new java.awt.Color(244, 231, 187));
+        jpBuscar.setMinimumSize(new java.awt.Dimension(0, 0));
+        jpBuscar.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jLabel9.setText("Guardar");
-        jPanel3.add(jLabel9);
+        jlBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlBuscar.setText("Buscar");
+        jlBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlBuscar.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlBuscar.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlBuscar.setPreferredSize(new java.awt.Dimension(67, 24));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 80, 30));
+        javax.swing.GroupLayout jpBuscarLayout = new javax.swing.GroupLayout(jpBuscar);
+        jpBuscar.setLayout(jpBuscarLayout);
+        jpBuscarLayout.setHorizontalGroup(
+            jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpBuscarLayout.setVerticalGroup(
+            jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
+        add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, -1, 30));
 
-        jLabel10.setText("Eliminar");
-        jPanel4.add(jLabel10);
+        jpGuardar.setBackground(new java.awt.Color(244, 231, 187));
+        jpGuardar.setMinimumSize(new java.awt.Dimension(0, 0));
+        jpGuardar.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 560, 80, 30));
+        jlGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlGuardar.setText("Guardar");
+        jlGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlGuardar.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlGuardar.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlGuardar.setPreferredSize(new java.awt.Dimension(67, 24));
+
+        javax.swing.GroupLayout jpGuardarLayout = new javax.swing.GroupLayout(jpGuardar);
+        jpGuardar.setLayout(jpGuardarLayout);
+        jpGuardarLayout.setHorizontalGroup(
+            jpGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpGuardarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpGuardarLayout.setVerticalGroup(
+            jpGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpGuardarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, -1, 30));
+
+        jpEliminar.setBackground(new java.awt.Color(244, 231, 187));
+        jpEliminar.setMinimumSize(new java.awt.Dimension(0, 0));
+        jpEliminar.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        jlEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlEliminar.setText("Eliminar");
+        jlEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlEliminar.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlEliminar.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlEliminar.setPreferredSize(new java.awt.Dimension(67, 24));
+
+        javax.swing.GroupLayout jpEliminarLayout = new javax.swing.GroupLayout(jpEliminar);
+        jpEliminar.setLayout(jpEliminarLayout);
+        jpEliminarLayout.setHorizontalGroup(
+            jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpEliminarLayout.setVerticalGroup(
+            jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 660, -1, 30));
+
+        jlEtc.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jlEtc.setText("(Hotel, Dpto, Casa, etc.)");
+        add(jlEtc, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        add(jsCantHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 70, 30));
+
+        jlHabitaciones.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlHabitaciones.setText("Habitaciones:");
+        add(jlHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
+
+        jlCantidadDe.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlCantidadDe.setText("Cantidad de");
+        add(jlCantidadDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JCheckBox jcbHabilitado;
+    private com.toedter.calendar.JDateChooser jdcFin;
+    private com.toedter.calendar.JDateChooser jdcInicio;
+    private javax.swing.JLabel jlBuscar;
+    private javax.swing.JLabel jlCantidadDe;
+    private javax.swing.JLabel jlDescServicio;
+    private javax.swing.JLabel jlEliminar;
+    private javax.swing.JLabel jlEtc;
+    private javax.swing.JLabel jlFin;
+    private javax.swing.JLabel jlGuardar;
+    private javax.swing.JLabel jlHabitaciones;
+    private javax.swing.JLabel jlInicio;
+    private javax.swing.JLabel jlNombreAlojamiento;
+    private javax.swing.JLabel jlNuevo;
+    private javax.swing.JLabel jlPrecio;
+    private javax.swing.JLabel jlTemporada;
+    private javax.swing.JLabel jlTipo;
     private javax.swing.JLabel jlTitulo;
+    private javax.swing.JPanel jpBuscar;
+    private javax.swing.JPanel jpEliminar;
+    private javax.swing.JPanel jpGuardar;
+    private javax.swing.JPanel jpNuevo;
+    private javax.swing.JSpinner jsCantHabitaciones;
+    private javax.swing.JTextArea jtaDescServicio;
+    private javax.swing.JTextField jtfNombreAlojamiento;
+    private javax.swing.JTextField jtfPrecio;
+    private javax.swing.JTextField jtfTipo;
     // End of variables declaration//GEN-END:variables
 }
