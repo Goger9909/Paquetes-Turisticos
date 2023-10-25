@@ -169,14 +169,35 @@ public class Paquete_Data {
         }
        }     
     
-      public void ModificarEstadoID(Boolean Estado,int Paquete){
+      public void comprado(int Paquete){
            con = Conexion.getConexion();
-         String sql = "UPDATE `paquete` SET `disponible` = '?' WHERE `paquete`.`idPaquete` = ?";
+         String sql = "UPDATE `paquete` SET `disponible` = true WHERE `paquete`.`idPaquete` = ?";
       try {
           PreparedStatement ps = con.prepareStatement(sql);
-       
+          Paquete pa = new Paquete();
           ps.setInt(1, Paquete);
-          ps.setBoolean(2, Estado);
+          ps.setBoolean(2, pa.isEstado());
+          
+          int rs = ps.executeUpdate();
+          if(rs > 0){
+              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
+          } else {
+              JOptionPane.showMessageDialog(null, "No se encontro resultado");
+          }
+          ps.close();
+      } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+       }     
+       public void noComprado(int Paquete){
+           con = Conexion.getConexion();
+         String sql = "UPDATE `paquete` SET `disponible` = false WHERE `paquete`.`idPaquete` = ?";
+      try {
+          PreparedStatement ps = con.prepareStatement(sql);
+          Paquete pa = new Paquete();
+          ps.setInt(1, Paquete);
+          ps.setBoolean(2, pa.isEstado());
+          
           int rs = ps.executeUpdate();
           if(rs > 0){
               JOptionPane.showMessageDialog(null, "Se Modifico el paquete");

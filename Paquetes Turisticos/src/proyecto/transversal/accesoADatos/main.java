@@ -35,7 +35,7 @@ public class main {
 //        Paquete pa = new Paquete(ciu,ci,al,pd);
 //        pq.GuardarPaquete(pa);
 //                pq.ObtenerPaquete();
-             pq.ModificarEstadoID(true, 32);
+             pq.ModificarEstadoID( 13);
 //       for(Paquete bus : pq.ObtenerPaquete()){
 //           System.out.println("---"+bus.getIdPaquete());
 //           System.out.println(bus.getOrigen().getNombreCiudad());

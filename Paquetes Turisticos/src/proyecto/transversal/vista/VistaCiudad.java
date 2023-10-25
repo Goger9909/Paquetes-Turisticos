@@ -882,7 +882,7 @@ public class VistaCiudad extends javax.swing.JPanel {
 
     private void listaDeshabilitadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeshabilitadasMouseClicked
         // TODO add your handling code here:
-
+        try{
         if (evt.getClickCount() == 2) { // Doble clic
             int idCiudad = listaDeshabilitadas.getSelectedValue().getIdCiudad();
             int op = JOptionPane.showConfirmDialog(null, "Esta seguro de AGREGAR la ciudad", "Gracias", JOptionPane.YES_NO_OPTION);
@@ -891,6 +891,9 @@ public class VistaCiudad extends javax.swing.JPanel {
                 refrescarTablas();
             }
         }
+        }catch(NullPointerException a){
+        }
+        
 
     }//GEN-LAST:event_listaDeshabilitadasMouseClicked
 
