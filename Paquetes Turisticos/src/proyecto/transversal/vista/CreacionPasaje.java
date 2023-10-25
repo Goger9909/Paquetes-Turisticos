@@ -3,6 +3,7 @@ package proyecto.transversal.vista;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
@@ -218,11 +219,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
 
         jLabel6.setText("a");
 
-        jMaximo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMaximoActionPerformed(evt);
-            }
-        });
         jMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jMaximoKeyTyped(evt);
@@ -702,81 +698,32 @@ public class CreacionPasaje extends javax.swing.JPanel {
             String texto = jMinimo.getText();
             String texto2 = jMaximo.getText();
             borrarFilas();
-            if (!texto.isEmpty() || !texto2.isEmpty()) {
-                min = Double.parseDouble(texto);
-                if (jBuscarCiudad.getSelectedItem() == null) {
-                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                } else {
-                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-                    Ciudad ciudad = new Ciudad();
-                    ciudad = cd.busquedaPorCiudad(ciudad2);
-                    int ciu = ciudad.getIdCiudad();
+            double min = texto.isEmpty() ? 0 : Double.parseDouble(texto);
+            double max = texto2.isEmpty() ? 999999 : Double.parseDouble(texto2);
 
-                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
+            Integer ciudad = null;
+            if (jBuscarCiudad.getSelectedItem() != null) {
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+                Ciudad ciudadObj = cd.busquedaPorCiudad(ciudad2);
+                ciudad = ciudadObj.getIdCiudad();
+                List<Pasaje> pasajes = pd.buscarPasajePorImporteYCiudad(min, max, ciudad);
+
+                for (Pasaje ins : pasajes) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
                 }
+            }else {
+                List<Pasaje> pasajes = pd.buscarPasajePorImporte(min, max);
 
-            } else if (texto.isEmpty()) {
-                min = 0;
-                if (jBuscarCiudad.getSelectedItem() == null) {
-                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                } else {
-                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-                    Ciudad ciudad = new Ciudad();
-                    ciudad = cd.busquedaPorCiudad(ciudad2);
-                    int ciu = ciudad.getIdCiudad();
-
-                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                }
-            } else if (texto2.isEmpty()) {
-                max = 999999;
-                if (jBuscarCiudad.getSelectedItem() == null) {
-                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                } else {
-                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-                    Ciudad ciudad = new Ciudad();
-                    ciudad = cd.busquedaPorCiudad(ciudad2);
-                    int ciu = ciudad.getIdCiudad();
-
-                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                }
-            } else if (texto.isEmpty() || texto2.isEmpty()) {
-                max = 999999;
-                min = 0;
-                if (jBuscarCiudad.getSelectedItem() == null) {
-                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
-                } else {
-                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-                    Ciudad ciudad = new Ciudad();
-                    ciudad = cd.busquedaPorCiudad(ciudad2);
-                    int ciu = ciudad.getIdCiudad();
-
-                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
-                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-                    }
+                for (Pasaje ins : pasajes) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
                 }
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error");
-        }
 
+        } catch (Exception ex) {
+            // Aquí deberías decidir qué hacer con la excepción (lanzarla o registrarla)
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_labelImporteMouseClicked
 
     private void labelImporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseEntered
@@ -824,10 +771,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_jMinimoKeyTyped
-
-    private void jMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaximoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMaximoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jBuscarCiudad;
