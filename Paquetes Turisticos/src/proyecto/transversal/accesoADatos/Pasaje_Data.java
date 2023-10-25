@@ -71,33 +71,60 @@ public class Pasaje_Data {
     }
 
     //<<<<<<<<<<Buscar Pasaje por Importe>>>>>>>>>>
-    public Pasaje buscarPasajePorImporte(double Importe, double Importe2) {
-
+    public List<Pasaje> buscarPasajePorImporte(double Importe, double Importe2) {
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        String sql = "SELECT * FROM pasaje WHERE Importe>=? AND Importe<=? AND Estado = true";
         con = Conexion.getConexion();
         Pasaje pasaje = null;
-
-        String sql = "SELECT idPasaje, Tipo_Transporte, Importe, Nombre_Ciudad_Origen, Estado FROM pasaje WHERE Importe>=? and Importe<=? AND Estado = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDouble(1, Importe);
             ps.setDouble(2, Importe2);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 pasaje = new Pasaje();
                 pasaje.setIdPasaje(rs.getInt("idPasaje"));
                 pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
                 pasaje.setImporte(rs.getDouble("Importe"));
-                Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(rs.getInt("Nombre_Ciudad_Origen"));
+               Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(rs.getInt("Nombre_Ciudad_Origen"));
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe un pasaje entre esos valores");
+                pasajes.add(pasaje);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje: " + ex.getMessage());
         }
-        return pasaje;
+        return pasajes;
+    }
+
+    public List<Pasaje> buscarPasajePorImporteYCiudad(double Importe, double Importe2, int ciudad) {
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        String sql = "SELECT * FROM pasaje WHERE Importe>=? AND Importe<=? AND Estado = true AND Nombre_Ciudad_Origen = ?";
+        con = Conexion.getConexion();
+        Pasaje pasaje = null;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, Importe);
+            ps.setDouble(2, Importe2);
+            ps.setInt(3, ciudad);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
+                pasaje.setImporte(rs.getDouble("Importe"));
+                Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(ciudad);
+                pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
+                pasaje.setEstado(true);
+                pasajes.add(pasaje);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje: " + ex.getMessage());
+        }
+        return pasajes;
     }
 
     //<<<<<<<<<<Buscar Pasaje por Id>>>>>>>>>>
@@ -139,7 +166,7 @@ public class Pasaje_Data {
         String sql = "SELECT idPasaje, Tipo_Transporte, Importe FROM pasaje WHERE Nombre_Ciudad_Origen = ? AND Estado = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDouble(1, ciudad);
+            ps.setInt(1, ciudad);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 pasaje = new Pasaje();
@@ -157,6 +184,7 @@ public class Pasaje_Data {
         }
         return pasajes;
     }
+
     public List<Pasaje> buscarTodoPasajePorCiudad(int ciudad) {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         Pasaje pasaje = null;
@@ -296,13 +324,14 @@ public class Pasaje_Data {
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(rs.getBoolean("Estado"));
                 pasajes.add(pasaje);
-            } 
-            
+            }
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
         }
         return pasajes;
     }
+
     public List<Pasaje> obtenerPasajes(String Tipo) {
         ArrayList<Pasaje> pasajes = new ArrayList<>();
         con = Conexion.getConexion();

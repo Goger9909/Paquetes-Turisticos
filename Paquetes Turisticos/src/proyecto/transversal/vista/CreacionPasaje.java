@@ -26,7 +26,8 @@ public class CreacionPasaje extends javax.swing.JPanel {
         cargarTabla();
     }
 
-    private boolean activo = false;
+    private boolean activo = false, minimo = false, maximo = false;
+    private double min = 0, max = 999999;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,9 +52,9 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jTransporte = new javax.swing.JComboBox<>();
         jCiudad = new javax.swing.JComboBox<>();
         jImporte = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jMinimo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jMaximo = new javax.swing.JTextField();
         labelSalir = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jBuscarCiudad = new javax.swing.JComboBox<>();
@@ -74,6 +75,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pasaje");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,13 +103,24 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labeBuscarCiudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labeBuscarCiudad.setText("BUSCAR POR Ciudad");
         labeBuscarCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        labeBuscarCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labeBuscarCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelImporte.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labelImporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelImporte.setText("BUSCAR POR IMPORTE");
         labelImporte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelImporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelImporteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelImporteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelImporteMouseExited(evt);
+            }
+        });
 
         labeDeshabilitar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labeDeshabilitar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -197,22 +210,22 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jMinimo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                jMinimoKeyTyped(evt);
             }
         });
 
         jLabel6.setText("a");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jMaximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jMaximoActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                jMaximoKeyTyped(evt);
             }
         });
 
@@ -240,11 +253,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jBuscarCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jBuscarCiudadItemStateChanged(evt);
-            }
-        });
-        jBuscarCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarCiudadActionPerformed(evt);
             }
         });
 
@@ -312,11 +320,11 @@ public class CreacionPasaje extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,9 +367,9 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labeBuscarCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -398,20 +406,27 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 //Para obtener los índices de fila.
                 int filaSeleccionada = jTable.getSelectedRow();
                 int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
-                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
                 insc.desabilitarPasaje(idM);
 
-                Ciudad ciudad = new Ciudad();
-                ciudad = cd.busquedaPorCiudad(ciudad2);
-                int ciu = ciudad.getIdCiudad();
-
                 borrarFilas();
-                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
-                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : insc.buscarPasaje()) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
+                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje " + ex.getMessage());
             }
         }
         labeDeshabilitar.setEnabled(false);
@@ -433,24 +448,30 @@ public class CreacionPasaje extends javax.swing.JPanel {
             labeDeshabilitar.setForeground(Color.black);
             try {
                 Pasaje_Data insc = new Pasaje_Data();
-                Ciudad_Data cd = new Ciudad_Data();
-                //Para obtener los índices de fila.
                 int filaSeleccionada = jTable.getSelectedRow();
                 int idM = (int) jTable.getValueAt(filaSeleccionada, 0);
-                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
-                insc.desabilitarPasaje(idM);
-
-                Ciudad ciudad = new Ciudad();
-                ciudad = cd.busquedaPorCiudad(ciudad2);
-                int ciu = ciudad.getIdCiudad();
+                insc.habilitarPasaje(idM);
 
                 borrarFilas();
-                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
-                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : insc.buscarPasaje()) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    Ciudad_Data cd = new Ciudad_Data();
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje");
+                JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un Pasaje " + ex.getMessage());
             }
         }
         labelHabilitar.setEnabled(false);
@@ -467,48 +488,49 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelHabilitarMouseExited
 
     private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseClicked
-        if(labelModificar.isEnabled()){
+        if (labelModificar.isEnabled()) {
             labelGuardar.setBackground(new Color(244, 231, 187));
-        labelGuardar.setForeground(Color.black);
-        Pasaje_Data pd = new Pasaje_Data();
-        Ciudad_Data cd = new Ciudad_Data();
-        int filaSeleccionada = jTable.getSelectedRow();
+            labelGuardar.setForeground(Color.black);
+            Pasaje_Data pd = new Pasaje_Data();
+            Ciudad_Data cd = new Ciudad_Data();
+            int filaSeleccionada = jTable.getSelectedRow();
 
-        int id = (int) jTable.getValueAt(filaSeleccionada, 0);
+            int id = (int) jTable.getValueAt(filaSeleccionada, 0);
 
-        String tp = (String) jTransporte.getSelectedItem();
-        Double imp = Double.parseDouble(jImporte.getText());
-        String ciu1 = (String) jCiudad.getSelectedItem();
-        Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
+            String tp = (String) jTransporte.getSelectedItem();
+            Double imp = Double.parseDouble(jImporte.getText());
+            String ciu1 = (String) jCiudad.getSelectedItem();
+            Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
 
-        boolean e = true;
+            boolean e = true;
 
-        Pasaje pasaje = new Pasaje(id, tp, imp, ciu, e);
+            Pasaje pasaje = new Pasaje(id, tp, imp, ciu, e);
 
-        pd.modificarPasaje(pasaje);
-        limpiarTodo();
-        labelModificar.setEnabled(false);
-        labelGuardar.setEnabled(true);
-        if (jBuscarCiudad.getSelectedItem() == null) {
-            Pasaje_Data insc = new Pasaje_Data();
-            for (Pasaje ins : insc.buscarPasaje()) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            pd.modificarPasaje(pasaje);
+            limpiarTodo();
+            labelModificar.setEnabled(false);
+            labelGuardar.setEnabled(true);
+            if (jBuscarCiudad.getSelectedItem() == null) {
+                Pasaje_Data insc = new Pasaje_Data();
+                for (Pasaje ins : insc.buscarPasaje()) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } else {
+                borrarFilas();
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu2 = ciudad.getIdCiudad();
+
+                Pasaje_Data insc = new Pasaje_Data();
+
+                borrarFilas();
+                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
             }
-        } else {
-            borrarFilas();
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu2 = ciudad.getIdCiudad();
-
-            Pasaje_Data insc = new Pasaje_Data();
-
-            borrarFilas();
-            for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-            }
-        }}
+        }
     }//GEN-LAST:event_labelModificarMouseClicked
 
     private void labelModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelModificarMouseEntered
@@ -522,42 +544,42 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelModificarMouseExited
 
     private void labelGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseClicked
-        if (labelGuardar.isEnabled()){
+        if (labelGuardar.isEnabled()) {
             labelGuardar.setBackground(new Color(244, 231, 187));
-        labelGuardar.setForeground(Color.black);
-        Pasaje_Data pd = new Pasaje_Data();
-        Ciudad_Data cd = new Ciudad_Data();
+            labelGuardar.setForeground(Color.black);
+            Pasaje_Data pd = new Pasaje_Data();
+            Ciudad_Data cd = new Ciudad_Data();
 
-        String tp = (String) jTransporte.getSelectedItem();
-        Double imp = Double.parseDouble(jImporte.getText());
-        String ciu1 = (String) jCiudad.getSelectedItem();
-        Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
-        boolean e = true;
+            String tp = (String) jTransporte.getSelectedItem();
+            Double imp = Double.parseDouble(jImporte.getText());
+            String ciu1 = (String) jCiudad.getSelectedItem();
+            Ciudad ciu = (Ciudad) cd.busquedaPorCiudad(ciu1);
+            boolean e = true;
 
-        Pasaje pasaje = new Pasaje(tp, imp, ciu, e);
+            Pasaje pasaje = new Pasaje(tp, imp, ciu, e);
 
-        pd.guardarPasaje(pasaje);
-        limpiarTodo();
-        if (jBuscarCiudad.getSelectedItem() == null) {
-            Pasaje_Data insc = new Pasaje_Data();
-            for (Pasaje ins : insc.buscarPasaje()) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+            pd.guardarPasaje(pasaje);
+            limpiarTodo();
+            if (jBuscarCiudad.getSelectedItem() == null) {
+                Pasaje_Data insc = new Pasaje_Data();
+                for (Pasaje ins : insc.buscarPasaje()) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
+            } else {
+                borrarFilas();
+                String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                Ciudad ciudad = new Ciudad();
+                ciudad = cd.busquedaPorCiudad(ciudad2);
+                int ciu2 = ciudad.getIdCiudad();
+
+                Pasaje_Data insc = new Pasaje_Data();
+
+                borrarFilas();
+                for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
+                    modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                }
             }
-        } else {
-            borrarFilas();
-            String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
-
-            Ciudad ciudad = new Ciudad();
-            ciudad = cd.busquedaPorCiudad(ciudad2);
-            int ciu2 = ciudad.getIdCiudad();
-
-            Pasaje_Data insc = new Pasaje_Data();
-
-            borrarFilas();
-            for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu2)) {
-                modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
-            }
-        }
         }
     }//GEN-LAST:event_labelGuardarMouseClicked
 
@@ -570,10 +592,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labelGuardar.setBackground(new Color(244, 231, 187));
         labelGuardar.setForeground(Color.black);
     }//GEN-LAST:event_labelGuardarMouseExited
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseClicked
         jPanel1.setVisible(false);
@@ -591,18 +609,14 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labelSalir.setForeground(Color.black);
     }//GEN-LAST:event_labelSalirMouseExited
 
-    private void jBuscarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBuscarCiudadActionPerformed
-
     private void jBuscarCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jBuscarCiudadItemStateChanged
+        borrarFilas();
         if (jBuscarCiudad.getSelectedItem() == null) {
             Pasaje_Data insc = new Pasaje_Data();
             for (Pasaje ins : insc.buscarPasaje()) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
         } else {
-            borrarFilas();
             Ciudad_Data cd = new Ciudad_Data();
             String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
 
@@ -611,8 +625,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             int ciu = ciudad.getIdCiudad();
 
             Pasaje_Data insc = new Pasaje_Data();
-
-            borrarFilas();
             for (Pasaje ins : insc.buscarTodoPasajePorCiudad(ciu)) {
                 modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
             }
@@ -635,40 +647,6 @@ public class CreacionPasaje extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_jImporteKeyTyped
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        int key = evt.getKeyChar();
-        boolean numeros = key >= 48 && key <= 57;
-        boolean punto = key == 46;
-        if (!(numeros || punto)) {
-            evt.consume();
-        }
-        jTextField2.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent evt) {
-                if (jTextField2.getText().length() >= 8) {
-                    evt.consume();
-                }
-            }
-        });
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        int key = evt.getKeyChar();
-        boolean numeros = key >= 48 && key <= 57;
-        boolean punto = key == 46;
-        if (!(numeros || punto)) {
-            evt.consume();
-        }
-        jTextField3.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent evt) {
-                if (jTextField3.getText().length() >= 8) {
-                    evt.consume();
-                }
-            }
-        });
-    }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         if (evt.getClickCount() == 2) {
@@ -717,6 +695,140 @@ public class CreacionPasaje extends javax.swing.JPanel {
         labeLimpiar.setForeground(Color.black);
     }//GEN-LAST:event_labeLimpiarMouseExited
 
+    private void labelImporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseClicked
+        try {
+            Pasaje_Data pd = new Pasaje_Data();
+            Ciudad_Data cd = new Ciudad_Data();
+            String texto = jMinimo.getText();
+            String texto2 = jMaximo.getText();
+            borrarFilas();
+            if (!texto.isEmpty() || !texto2.isEmpty()) {
+                min = Double.parseDouble(texto);
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                }
+
+            } else if (texto.isEmpty()) {
+                min = 0;
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                }
+            } else if (texto2.isEmpty()) {
+                max = 999999;
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                }
+            } else if (texto.isEmpty() || texto2.isEmpty()) {
+                max = 999999;
+                min = 0;
+                if (jBuscarCiudad.getSelectedItem() == null) {
+                    for (Pasaje ins : pd.buscarPasajePorImporte(min, min)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                } else {
+                    String ciudad2 = (String) jBuscarCiudad.getSelectedItem();
+
+                    Ciudad ciudad = new Ciudad();
+                    ciudad = cd.busquedaPorCiudad(ciudad2);
+                    int ciu = ciudad.getIdCiudad();
+
+                    for (Pasaje ins : pd.buscarPasajePorImporteYCiudad(min, min, ciu)) {
+                        modelo.addRow(new Object[]{ins.getIdPasaje(), ins.getNombre_ciudad_origen(), ins.getTipo_Tansporte(), ins.getImporte(), ins.isEstado()});
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+    }//GEN-LAST:event_labelImporteMouseClicked
+
+    private void labelImporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseEntered
+        labelImporte.setBackground(new Color(103, 71, 48));
+        labelImporte.setForeground(Color.white);
+    }//GEN-LAST:event_labelImporteMouseEntered
+
+    private void labelImporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImporteMouseExited
+        labelImporte.setBackground(new Color(244, 231, 187));
+        labelImporte.setForeground(Color.black);
+    }//GEN-LAST:event_labelImporteMouseExited
+
+    private void jMaximoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMaximoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+        if (!(numeros || punto)) {
+            evt.consume();
+        } else {
+        }
+        jMaximo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                if (jMaximo.getText().length() >= 7) {
+                    evt.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_jMaximoKeyTyped
+
+    private void jMinimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMinimoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+        if (!(numeros || punto)) {
+            evt.consume();
+        } else {
+        }
+        jMinimo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent evt) {
+                if (jMinimo.getText().length() >= 7) {
+                    evt.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_jMinimoKeyTyped
+
+    private void jMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaximoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMaximoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jBuscarCiudad;
     private javax.swing.JComboBox<String> jCiudad;
@@ -731,11 +843,11 @@ public class CreacionPasaje extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jMaximo;
+    private javax.swing.JTextField jMinimo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JComboBox<String> jTransporte;
     private javax.swing.JLabel labeBuscarCiudad;
     private javax.swing.JLabel labeDeshabilitar;
