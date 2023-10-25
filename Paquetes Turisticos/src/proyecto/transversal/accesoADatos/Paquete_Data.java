@@ -28,12 +28,13 @@ public class Paquete_Data {
     public void GuardarPaquete(Paquete paquete){
             con = Conexion.getConexion();
        try {
-            String sql = "INSERT INTO paquete(Ciudad_Origen, Ciudad_Destino, alojamiento, pasaje) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO paquete(Ciudad_Origen, Ciudad_Destino, alojamiento, pasaje,disponible) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                ps.setInt(1, paquete.getOrigen().getIdCiudad());
                ps.setInt(2, paquete.getDestino().getIdCiudad());
                ps.setInt(3, paquete.getAlojamiento().getIdAlojamiento());
                ps.setInt(4, paquete.getPasaje().getIdPasaje());
+               ps.setBoolean(5, paquete.isEstado());
                ps.executeUpdate();
                ResultSet rs = ps.getGeneratedKeys();
                if (rs.next()) {
@@ -64,6 +65,7 @@ public class Paquete_Data {
                 paquete.setAlojamiento(al);
                 Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
                 paquete.setPasaje(pa);
+                paquete.setEstado(resultado.getBoolean("disponible"));
                 paquetee.add(paquete);
             }
             ps.close();
@@ -155,6 +157,26 @@ public class Paquete_Data {
           PreparedStatement ps = con.prepareStatement(sql);
           ps.setInt(1, Pasaje);
           ps.setInt(2, pasaje);
+          int rs = ps.executeUpdate();
+          if(rs > 0){
+              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
+          } else {
+              JOptionPane.showMessageDialog(null, "No se encontro resultado");
+          }
+          ps.close();
+      } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+       }     
+    
+      public void ModificarEstadoID(Boolean Estado,int Paquete){
+           con = Conexion.getConexion();
+         String sql = "UPDATE `paquete` SET `disponible` = '?' WHERE `paquete`.`idPaquete` = ?";
+      try {
+          PreparedStatement ps = con.prepareStatement(sql);
+       
+          ps.setInt(1, Paquete);
+          ps.setBoolean(2, Estado);
           int rs = ps.executeUpdate();
           if(rs > 0){
               JOptionPane.showMessageDialog(null, "Se Modifico el paquete");

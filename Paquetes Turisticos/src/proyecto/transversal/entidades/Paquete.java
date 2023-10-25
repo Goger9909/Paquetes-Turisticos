@@ -12,25 +12,36 @@ public class Paquete {
   private Ciudad destino; 
   private Alojamiento alojamiento; 
   private Pasaje pasaje; 
+  private boolean estado;
 
     public Paquete() {
     }
 
-    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje, boolean estado) {
         this.origen = origen;
         this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
+        this.estado = estado;
     }
 
-    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje, boolean estado) {
         this.idPaquete = idPaquete;
         this.origen = origen;
         this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
+        this.estado = estado;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
     public int getIdPaquete() {
         return idPaquete;
     }
