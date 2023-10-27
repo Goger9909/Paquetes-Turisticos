@@ -236,5 +236,66 @@ public class Paquete_Data {
         }
         return paquetee;  
        }
-   
+      public List<Paquete> ObtenerPaquetePorFechaCiudad(int ano,int mes, String nom){
+           con = Conexion.getConexion();
+           PreparedStatement ps = null;
+           ArrayList<Paquete> paquetePorMes = new ArrayList<>();
+           String sql = "SELECT * FROM paquete JOIN alojamiento JOIN ciudad ON (paquete.alojamiento = alojamiento.idAlojamiento)AND "
+                   + "(paquete.Ciudad_Origen = ciudad.idCiudad) WHERE YEAR(alojamiento.Fecha_Inicio) = ? "
+                   + "AND MONTH(alojamiento.Fecha_Inicio) = ? AND ciudad.Nombre = ? AND paquete.disponible = true";
+         try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ano);
+            ps.setInt(2, mes);
+            ps.setString(3, nom);
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                Paquete paquete = new Paquete();
+                paquete.setIdPaquete(resultado.getInt("idPaquete"));
+                Ciudad ciudad =  Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
+                paquete.setOrigen(ciudad);
+                Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
+                paquete.setDestino(ciu);
+                Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
+                paquete.setAlojamiento(al);
+                Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
+                paquete.setPasaje(pa);
+                paquete.setEstado(resultado.getBoolean("disponible"));
+                paquetePorMes.add(paquete);
+                
+            }
+         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+            
+         }
+         return paquetePorMes;
+      }
+           public Paquete buscarPaquetePorID(int id){
+           con = Conexion.getConexion();
+           Paquete paqueteR = null;
+         String sql = "SELECT * FROM paquete WHERE idPaquete = ? AND disponible = true";
+     try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                paqueteR = new Paquete();
+                paqueteR.setIdPaquete(id);
+                Ciudad ciudad =  Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
+                paqueteR.setOrigen(ciudad);
+                Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
+                paqueteR.setDestino(ciu);
+                Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
+                paqueteR.setAlojamiento(al);
+                Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
+                paqueteR.setPasaje(pa);
+                paqueteR.setEstado(resultado.getBoolean("disponible"));
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+        return paqueteR;
+           }
  }

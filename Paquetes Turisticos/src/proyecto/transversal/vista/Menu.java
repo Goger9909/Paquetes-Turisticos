@@ -37,11 +37,12 @@ public class Menu extends javax.swing.JFrame {
         labelAlojamiento = new javax.swing.JLabel();
         panelPaquete = new javax.swing.JPanel();
         labelPaquete = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        panelVenta = new javax.swing.JPanel();
+        labelVenta = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -272,27 +273,27 @@ public class Menu extends javax.swing.JFrame {
 
         panelButton.add(panelPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 40));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setText("                INICIO");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelVenta.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelVenta.setText("                INICIO");
+        labelVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                labelVentaMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelVentaLayout = new javax.swing.GroupLayout(panelVenta);
+        panelVenta.setLayout(panelVentaLayout);
+        panelVentaLayout.setHorizontalGroup(
+            panelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        panelVentaLayout.setVerticalGroup(
+            panelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        panelButton.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 220, 40));
+        panelButton.add(panelVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 220, 40));
 
         jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 700));
 
@@ -493,10 +494,10 @@ public class Menu extends javax.swing.JFrame {
         labelCiudad.setFont(new java.awt.Font("Arial", 0, 18));
     }//GEN-LAST:event_labelCiudadMouseExited
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void labelVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseClicked
         // TODO add your handling code here:
          if (permitir) {
-        Paquete2 pd = new Paquete2();
+        VistaVenta pd = new VistaVenta();
         pd.removeAll();
         pd.setSize(600, 700);
         pd.setLocation(0, 0);
@@ -505,7 +506,7 @@ public class Menu extends javax.swing.JFrame {
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
         }
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_labelVentaMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -544,9 +545,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Estado;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelAlojamiento;
     private javax.swing.JLabel labelCiudad;
@@ -555,6 +554,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel labelPrecentacion;
     private javax.swing.JLabel labelSalir;
     private javax.swing.JLabel labelSesion;
+    private javax.swing.JLabel labelVenta;
     private javax.swing.JPanel panelAlojamiento;
     private javax.swing.JPanel panelButton;
     private javax.swing.JPanel panelCiudad;
@@ -562,6 +562,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel panelPasaje;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSesion;
+    private javax.swing.JPanel panelVenta;
     // End of variables declaration//GEN-END:variables
 public void setNombrePersona(String nombre, String apellido) {
         labelPrecentacion.setText("¡Bienvenido, " + apellido + ", " + nombre + "!");
