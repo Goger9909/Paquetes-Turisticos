@@ -15,6 +15,7 @@ import proyecto.transversal.accesoADatos.Pasaje_Data;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
 import proyecto.transversal.entidades.Pasaje;
+import sun.net.www.content.text.plain;
 
 /**
  *
@@ -278,19 +279,29 @@ public class Paquete extends javax.swing.JPanel {
         Pasaje_Data ps = new Pasaje_Data();
         Paquete_Data Pd = new Paquete_Data();  
         Alojamiento_Data alo = new Alojamiento_Data();
+        
         String ciu = (String) jCCuidad_deOrigen.getSelectedItem();
         Ciudad ciudadOrigen = (Ciudad) cd.busquedaPorCiudad(ciu);
+        System.out.println(ciudadOrigen);
+        
         String ci = (String) jCiudad_Destino.getSelectedItem();
         Ciudad ciudadDestino = (Ciudad) cd.busquedaPorCiudad(ci);
+        System.out.println(ciudadDestino);
+        
         String pas = (String) jCTipodPasaje.getSelectedItem();
-        Pasaje pasaje = ps.obtenerPasajes(pas);
+        int id_ciudad_origen = ciudadOrigen.getIdCiudad();
+        System.out.println(id_ciudad_origen);
+        Pasaje pasaje = ps.obtenerPasajes(pas,id_ciudad_origen);
         System.out.println(pasaje);
+        
         int al =  jTable2.getSelectedRow();
         int id = (int) jTable2.getValueAt(al , 0);
         Alojamiento alojamiento = alo.buscarAlojamientoPorId(id);
         System.out.println(alojamiento);
-//        Paquete pa = new Paquete(ciudadOrigen,ciudadDestino,alojamiento,pasaje,true);
-//        Pd.GuardarPaquete(pa);
+        
+        
+        Paquete pa = new Paquete(ciudadOrigen,ciudadDestino,alojamiento,pasaje,true);
+        Pd.GuardarPaquete(pa);
     }//GEN-LAST:event_jLGuardarMouseClicked
 
     private void jCiudad_DestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCiudad_DestinoActionPerformed

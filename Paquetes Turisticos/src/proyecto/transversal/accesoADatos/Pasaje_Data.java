@@ -277,20 +277,22 @@ public class Pasaje_Data {
         return pasajes;
     }
 
-    public Pasaje obtenerPasajes(String Tipo) {
+    public Pasaje obtenerPasajes(String Tipo, int id_ciudad_origen) {
         Pasaje pasaje = null;
         con = Conexion.getConexion();
         try {
-            String sql = "SELECT * FROM pasaje WHERE Tipo_Transporte = ? ";
+            String sql = "SELECT * FROM pasaje WHERE Tipo_Transporte = ? AND Nombre_Ciudad_Origen = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, Tipo);
+            ps.setInt(2,id_ciudad_origen);
+            
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 pasaje = new Pasaje();
                 pasaje.setIdPasaje(rs.getInt("idPasaje"));
                 pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
                 pasaje.setImporte(rs.getDouble("Importe"));
-                Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(rs.getInt("Nombre_Ciudad_Origen"));
+                Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(id_ciudad_origen);
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(rs.getBoolean("Importe"));
             } 
