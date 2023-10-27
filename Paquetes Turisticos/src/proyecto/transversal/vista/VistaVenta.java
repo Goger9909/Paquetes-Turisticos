@@ -19,7 +19,7 @@ import proyecto.transversal.entidades.Paquete;
 public class VistaVenta extends javax.swing.JPanel {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean isCeliEditable(int f, int c) {
+        public boolean isCellEditable(int filas, int columnas) {
             return false;
         }
     };
@@ -432,7 +432,6 @@ public class VistaVenta extends javax.swing.JPanel {
         cargarTabla(nombre);
         BorrarFilas();
         for (Paquete alo : pd.ObtenerPaquetePorFechaCiudad(a, s, nombre)) {
-
             modelo.addRow(new Object[]{alo.getIdPaquete(), alo.getOrigen().getNombreCiudad(),
                 alo.getDestino().getNombreCiudad(), alo.getAlojamiento().getTipoAlojamiento(), alo.getPasaje().getTipo_Tansporte()});
         }
