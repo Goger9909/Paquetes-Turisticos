@@ -2,9 +2,6 @@
 package proyecto.transversal.vista;
 
 import java.awt.Color;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
@@ -14,6 +11,7 @@ import proyecto.transversal.accesoADatos.Paquete_Data;
 import proyecto.transversal.accesoADatos.Pasaje_Data;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
+import proyecto.transversal.entidades.Paquete;
 import proyecto.transversal.entidades.Pasaje;
 import sun.net.www.content.text.plain;
 
@@ -21,7 +19,7 @@ import sun.net.www.content.text.plain;
  *
  * @author YamilaAlejandra
  */
-public class Paquete extends javax.swing.JPanel {
+public class Paquete_Vista extends javax.swing.JPanel {
   private DefaultTableModel modeloA = new DefaultTableModel();
   private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int filas, int columnas) {
@@ -29,7 +27,7 @@ public class Paquete extends javax.swing.JPanel {
         }
     };
   
-    public Paquete() {
+    public Paquete_Vista() {
         initComponents();
         cargaPais();
         cargaPais2();
@@ -298,7 +296,7 @@ public class Paquete extends javax.swing.JPanel {
         int id = (int) jTable2.getValueAt(al , 0);
         Alojamiento alojamiento = alo.buscarAlojamientoPorId(id);
         System.out.println(alojamiento);
-        
+        alo.desactivarAlojamiento(id);
         
         Paquete pa = new Paquete(ciudadOrigen,ciudadDestino,alojamiento,pasaje,true);
         Pd.GuardarPaquete(pa);

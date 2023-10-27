@@ -328,7 +328,7 @@ public class Menu extends javax.swing.JFrame {
     private void labelPaqueteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPaqueteMouseClicked
         // TODO add your handling code here:
         if (permitir) {
-        Paquete pd = new Paquete();
+        Paquete_Vista pd = new Paquete_Vista();
         pd.removeAll();
         pd.setSize(600, 700);
         pd.setLocation(0, 0);
