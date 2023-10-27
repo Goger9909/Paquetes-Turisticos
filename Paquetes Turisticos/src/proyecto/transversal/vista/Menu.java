@@ -6,10 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Menu extends javax.swing.JFrame {
+
     private static Menu instancia;
     private boolean permitir = true;
     public int XMouse, yMouse;//pocicion del mouse
-    
+
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
@@ -329,14 +330,14 @@ public class Menu extends javax.swing.JFrame {
     private void labelPaqueteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPaqueteMouseClicked
         // TODO add your handling code here:
         if (permitir) {
-        Paquete_Vista pd = new Paquete_Vista();
-        pd.removeAll();
-        pd.setSize(600, 700);
-        pd.setLocation(0, 0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(pd, BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+            Paquete_Vista pd = new Paquete_Vista();
+            pd.removeAll();
+            pd.setSize(600, 700);
+            pd.setLocation(0, 0);
+            panelPrincipal.removeAll();
+            panelPrincipal.add(pd, BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
         }
 
     }//GEN-LAST:event_labelPaqueteMouseClicked
@@ -344,44 +345,44 @@ public class Menu extends javax.swing.JFrame {
     private void labelCiudadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCiudadMouseClicked
         // TODO add your handling code here:
         if (permitir) {
-        VistaCiudad pd = new VistaCiudad();
-        pd.removeAll();
-        pd.setSize(600, 700);
-        pd.setLocation(0, 0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(pd, BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+            VistaCiudad pd = new VistaCiudad();
+            pd.removeAll();
+            pd.setSize(600, 700);
+            pd.setLocation(0, 0);
+            panelPrincipal.removeAll();
+            panelPrincipal.add(pd, BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
         }
     }//GEN-LAST:event_labelCiudadMouseClicked
 
     private void labelPasajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPasajeMouseClicked
         // TODO add your handling code here:
         if (permitir) {
-        CreacionPasaje cp = new CreacionPasaje();
-        cp.removeAll();
-        cp.setSize(600, 700);
-        cp.setLocation(0, 0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(cp, BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+            CreacionPasaje cp = new CreacionPasaje();
+            cp.removeAll();
+            cp.setSize(600, 700);
+            cp.setLocation(0, 0);
+            panelPrincipal.removeAll();
+            panelPrincipal.add(cp, BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
         }
     }//GEN-LAST:event_labelPasajeMouseClicked
 
     private void labelAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseClicked
         // Alojamiento
         if (permitir) {
-        PruebaCalendar pd = new PruebaCalendar();
-        pd.removeAll();
-        pd.setSize(600, 700);
-        pd.setLocation(0, 0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(pd,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+            PruebaCalendar pd = new PruebaCalendar();
+            pd.removeAll();
+            pd.setSize(600, 700);
+            pd.setLocation(0, 0);
+            panelPrincipal.removeAll();
+            panelPrincipal.add(pd, BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
         }
-        
+
     }//GEN-LAST:event_labelAlojamientoMouseClicked
 
     private void labelSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSesionMouseClicked
@@ -399,12 +400,11 @@ public class Menu extends javax.swing.JFrame {
             labelSesion.setText(incorrecto());
 
             //                java.awt.EventQueue.invokeLater(new Runnable() {//verifica la clave
-                //                    public void run() {
-                    new Login().setVisible(true);
+            //                    public void run() {
+            new Login().setVisible(true);
 
-                    //                    }
-                //                });
-
+            //                    }
+            //                });
         }
     }//GEN-LAST:event_labelSesionMouseClicked
 
@@ -435,13 +435,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void EstadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstadoMousePressed
         // TODO add your handling code here:
-         XMouse = evt.getX();
-         yMouse = evt.getY();
+        XMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_EstadoMousePressed
 
     private void EstadoMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstadoMouseDragged
         // TODO add your handling code here:
-         int x = evt.getXOnScreen();
+        int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - XMouse, y - yMouse);
     }//GEN-LAST:event_EstadoMouseDragged
@@ -460,7 +460,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void labelAlojamientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseEntered
         // TODO add your handling code here:
-         labelAlojamiento.setFont(labelAlojamiento.getFont().deriveFont(Font.PLAIN));
+        labelAlojamiento.setFont(labelAlojamiento.getFont().deriveFont(Font.PLAIN));
         labelAlojamiento.setFont(new java.awt.Font("Arial", 0, 24));
     }//GEN-LAST:event_labelAlojamientoMouseEntered
 
@@ -472,7 +472,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void labelPasajeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPasajeMouseEntered
         // TODO add your handling code here:
-         labelPasaje.setFont(labelPasaje.getFont().deriveFont(Font.PLAIN));
+        labelPasaje.setFont(labelPasaje.getFont().deriveFont(Font.PLAIN));
         labelPasaje.setFont(new java.awt.Font("Arial", 0, 24));
     }//GEN-LAST:event_labelPasajeMouseEntered
 
@@ -484,7 +484,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void labelCiudadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCiudadMouseEntered
         // TODO add your handling code here:
-         labelCiudad.setFont(labelCiudad.getFont().deriveFont(Font.PLAIN));
+        labelCiudad.setFont(labelCiudad.getFont().deriveFont(Font.PLAIN));
         labelCiudad.setFont(new java.awt.Font("Arial", 0, 24));
     }//GEN-LAST:event_labelCiudadMouseEntered
 
@@ -496,15 +496,15 @@ public class Menu extends javax.swing.JFrame {
 
     private void labelVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseClicked
         // TODO add your handling code here:
-         if (permitir) {
-        Paquete2 pd = new Paquete2();
-        pd.removeAll();
-        pd.setSize(600, 700);
-        pd.setLocation(0, 0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(pd, BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        if (permitir) {
+            VistaVenta pd = new VistaVenta();
+            pd.removeAll();
+            pd.setSize(600, 700);
+            pd.setLocation(0, 0);
+            panelPrincipal.removeAll();
+            panelPrincipal.add(pd, BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
         }
     }//GEN-LAST:event_labelVentaMouseClicked
 
@@ -533,11 +533,10 @@ public class Menu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(new Runnable() {//verifica la clave
+        java.awt.EventQueue.invokeLater(new Runnable() {//verifica la clave
             public void run() {
                 Menu.getInstancia();
                 new Login().setVisible(true);
-                
 
             }
         });
@@ -568,10 +567,10 @@ public void setNombrePersona(String nombre, String apellido) {
         labelPrecentacion.setText("¡Bienvenido, " + apellido + ", " + nombre + "!");
     }
 
- public void iniciarSesion(){
-     labelSesion.setText("INICIAR SESIÓN");
-     
- }
+    public void iniciarSesion() {
+        labelSesion.setText("INICIAR SESIÓN");
+
+    }
 
     public void anularButton() {
         permitir = false;
@@ -588,26 +587,27 @@ public void setNombrePersona(String nombre, String apellido) {
         labelAlojamiento.setEnabled(true);
         labelPasaje.setEnabled(true);
     }
+
     /*
         El código que has proporcionado implementa un patrón de diseño conocido como "Singleton". 
         El patrón Singleton se utiliza para garantizar que una clase tenga una sola instancia y 
         proporcionar un punto de acceso global a esa instancia desde cualquier parte de tu programa. 
         En el contexto de tu código, estás aplicando el patrón Singleton para la clase Menu.
-        */
-    public static Menu getInstancia(){//crea una sola ventana "PATRON DE SINGLETON"
-        if(instancia == null){
+     */
+    public static Menu getInstancia() {//crea una sola ventana "PATRON DE SINGLETON"
+        if (instancia == null) {
             instancia = new Menu();
             getInstancia().setVisible(true);
         }
         return instancia;
     }
-   
-    public static String incorrecto (){
+
+    public static String incorrecto() {
         return "CERRAR SESIÓN";
     }
-    public static String correcto (){
+
+    public static String correcto() {
         return "INICIAR SESIÓN";
     }
-
 
 }

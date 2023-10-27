@@ -1,6 +1,5 @@
 package proyecto.transversal.vista;
 
-import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
@@ -8,14 +7,10 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
-import jdk.internal.org.objectweb.asm.Opcodes;
-import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
 import proyecto.transversal.accesoADatos.Paquete_Data;
-import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
 import proyecto.transversal.entidades.Paquete;
-
 
 /**
  *
@@ -33,8 +28,6 @@ public class VistaVenta extends javax.swing.JPanel {
     SpinnerNumberModel model = new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1);
     private int numeroID;
 
-    
-
     public VistaVenta() {
         initComponents();
         ArmarCabecera();
@@ -42,11 +35,11 @@ public class VistaVenta extends javax.swing.JPanel {
         cantidadPersonas.setModel(model);
         jcTarjeta.setVisible(false);
         cargaTarjeta();
-        if(jtTotal.getText().equalsIgnoreCase("0.0")){
+        if (jtTotal.getText().equalsIgnoreCase("0.0")) {
             jtTotal.setText("");
-            
+
         }
-                }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -376,7 +369,7 @@ public class VistaVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         //Fondo.setVisible(false);
-        
+
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -400,15 +393,13 @@ public class VistaVenta extends javax.swing.JPanel {
         Paquete_Data Pd = new Paquete_Data();
         int filaSeleccionada = jTable1.getSelectedRow();
         int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
-        
+
         Pd.comprado(id);
         //numeroID = id;
         //int filaSeleccionada1 = jTable1.getSelectedRow();
         //boolean id1 = (boolean) jTable1.getValueAt(filaSeleccionada1, 6);
         BorrarFilas();
-        
-        
-       
+
 //          InformacionDeCompra pd = new InformacionDeCompra();
 //            Fondo.setVisible(false);
 //            pd.setVisible(true);
@@ -466,24 +457,25 @@ public class VistaVenta extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        Paquete_Data pd = new Paquete_Data();
-        int filaSeleccionada = jTable1.getSelectedRow();
-        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
-        
-        Paquete consulta = pd.buscarPaquetePorID(id);
-        double precioPorDia = consulta.getAlojamiento().getImporteDiario();
-        LocalDate entrada = consulta.getAlojamiento().getFechaIn();
-        LocalDate salida = consulta.getAlojamiento().getFechaOn();
-        double pasaje = consulta.getPasaje().getImporte();
-        int cantDia = (int) ChronoUnit.DAYS.between(entrada, salida);
-        labelInfoDias.setText("Cantidad de días: " + cantDia);
-        double precioTotalDias = precioPorDia * cantDia;
-        totalParcial = precioTotalDias + pasaje;
-        jtPrecioUnitario.setText(String.valueOf(precioPorDia));
-        jtPrecioTotalDias.setText(String.valueOf(precioTotalDias));
-        jtTotalParcial.setText(String.valueOf(totalParcial));
+        try {
+            Paquete_Data pd = new Paquete_Data();
+            int filaSeleccionada = jTable1.getSelectedRow();
+            int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
 
-
+            Paquete consulta = pd.buscarPaquetePorID(id);
+            double precioPorDia = consulta.getAlojamiento().getImporteDiario();
+            LocalDate entrada = consulta.getAlojamiento().getFechaIn();
+            LocalDate salida = consulta.getAlojamiento().getFechaOn();
+            double pasaje = consulta.getPasaje().getImporte();
+            int cantDia = (int) ChronoUnit.DAYS.between(entrada, salida);
+            labelInfoDias.setText("Cantidad de días: " + cantDia);
+            double precioTotalDias = precioPorDia * cantDia;
+            totalParcial = precioTotalDias + pasaje;
+            jtPrecioUnitario.setText(String.valueOf(precioPorDia));
+            jtPrecioTotalDias.setText(String.valueOf(precioTotalDias));
+            jtTotalParcial.setText(String.valueOf(totalParcial));
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jrEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEfectivoActionPerformed
@@ -509,32 +501,32 @@ public class VistaVenta extends javax.swing.JPanel {
 
     private void jcTarjetaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcTarjetaItemStateChanged
         // TODO add your handling code here:
-        if(jcTarjeta.getSelectedIndex()==0){
-            
+        if (jcTarjeta.getSelectedIndex() == 0) {
+
             jtTotal.setText(jtTotalParcial.getText());
-        }else if(jcTarjeta.getSelectedIndex()==1){
-                total = Double.parseDouble(jtTotalParcial.getText()) * 1.15;
-                jtTotal.setText(String.valueOf(total));
-            }else if(jcTarjeta.getSelectedIndex()==2){
-                 total = Double.parseDouble(jtTotalParcial.getText()) * 1.3;
-                jtTotal.setText(String.valueOf(total));
-            }else if(jcTarjeta.getSelectedIndex()==3){
-                 total = Double.parseDouble(jtTotalParcial.getText()) * 1.6;
-                jtTotal.setText(String.valueOf(total));
-            }
+        } else if (jcTarjeta.getSelectedIndex() == 1) {
+            total = Double.parseDouble(jtTotalParcial.getText()) * 1.15;
+            jtTotal.setText(String.valueOf(total));
+        } else if (jcTarjeta.getSelectedIndex() == 2) {
+            total = Double.parseDouble(jtTotalParcial.getText()) * 1.3;
+            jtTotal.setText(String.valueOf(total));
+        } else if (jcTarjeta.getSelectedIndex() == 3) {
+            total = Double.parseDouble(jtTotalParcial.getText()) * 1.6;
+            jtTotal.setText(String.valueOf(total));
+        }
     }//GEN-LAST:event_jcTarjetaItemStateChanged
 
     private void cantidadPersonasAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cantidadPersonasAncestorMoved
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_cantidadPersonasAncestorMoved
 
     private void cantidadPersonasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cantidadPersonasStateChanged
         // TODO add your handling code here:
-         double p = 0;
-         canti = (int)cantidadPersonas.getValue();
-         p = totalParcial; 
-         
+        double p = 0;
+        canti = (int) cantidadPersonas.getValue();
+        p = totalParcial;
+
         p = p * canti;
         jtTotalParcial.setText(String.valueOf(p));
         p = 0;
@@ -631,8 +623,5 @@ public class VistaVenta extends javax.swing.JPanel {
         jcTarjeta.addItem("6 Cuota sin recargo %30");
         jcTarjeta.addItem("12 Cuota sin recargo %60");
     }
-
-    
-   
 
 }
