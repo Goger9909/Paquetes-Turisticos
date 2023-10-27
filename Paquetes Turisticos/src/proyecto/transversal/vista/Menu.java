@@ -497,7 +497,7 @@ public class Menu extends javax.swing.JFrame {
     private void labelVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseClicked
         // TODO add your handling code here:
          if (permitir) {
-        VistaVenta pd = new VistaVenta();
+        Paquete2 pd = new Paquete2();
         pd.removeAll();
         pd.setSize(600, 700);
         pd.setLocation(0, 0);
