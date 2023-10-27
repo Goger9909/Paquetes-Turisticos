@@ -174,10 +174,8 @@ public class Paquete_Data {
          String sql = "UPDATE `paquete` SET `disponible` = true WHERE `paquete`.`idPaquete` = ?";
       try {
           PreparedStatement ps = con.prepareStatement(sql);
-          Paquete pa = new Paquete();
           ps.setInt(1, Paquete);
-          ps.setBoolean(2, pa.isEstado());
-          
+     
           int rs = ps.executeUpdate();
           if(rs > 0){
               JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
@@ -189,6 +187,7 @@ public class Paquete_Data {
            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
         }
        }     
+      
        public void noComprado(int Paquete){
            con = Conexion.getConexion();
          String sql = "UPDATE `paquete` SET `disponible` = false WHERE `paquete`.`idPaquete` = ?";
@@ -209,4 +208,33 @@ public class Paquete_Data {
            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
         }
        }     
+       
+   public ArrayList<Paquete> ObtenerPaquetePorCiudad(String Cuidad){
+              con = Conexion.getConexion();
+    ArrayList<Paquete> paquetee = new ArrayList<>();
+    String sql = "SELECT * FROM paquete; ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultado = ps.executeQuery();
+            while (resultado.next()) {
+                Paquete paquete = new Paquete();
+                paquete.setIdPaquete(resultado.getInt("idPaquete"));
+                Ciudad ciudad =  Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
+                paquete.setOrigen(ciudad);
+                Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
+                paquete.setDestino(ciu);
+                Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
+                paquete.setAlojamiento(al);
+                Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
+                paquete.setPasaje(pa);
+                paquete.setEstado(resultado.getBoolean("disponible"));
+                paquetee.add(paquete);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+        return paquetee;  
+       }
+   
  }

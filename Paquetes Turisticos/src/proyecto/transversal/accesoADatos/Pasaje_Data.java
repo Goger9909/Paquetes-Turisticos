@@ -270,23 +270,22 @@ public class Pasaje_Data {
                 pasaje.setEstado(rs.getBoolean("Estado"));
                 pasajes.add(pasaje);
             }
-
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje" + ex.getMessage());
         }
         return pasajes;
     }
 
-    public List<Pasaje> obtenerPasajes(String Tipo) {
-        ArrayList<Pasaje> pasajes = new ArrayList<>();
-        con = Conexion.getConexion();
+    public Pasaje obtenerPasajes(String Tipo) {
         Pasaje pasaje = null;
-        String sql = "SELECT * FROM pasaje WHERE Tipo_Transporte LIKE '%?%'";
+        con = Conexion.getConexion();
         try {
+            String sql = "SELECT * FROM pasaje WHERE Tipo_Transporte = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, Tipo);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if(rs.next()) {
                 pasaje = new Pasaje();
                 pasaje.setIdPasaje(rs.getInt("idPasaje"));
                 pasaje.setTipo_Tansporte(rs.getString("Tipo_Transporte"));
@@ -294,11 +293,11 @@ public class Pasaje_Data {
                 Ciudad nombre_ciudad_origen = cd.buscarCiudadPorID(rs.getInt("Nombre_Ciudad_Origen"));
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(rs.getBoolean("Importe"));
-                pasajes.add(pasaje);
-            }
+            } 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la base de datos pasaje" + ex.getMessage());
         }
-        return pasajes;
+        return pasaje;
+      
     }
 }
