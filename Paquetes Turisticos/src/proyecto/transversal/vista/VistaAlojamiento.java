@@ -5,7 +5,11 @@
 package proyecto.transversal.vista;
 
 import java.awt.Component;
-import java.sql.Date;
+import java.sql.DatabaseMetaData;
+import java.util.*;
+
+import java.text.SimpleDateFormat;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Month;
@@ -14,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Calendar;
 import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
 import proyecto.transversal.entidades.Alojamiento;
@@ -25,16 +31,19 @@ import proyecto.transversal.entidades.Ciudad;
  */
 public class VistaAlojamiento extends javax.swing.JPanel {
 
-    /**
-     * Creates new form VistaAlojamiento
-     */
+    private DefaultTableModel modelo =  new DefaultTableModel();
+    
+    
+    
     public VistaAlojamiento() {
         initComponents();
         jpVistaBuscar.setEnabled(false);
         jpVistaBuscar.setVisible(false);
         jpVistaNuevoAloja.setEnabled(false);
         jpVistaNuevoAloja.setVisible(false);
-        
+        armarCabecera();
+//        jdcInicio.setMinSelectableDate(new Date());
+//        jdcFin.setMinSelectableDate(jdcInicio.getMinSelectableDate());
     }
 
     /**
@@ -47,7 +56,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private void initComponents() {
 
         jpAlojamiento = new javax.swing.JPanel();
-        jlTitulo1 = new javax.swing.JLabel();
         jpVistaBuscar = new javax.swing.JPanel();
         jpbEditar = new javax.swing.JPanel();
         jlbEditar = new javax.swing.JLabel();
@@ -77,6 +85,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlFechFinVB = new javax.swing.JLabel();
         jpbEliminarVB = new javax.swing.JPanel();
         jlbEliminarVB = new javax.swing.JLabel();
+        jlTitulo1 = new javax.swing.JLabel();
         jpVistaNuevoAloja = new javax.swing.JPanel();
         jlTemporada = new javax.swing.JLabel();
         jlInicio = new javax.swing.JLabel();
@@ -116,11 +125,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpAlojamiento.setMinimumSize(new java.awt.Dimension(600, 700));
         jpAlojamiento.setPreferredSize(new java.awt.Dimension(600, 700));
         jpAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jlTitulo1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
-        jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo1.setText("ALOJAMIENTO");
-        jpAlojamiento.add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
 
         jpVistaBuscar.setBackground(new java.awt.Color(255, 204, 153));
         jpVistaBuscar.setMinimumSize(new java.awt.Dimension(540, 520));
@@ -217,7 +221,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             }
         });
         jpVistaBuscar.add(jrbPorFechaVB);
-        jrbPorFechaVB.setBounds(110, 40, 90, 23);
+        jrbPorFechaVB.setBounds(110, 40, 110, 23);
 
         jrbTodoVB.setText("TODO");
         jrbTodoVB.addActionListener(new java.awt.event.ActionListener() {
@@ -320,6 +324,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
         jpAlojamiento.add(jpVistaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
 
+        jlTitulo1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo1.setText("ALOJAMIENTO");
+        jpAlojamiento.add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
+
         jpVistaNuevoAloja.setBackground(new java.awt.Color(204, 255, 204));
         jpVistaNuevoAloja.setPreferredSize(new java.awt.Dimension(540, 600));
         jpVistaNuevoAloja.setLayout(null);
@@ -335,6 +344,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlInicio.setBounds(90, 70, 42, 18);
 
         jdcInicio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcInicioPropertyChange(evt);
+            }
+        });
         jpVistaNuevoAloja.add(jdcInicio);
         jdcInicio.setBounds(140, 60, 150, 30);
 
@@ -616,65 +630,80 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfTipoKeyTyped
 
     private void jlGuardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGuardar1MouseClicked
-        System.out.println("fecha1: "+jdcInicio.getDate());
-        System.out.println("fecha2: "+jdcFin.getDate());
-        
-    int dia = jdcInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
-    int mes = jdcInicio.getCalendar().get(Calendar.MONTH);
-    int anio = jdcInicio.getCalendar().get(Calendar.YEAR);
-    int dia2 = jdcFin.getCalendar().get(Calendar.DAY_OF_MONTH);
-    int mes2 = jdcFin.getCalendar().get(Calendar.MONTH);
-    int anio2 = jdcFin.getCalendar().get(Calendar.YEAR);
     
-    String f1= anio+"-"+mes+"-"+dia;
-            System.out.println("f1: "+f1);
-    String f2= anio+"-"+mes+"-"+dia;
-            System.out.println("f2: "+f2);
-            
-            
-    java.util.Date fecha1 = jdcInicio.getDate();
-    Instant instant = fecha1.toInstant();
-    LocalDate fe1 = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-    
-    java.util.Date fecha2 = jdcFin.getDate();
-    Instant inst = fecha2.toInstant();
-    LocalDate fe2 = inst.atZone(ZoneId.systemDefault()).toLocalDate();
-//    Date fecha1= Date.valueOf(f1);
-//    Date fecha2=Date.valueOf(f2);
-       
+        Date fIni = jdcInicio.getDate();
+        Date fFin = jdcFin.getDate();
+        Date minimo = jdcInicio.getMinSelectableDate();
+        Date maximo = jdcInicio.getMaxSelectableDate();
+        Date minimo2 = jdcFin.getMinSelectableDate();
+        Date maximo2 = jdcFin.getMaxSelectableDate();
 
+        try {
+            if (fIni != null) {
+                // Verificar si la fecha seleccionada está dentro del rango permitido
+                if (minimo != null && maximo != null) {
+                    if (fIni.before(minimo) || fIni.after(maximo)) {
+                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no esta permitida");
+                        jdcInicio.setDate(null);
+                        jdcFin.setDate(null);
+                        return;
+                    }
+                }
+            }
+            if (fFin != null) {
+                // Verificar si la fecha seleccionada está dentro del rango permitido
+                if (minimo2 != null && maximo2 != null) {
+                    if (fFin.before(minimo2) || fFin.after(maximo2)) {
+                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no esta permitida");
+                        jdcFin.setDate(null);
 
+                        return;
+                    }
+                }
+            }
 
-//    LocalDate fecha1 = LocalDate.parse(f1,formatter);
-//    
-//    LocalDate fecha2 = LocalDate.parse(f2,formatter);
-    
-            System.out.println("fecha1 parse: "+fecha1);
-            System.out.println("fecha2 parse: "+fecha2);
-            System.out.println("fe1: "+fe1);
-            System.out.println("fe2: "+fe2);
-    String tipo = jtfTipo.getText()+" - "+jtfNombreAlojamiento.getText();
-            System.out.println("tipo concat: "+tipo);
-    Ciudad ciu = (Ciudad)jcbCiudad.getSelectedItem();
-            System.out.println("cbx: " + ciu);
-            
-    String servicio= jtaDescServicio.getText();
-            System.out.println("descripcion: "+servicio);
-        
-            System.out.println("Precio sin parse: "+ jtfPrecio.getText());
-    String num = jtfPrecio.getText();
-    double importe= Double.parseDouble(num);
-        
-            System.out.println("importe parse:"+ importe);
-            System.out.println("importe: " + importe);
-       
-            
-    Alojamiento al = new Alojamiento(fe1, fe2, tipo, servicio , true, importe, ciu);
-            System.out.println("importe parse:"+ al);
-    Alojamiento_Data ad = new Alojamiento_Data();
-    ad.guardarAlojamiento(al);
-    
-    
+            java.util.Date fecha1 = jdcInicio.getDate();
+            Instant instant = fecha1.toInstant();
+            LocalDate fe1 = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+            java.util.Date fecha2 = jdcFin.getDate();
+            Instant inst = fecha2.toInstant();
+            LocalDate fe2 = inst.atZone(ZoneId.systemDefault()).toLocalDate();
+//            System.out.println("fecha1 parse: "+fecha1);
+//            System.out.println("fecha2 parse: "+fecha2);
+//            System.out.println("fe1: "+fe1);
+//            System.out.println("fe2: "+fe2);
+            String tipo = jtfTipo.getText() + " - " + jtfNombreAlojamiento.getText();
+//            System.out.println("tipo concat: "+tipo);
+            Ciudad ciu = (Ciudad) jcbCiudad.getSelectedItem();
+//            System.out.println("cbx: " + ciu);
+
+            String servicio = jtaDescServicio.getText();
+//            System.out.println("descripcion: "+servicio);
+
+//            System.out.println("Precio sin parse: "+ jtfPrecio.getText());
+            String num = jtfPrecio.getText();
+            double importe = Double.parseDouble(num);
+            int contador = (Integer) jsCantHabitaciones.getValue();
+//            System.out.println("importe parse:"+ importe);
+//            System.out.println("importe: " + importe);
+            Alojamiento al = new Alojamiento(fe1, fe2, tipo, servicio, true, importe, ciu);
+//            System.out.println("importe parse:"+ al);
+            Alojamiento_Data ad = new Alojamiento_Data();
+            int vuelta = 0;
+            for (int i = 1; i <= contador; i++) {
+                //ad.guardarAlojamiento(al);
+                vuelta = vuelta + 1;
+                System.out.println("aloja: " + al);
+            }
+            JOptionPane.showMessageDialog(null, "descomentar el metodo");
+            JOptionPane.showMessageDialog(null, "Se guardaron " + vuelta + " registros.");
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            return;
+        }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
     }//GEN-LAST:event_jlGuardar1MouseClicked
 
@@ -689,6 +718,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private void jlbNuevoAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseClicked
         jpVistaNuevoAloja.setEnabled(true);
         jpVistaNuevoAloja.setVisible(true);
+        jdcInicio.setMinSelectableDate(new Date());
         cargarComboCiudad();
         
         botonBuscarAlojDES();
@@ -753,6 +783,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private void jlbEliminarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEliminarVBMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jlbEliminarVBMouseClicked
+// --------- LISTENER DE JDATECHOOSER INICIO ------------------
+    private void jdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioPropertyChange
+
+    jdcFin.setMinSelectableDate(jdcInicio.getDate());
+        
+    }//GEN-LAST:event_jdcInicioPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -855,4 +891,39 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             comp.setVisible(false);
          }    
     }
+     
+     private void cambiofecha(){
+         if(jdcInicio != null){
+        jdcFin.setMinSelectableDate(jdcInicio.getDate());
+         }
+         
+     }
+     
+// -------- METODOS jpVistaBuscar -----------------
+    
+     //-------- Tabla --------
+     
+     private void armarCabecera(){
+        modelo.addColumn("ID");
+        modelo.addColumn("Alojamiento");
+        modelo.addColumn("Fecha Inicio");
+        modelo.addColumn("Fecha Salida");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Servicio");
+        jtableBuscar.setModel(modelo);
+     }
+     
+     private void cargarDatos(List<Alojamiento> alojamiento){
+         ArrayList<Alojamiento> aloja = new ArrayList<>();
+         Alojamiento_Data ald = new Alojamiento_Data();
+//         for(Alojamiento aloja : ald.){
+             
+         }
+         
+//         modelo.addRow(new Object[alojamiento.getIdAlojamiento(), alojamiento.getTipoAlojamiento(), alojamiento.getFechaIn(), alojamiento.getFechaOn(), alojamiento.getCiudadDest(), alojamiento.getImporteDiario(), alojamiento.isEstado(), alojamiento.getServicio()]);
+//     }
+    
+     
 }
