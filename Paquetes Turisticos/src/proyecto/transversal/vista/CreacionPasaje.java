@@ -540,6 +540,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
     }//GEN-LAST:event_labelModificarMouseExited
 
     private void labelGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseClicked
+      try{
         if (labelGuardar.isEnabled()) {
             labelGuardar.setBackground(new Color(244, 231, 187));
             labelGuardar.setForeground(Color.black);
@@ -577,6 +578,9 @@ public class CreacionPasaje extends javax.swing.JPanel {
                 }
             }
         }
+      }catch(Exception ex){
+          
+      }
     }//GEN-LAST:event_labelGuardarMouseClicked
 
     private void labelGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGuardarMouseEntered
