@@ -373,14 +373,16 @@ public class Menu extends javax.swing.JFrame {
     private void labelAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAlojamientoMouseClicked
         // Alojamiento
         if (permitir) {
-            PruebaCalendar pd = new PruebaCalendar();
-            pd.removeAll();
-            pd.setSize(600, 700);
-            pd.setLocation(0, 0);
-            panelPrincipal.removeAll();
-            panelPrincipal.add(pd, BorderLayout.CENTER);
-            panelPrincipal.revalidate();
-            panelPrincipal.repaint();
+
+        VistaAlojamiento va = new VistaAlojamiento();
+        va.removeAll();
+        va.setSize(600, 700);
+        va.setLocation(0, 0);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(va,BorderLayout.CENTER);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+
         }
 
     }//GEN-LAST:event_labelAlojamientoMouseClicked
