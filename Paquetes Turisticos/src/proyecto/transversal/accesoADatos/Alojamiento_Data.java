@@ -83,17 +83,14 @@ public class Alojamiento_Data {
 
     // BORRADO LOGICO
     public void desactivarAlojamiento(int id) {
-
         String sql = "UPDATE alojamiento SET Estado=0 WHERE idAlojamiento=?";
-
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-
             ps.setInt(1, id);
             int exito = ps.executeUpdate();
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Se desactivó el alojamiento");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -112,7 +109,7 @@ public class Alojamiento_Data {
             int exito = ps.executeUpdate();
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Se desactivó el alojamiento");
+//                JOptionPane.showMessageDialog(null, "Se desactivó el alojamiento");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -157,10 +154,8 @@ public class Alojamiento_Data {
 
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
         
-        
-
         String sql = "SELECT idAlojamiento, Fecha_Inicio, Fecha_Salida, Tipo_Alojamiento, Servicio, "
-                + "Importe_Diario, Estado FROM alojamiento WHERE Ciudad_Destino=?";
+                + "Importe_Diario FROM alojamiento WHERE Ciudad_Destino=? AND Estado = true";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -175,7 +170,6 @@ public class Alojamiento_Data {
                 alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
                 alojamiento.setServicio(rs.getString("Servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
-                alojamiento.setEstado(rs.getBoolean("Estado"));
                 alojamientos.add(alojamiento);
             }
             ps.close();
@@ -303,5 +297,36 @@ public class Alojamiento_Data {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
         }
         return aloja;
+    }
+    
+     public ArrayList<Alojamiento> alojamientoPorCiudadyAlojamiento(Ciudad ciudad ,String Tipo) {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+        String sql = "SELECT idAlojamiento, Fecha_Inicio, Fecha_Salida, Servicio, Importe_Diario"
+                + " FROM alojamiento WHERE Ciudad_Destino = '?'  AND Tipo_Alojamiento = '?'";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, ciudad.getIdCiudad());
+            ps.setString(2, Tipo);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){     
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                System.out.println(alojamientos);
+                alojamientos.add(alojamiento);
+              
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
+      
+        return alojamientos;
     }
 }

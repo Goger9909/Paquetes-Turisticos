@@ -175,13 +175,7 @@ public class Paquete_Data {
       try {
           PreparedStatement ps = con.prepareStatement(sql);
           ps.setInt(1, Paquete);
-     
-          int rs = ps.executeUpdate();
-          if(rs > 0){
-              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
-          } else {
-              JOptionPane.showMessageDialog(null, "No se encontro resultado");
-          }
+          ps.executeUpdate();
           ps.close();
       } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
@@ -199,7 +193,7 @@ public class Paquete_Data {
           
           int rs = ps.executeUpdate();
           if(rs > 0){
-              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
+//              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
           } else {
               JOptionPane.showMessageDialog(null, "No se encontro resultado");
           }
@@ -209,26 +203,30 @@ public class Paquete_Data {
         }
        }     
        
-   public ArrayList<Paquete> ObtenerPaquetePorCiudad(String Cuidad){
+   public ArrayList<Paquete> ObtenerPaquetePorCiudad(String Ciudad){
               con = Conexion.getConexion();
     ArrayList<Paquete> paquetee = new ArrayList<>();
-    String sql = "SELECT * FROM paquete; ";
+//       String sql = "SELECT * FROM paquete; ";
+    String sql = "SELECT `idPaquete`, `Ciudad_Origen`, `Ciudad_Destino`, `alojamiento`, `pasaje`, `disponible` FROM paquete JOIN ciudad ON "
+            + "(paquete.Ciudad_Origen = ciudad.idCiudad) WHERE ciudad.Nombre = ? AND paquete.disponible = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, Ciudad);
             ResultSet resultado = ps.executeQuery();
             while (resultado.next()) {
-                Paquete paquete = new Paquete();
-                paquete.setIdPaquete(resultado.getInt("idPaquete"));
+                Paquete paquet = new Paquete();
+                paquet.setIdPaquete(resultado.getInt("idPaquete"));
                 Ciudad ciudad =  Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Origen"));
-                paquete.setOrigen(ciudad);
+                paquet.setOrigen(ciudad);
                 Ciudad ciu = Cd.buscarCiudadPorID(resultado.getInt("Ciudad_Destino"));
-                paquete.setDestino(ciu);
+                paquet.setDestino(ciu);
                 Alojamiento al = Ad.buscarAlojamientoPorId(resultado.getInt("alojamiento"));
-                paquete.setAlojamiento(al);
+                paquet.setAlojamiento(al);
                 Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
-                paquete.setPasaje(pa);
-                paquete.setEstado(resultado.getBoolean("disponible"));
-                paquetee.add(paquete);
+                paquet.setPasaje(pa);
+                paquet.setEstado(resultado.getBoolean("disponible"));
+                System.out.println(paquet);
+                paquetee.add(paquet);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -236,6 +234,7 @@ public class Paquete_Data {
         }
         return paquetee;  
        }
+   
       public List<Paquete> ObtenerPaquetePorFechaCiudad(int ano,int mes, String nom){
            con = Conexion.getConexion();
            PreparedStatement ps = null;
@@ -270,6 +269,7 @@ public class Paquete_Data {
          }
          return paquetePorMes;
       }
+      
            public Paquete buscarPaquetePorID(int id){
            con = Conexion.getConexion();
            Paquete paqueteR = null;
@@ -298,4 +298,26 @@ public class Paquete_Data {
         }
         return paqueteR;
            }
+           
+         public void ModificarPaqueteID(Paquete paquete){
+           con = Conexion.getConexion();
+     String sql = "UPDATE `paquete` SET `Ciudad_Origen`='?',`Ciudad_Destino`='?',"
+             + "`alojamiento`='?',`pasaje`='?',`disponible`= true WHERE idPaquete ='?'";
+      try {
+          PreparedStatement ps = con.prepareStatement(sql);
+          ps.setInt(1, paquete.getOrigen().getIdCiudad());
+          ps.setInt(2, paquete.getDestino().getIdCiudad());
+          ps.setInt(3, paquete.getAlojamiento().getIdAlojamiento());
+          ps.setInt(4, paquete.getPasaje().getIdPasaje());
+          int rs = ps.executeUpdate();
+          if(rs > 0){
+              JOptionPane.showMessageDialog(null, "Se Modifico el paquete");
+          } else {
+              JOptionPane.showMessageDialog(null, "No se encontro resultado");
+          }
+          ps.close();
+      } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en la base de datos" + ex.getMessage());
+        }
+ }   
  }

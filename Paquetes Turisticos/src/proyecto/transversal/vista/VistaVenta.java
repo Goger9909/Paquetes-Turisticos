@@ -17,7 +17,7 @@ import proyecto.transversal.entidades.Paquete;
  * @author YamilaAlejandra
  */
 public class VistaVenta extends javax.swing.JPanel {
-
+    
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int filas, int columnas) {
             return false;
@@ -52,7 +52,7 @@ public class VistaVenta extends javax.swing.JPanel {
         panelComprar = new javax.swing.JPanel();
         labelComprar = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Eliminar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -133,14 +133,14 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(panelComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 110, 30));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ELIMINAR");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Eliminar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        Eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Eliminar.setText("ELIMINAR");
+        Eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                EliminarMouseClicked(evt);
             }
         });
 
@@ -148,11 +148,11 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 110, 30));
@@ -194,11 +194,6 @@ public class VistaVenta extends javax.swing.JPanel {
                 Ciudad_OrigenItemStateChanged(evt);
             }
         });
-        Ciudad_Origen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ciudad_OrigenActionPerformed(evt);
-            }
-        });
         Fondo.add(Ciudad_Origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 140, -1));
 
         jCCuidad_deOrigen.addItemListener(new java.awt.event.ItemListener() {
@@ -207,6 +202,16 @@ public class VistaVenta extends javax.swing.JPanel {
             }
         });
         Fondo.add(jCCuidad_deOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 250, -1));
+
+        ano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                anoAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         Fondo.add(ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
         Fondo.add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
@@ -244,28 +249,19 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
-        jtPrecioUnitario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtPrecioUnitarioActionPerformed(evt);
-            }
-        });
+        jtPrecioUnitario.setEditable(false);
         Fondo.add(jtPrecioUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 100, -1));
+
+        jtPrecioTotalDias.setEditable(false);
         Fondo.add(jtPrecioTotalDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 110, -1));
+
+        jtTotal.setEditable(false);
         Fondo.add(jtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, 110, -1));
 
         labelInfoDias.setFont(new java.awt.Font("Arial", 2, 17)); // NOI18N
         labelInfoDias.setText("Cantidad de días");
         Fondo.add(labelInfoDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 160, 30));
 
-        cantidadPersonas.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                cantidadPersonasAncestorMoved(evt);
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         cantidadPersonas.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 cantidadPersonasStateChanged(evt);
@@ -284,6 +280,8 @@ public class VistaVenta extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         jLabel7.setText("Total ");
         Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 590, 110, 30));
+
+        jtTotalParcial.setEditable(false);
         Fondo.add(jtTotalParcial, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -366,13 +364,10 @@ public class VistaVenta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-
-        //Fondo.setVisible(false);
-
+         Fondo.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
         try {
             int filaSeleccionada = jTable1.getSelectedRow();
             int id = (int) jTable1.getValueAt(filaSeleccionada, 0);//accedemos al valor de la primera fila y la primera columna seleccionada.
@@ -387,32 +382,23 @@ public class VistaVenta extends javax.swing.JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Usted no ha seleccionado un paquete");
         }
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_EliminarMouseClicked
 
     private void labelComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelComprarMouseClicked
         Paquete_Data Pd = new Paquete_Data();
-        int filaSeleccionada = jTable1.getSelectedRow();
-        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
-
-        Pd.comprado(id);
-        //numeroID = id;
-        //int filaSeleccionada1 = jTable1.getSelectedRow();
-        //boolean id1 = (boolean) jTable1.getValueAt(filaSeleccionada1, 6);
-        BorrarFilas();
-
-//          InformacionDeCompra pd = new InformacionDeCompra();
-//            Fondo.setVisible(false);
-//            pd.setVisible(true);
-//     String nom = (String)jTable1.getValueAt(filaSeleccionada, 3);
-//        Alojamiento_Data al = new Alojamiento_Data();
-//        for(Alojamiento car: al.arrayAlojamientoPorNombre(nom)){
-//            
-//        }
+        if( jtTotal.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null, "Usted no ha seleccionado una forma de pago");
+        } else {
+            int filaSeleccionada = jTable1.getSelectedRow();
+            int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+            Pd.noComprado(id);
+            BorrarFilas();
+            jtPrecioTotalDias.setText("");
+            jtPrecioUnitario.setText("");
+            jtTotal.setText("");
+            jtTotalParcial.setText("");
+        }
     }//GEN-LAST:event_labelComprarMouseClicked
-
-    private void Ciudad_OrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ciudad_OrigenActionPerformed
-
-    }//GEN-LAST:event_Ciudad_OrigenActionPerformed
 
     private void jCCuidad_deOrigenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCCuidad_deOrigenItemStateChanged
         // TODO add your handling code here:
@@ -435,8 +421,6 @@ public class VistaVenta extends javax.swing.JPanel {
             modelo.addRow(new Object[]{alo.getIdPaquete(), alo.getOrigen().getNombreCiudad(),
                 alo.getDestino().getNombreCiudad(), alo.getAlojamiento().getTipoAlojamiento(), alo.getPasaje().getTipo_Tansporte()});
         }
-
-
     }//GEN-LAST:event_jlBuscarMouseClicked
 
     private void Ciudad_OrigenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Ciudad_OrigenItemStateChanged
@@ -444,15 +428,10 @@ public class VistaVenta extends javax.swing.JPanel {
         String pais = (String) Ciudad_Origen.getSelectedItem();
         Ciudad_Data cd = new Ciudad_Data();
         jCCuidad_deOrigen.removeAllItems();
-
         for (Ciudad ciudad : cd.arrayBusquedaPais(pais)) {
             jCCuidad_deOrigen.addItem(ciudad.getNombreCiudad());
         }
     }//GEN-LAST:event_Ciudad_OrigenItemStateChanged
-
-    private void jtPrecioUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioUnitarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtPrecioUnitarioActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -479,14 +458,15 @@ public class VistaVenta extends javax.swing.JPanel {
 
     private void jrEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEfectivoActionPerformed
         // TODO add your handling code here:
+        try{
         jcTarjeta.setVisible(false);
         if (jrEfectivo.isSelected()) {
             jrTarjeta.setSelected(false);
             total = Double.parseDouble(jtTotalParcial.getText()) * 0.8;
             jtTotal.setText(String.valueOf(total));
         }
-
-
+        }catch(NumberFormatException ex){ 
+        }
     }//GEN-LAST:event_jrEfectivoActionPerformed
 
     private void jrTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTarjetaActionPerformed
@@ -501,7 +481,7 @@ public class VistaVenta extends javax.swing.JPanel {
     private void jcTarjetaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcTarjetaItemStateChanged
         // TODO add your handling code here:
         if (jcTarjeta.getSelectedIndex() == 0) {
-
+           
             jtTotal.setText(jtTotalParcial.getText());
         } else if (jcTarjeta.getSelectedIndex() == 1) {
             total = Double.parseDouble(jtTotalParcial.getText()) * 1.15;
@@ -515,10 +495,10 @@ public class VistaVenta extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jcTarjetaItemStateChanged
 
-    private void cantidadPersonasAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cantidadPersonasAncestorMoved
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cantidadPersonasAncestorMoved
+    private void anoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_anoAncestorAdded
+       ano.setStartYear(2023);
+       ano.setEndYear(2025);
+    }//GEN-LAST:event_anoAncestorAdded
 
     private void cantidadPersonasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cantidadPersonasStateChanged
         // TODO add your handling code here:
@@ -533,13 +513,13 @@ public class VistaVenta extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Origen;
+    private javax.swing.JLabel Eliminar;
     private javax.swing.JPanel Fondo;
     private com.toedter.calendar.JYearChooser ano;
     private javax.swing.JSpinner cantidadPersonas;
     private javax.swing.JComboBox<String> jCCuidad_deOrigen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -573,10 +553,9 @@ public class VistaVenta extends javax.swing.JPanel {
         modelo.addColumn("Cuidad de Destino");
         modelo.addColumn("Alojamiento");
         modelo.addColumn("Pasaje");
-        modelo.addColumn("Estado");
         jTable1.setModel(modelo);
 
-        int[] anchos = {60, 200, 200, 200, 190, 40};
+        int[] anchos = {60, 200, 200, 200, 200};
 
         for (int i = 0; i < jTable1.getColumnCount(); i++) {
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
