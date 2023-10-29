@@ -6,9 +6,15 @@ package proyecto.transversal.vista;
 
 import java.awt.Component;
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Calendar;
+import java.util.Locale;
+import proyecto.transversal.accesoADatos.Alojamiento_Data;
 import proyecto.transversal.accesoADatos.Ciudad_Data;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
@@ -42,6 +48,35 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
         jpAlojamiento = new javax.swing.JPanel();
         jlTitulo1 = new javax.swing.JLabel();
+        jpVistaBuscar = new javax.swing.JPanel();
+        jpbEditar = new javax.swing.JPanel();
+        jlbEditar = new javax.swing.JLabel();
+        jpGuardarVB = new javax.swing.JPanel();
+        jlbGuardarVB = new javax.swing.JLabel();
+        jpbAtrasVB = new javax.swing.JPanel();
+        jlbAtrasVB = new javax.swing.JLabel();
+        jpBoton2 = new javax.swing.JPanel();
+        jlBuscar2 = new javax.swing.JLabel();
+        jrbPorFechaVB = new javax.swing.JRadioButton();
+        jrbTodoVB = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtableBuscar = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtaDescServVB = new javax.swing.JTextArea();
+        jlDescServicioVB = new javax.swing.JLabel();
+        jtfAlojamientoVB = new javax.swing.JTextField();
+        jcbCiudadVB = new javax.swing.JComboBox<>();
+        jtfPrecioVB = new javax.swing.JTextField();
+        jdcBuscarFechaVB = new com.toedter.calendar.JDateChooser();
+        jlPrecioVB = new javax.swing.JLabel();
+        jlTipoAlojVB = new javax.swing.JLabel();
+        jlCiudadVB = new javax.swing.JLabel();
+        jdcInicioVB = new com.toedter.calendar.JDateChooser();
+        jdcFinVB = new com.toedter.calendar.JDateChooser();
+        jlFechInicioVB = new javax.swing.JLabel();
+        jlFechFinVB = new javax.swing.JLabel();
+        jpbEliminarVB = new javax.swing.JPanel();
+        jlbEliminarVB = new javax.swing.JLabel();
         jpVistaNuevoAloja = new javax.swing.JPanel();
         jlTemporada = new javax.swing.JLabel();
         jlInicio = new javax.swing.JLabel();
@@ -69,20 +104,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jcbCiudad = new javax.swing.JComboBox<>();
         jpAtrasNA = new javax.swing.JPanel();
         jlAtrasNA = new javax.swing.JLabel();
-        jpVistaBuscar = new javax.swing.JPanel();
-        jpBoton3 = new javax.swing.JPanel();
-        jpBuscar2 = new javax.swing.JPanel();
-        jpBoton1 = new javax.swing.JPanel();
-        jlAtras = new javax.swing.JLabel();
-        jpBoton2 = new javax.swing.JPanel();
-        jlBuscar2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jlDescServicio1 = new javax.swing.JLabel();
         jpbNuevoAlojamiento = new javax.swing.JPanel();
         jlbNuevoAlojamiento = new javax.swing.JLabel();
         jpbBuscarAlojamiento = new javax.swing.JPanel();
@@ -100,6 +121,204 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo1.setText("ALOJAMIENTO");
         jpAlojamiento.add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
+
+        jpVistaBuscar.setBackground(new java.awt.Color(255, 204, 153));
+        jpVistaBuscar.setMinimumSize(new java.awt.Dimension(540, 520));
+        jpVistaBuscar.setPreferredSize(new java.awt.Dimension(540, 520));
+        jpVistaBuscar.setLayout(null);
+
+        jpbEditar.setBackground(new java.awt.Color(244, 231, 187));
+        jpbEditar.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpbEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbEditar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbEditar.setText("Editar");
+        jlbEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbEditar.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbEditar.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbEditar.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbEditarMouseClicked(evt);
+            }
+        });
+        jpbEditar.add(jlbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 70));
+
+        jpVistaBuscar.add(jpbEditar);
+        jpbEditar.setBounds(470, 300, 100, 70);
+
+        jpGuardarVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpGuardarVB.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpGuardarVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbGuardarVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbGuardarVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbGuardarVB.setText("Guardar");
+        jlbGuardarVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbGuardarVB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbGuardarVB.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbGuardarVB.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbGuardarVB.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbGuardarVB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbGuardarVBMouseClicked(evt);
+            }
+        });
+        jpGuardarVB.add(jlbGuardarVB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 50));
+
+        jpVistaBuscar.add(jpGuardarVB);
+        jpGuardarVB.setBounds(400, 500, 170, 50);
+
+        jpbAtrasVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpbAtrasVB.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpbAtrasVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbAtrasVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbAtrasVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbAtrasVB.setText("Atras");
+        jlbAtrasVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbAtrasVB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbAtrasVB.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbAtrasVB.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbAtrasVB.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbAtrasVB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbAtrasVBMouseClicked(evt);
+            }
+        });
+        jpbAtrasVB.add(jlbAtrasVB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 30));
+
+        jpVistaBuscar.add(jpbAtrasVB);
+        jpbAtrasVB.setBounds(460, 580, 110, 30);
+
+        jpBoton2.setBackground(new java.awt.Color(244, 231, 187));
+        jpBoton2.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBoton2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlBuscar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlBuscar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlBuscar2.setText("Buscar");
+        jlBuscar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlBuscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlBuscar2.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlBuscar2.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlBuscar2.setPreferredSize(new java.awt.Dimension(67, 24));
+        jpBoton2.add(jlBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        jpVistaBuscar.add(jpBoton2);
+        jpBoton2.setBounds(470, 30, 100, 30);
+
+        jrbPorFechaVB.setText("POR FECHA");
+        jrbPorFechaVB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbPorFechaVBActionPerformed(evt);
+            }
+        });
+        jpVistaBuscar.add(jrbPorFechaVB);
+        jrbPorFechaVB.setBounds(110, 40, 90, 23);
+
+        jrbTodoVB.setText("TODO");
+        jrbTodoVB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTodoVBActionPerformed(evt);
+            }
+        });
+        jpVistaBuscar.add(jrbTodoVB);
+        jrbTodoVB.setBounds(30, 40, 70, 23);
+
+        jtableBuscar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtableBuscar);
+
+        jpVistaBuscar.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 70, 540, 180);
+
+        jtaDescServVB.setColumns(20);
+        jtaDescServVB.setRows(5);
+        jScrollPane3.setViewportView(jtaDescServVB);
+
+        jpVistaBuscar.add(jScrollPane3);
+        jScrollPane3.setBounds(30, 320, 180, 230);
+
+        jlDescServicioVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlDescServicioVB.setText("Descripcion del Servicio:");
+        jpVistaBuscar.add(jlDescServicioVB);
+        jlDescServicioVB.setBounds(30, 300, 178, 18);
+        jpVistaBuscar.add(jtfAlojamientoVB);
+        jtfAlojamientoVB.setBounds(230, 400, 340, 30);
+
+        jcbCiudadVB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jpVistaBuscar.add(jcbCiudadVB);
+        jcbCiudadVB.setBounds(230, 460, 340, 30);
+        jpVistaBuscar.add(jtfPrecioVB);
+        jtfPrecioVB.setBounds(230, 520, 140, 30);
+        jpVistaBuscar.add(jdcBuscarFechaVB);
+        jdcBuscarFechaVB.setBounds(320, 30, 140, 30);
+
+        jlPrecioVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlPrecioVB.setText("Precio:");
+        jpVistaBuscar.add(jlPrecioVB);
+        jlPrecioVB.setBounds(230, 500, 50, 18);
+
+        jlTipoAlojVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlTipoAlojVB.setText("Alojamiento:");
+        jpVistaBuscar.add(jlTipoAlojVB);
+        jlTipoAlojVB.setBounds(230, 380, 86, 18);
+
+        jlCiudadVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlCiudadVB.setText("Ciudad:");
+        jpVistaBuscar.add(jlCiudadVB);
+        jlCiudadVB.setBounds(230, 440, 54, 18);
+        jpVistaBuscar.add(jdcInicioVB);
+        jdcInicioVB.setBounds(290, 300, 120, 30);
+        jpVistaBuscar.add(jdcFinVB);
+        jdcFinVB.setBounds(290, 340, 120, 30);
+
+        jlFechInicioVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlFechInicioVB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlFechInicioVB.setText("Inicio:");
+        jpVistaBuscar.add(jlFechInicioVB);
+        jlFechInicioVB.setBounds(230, 310, 50, 20);
+
+        jlFechFinVB.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlFechFinVB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlFechFinVB.setText("Fin:");
+        jpVistaBuscar.add(jlFechFinVB);
+        jlFechFinVB.setBounds(230, 350, 50, 20);
+
+        jpbEliminarVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpbEliminarVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbEliminarVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbEliminarVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbEliminarVB.setText("Eliminar");
+        jlbEliminarVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbEliminarVB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbEliminarVB.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbEliminarVB.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbEliminarVB.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbEliminarVB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbEliminarVBMouseClicked(evt);
+            }
+        });
+        jpbEliminarVB.add(jlbEliminarVB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 30));
+
+        jpVistaBuscar.add(jpbEliminarVB);
+        jpbEliminarVB.setBounds(30, 580, 110, 30);
+
+        jpAlojamiento.add(jpVistaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
 
         jpVistaNuevoAloja.setBackground(new java.awt.Color(204, 255, 204));
         jpVistaNuevoAloja.setPreferredSize(new java.awt.Dimension(540, 600));
@@ -139,7 +358,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlTipo.setBounds(120, 190, 40, 18);
 
         jtfNombreAlojamiento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfNombreAlojamiento.setText("ANDES");
         jtfNombreAlojamiento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfNombreAlojamientoKeyTyped(evt);
@@ -149,7 +367,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jtfNombreAlojamiento.setBounds(230, 130, 320, 30);
 
         jtfTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfTipo.setText("Depto");
         jtfTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTipoKeyTyped(evt);
@@ -205,9 +422,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpNuevo1.setLayout(jpNuevo1Layout);
         jpNuevo1Layout.setHorizontalGroup(
             jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevo1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlNuevo1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jpNuevo1Layout.setVerticalGroup(
             jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +432,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         );
 
         jpVistaNuevoAloja.add(jpNuevo1);
-        jpNuevo1.setBounds(40, 570, 100, 30);
+        jpNuevo1.setBounds(40, 570, 110, 30);
 
         jpGuardar1.setBackground(new java.awt.Color(244, 231, 187));
         jpGuardar1.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -300,9 +515,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpAtrasNA.setLayout(jpAtrasNALayout);
         jpAtrasNALayout.setHorizontalGroup(
             jpAtrasNALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtrasNALayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlAtrasNA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlAtrasNA, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jpAtrasNALayout.setVerticalGroup(
             jpAtrasNALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,108 +525,9 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         );
 
         jpVistaNuevoAloja.add(jpAtrasNA);
-        jpAtrasNA.setBounds(460, 570, 100, 30);
+        jpAtrasNA.setBounds(440, 570, 110, 30);
 
         jpAlojamiento.add(jpVistaNuevoAloja, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
-
-        jpVistaBuscar.setBackground(new java.awt.Color(255, 204, 153));
-        jpVistaBuscar.setMinimumSize(new java.awt.Dimension(540, 520));
-        jpVistaBuscar.setPreferredSize(new java.awt.Dimension(540, 520));
-        jpVistaBuscar.setLayout(null);
-
-        jpBoton3.setBackground(new java.awt.Color(244, 231, 187));
-        jpBoton3.setPreferredSize(new java.awt.Dimension(100, 30));
-        jpBoton3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jpVistaBuscar.add(jpBoton3);
-        jpBoton3.setBounds(310, 560, 100, 30);
-
-        jpBuscar2.setBackground(new java.awt.Color(244, 231, 187));
-        jpBuscar2.setPreferredSize(new java.awt.Dimension(100, 30));
-        jpBuscar2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jpVistaBuscar.add(jpBuscar2);
-        jpBuscar2.setBounds(310, 520, 100, 30);
-
-        jpBoton1.setBackground(new java.awt.Color(244, 231, 187));
-        jpBoton1.setPreferredSize(new java.awt.Dimension(100, 30));
-        jpBoton1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jlAtras.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlAtras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlAtras.setText("Atras");
-        jlAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlAtras.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlAtras.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlAtras.setPreferredSize(new java.awt.Dimension(67, 24));
-        jlAtras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlAtrasMouseClicked(evt);
-            }
-        });
-        jpBoton1.add(jlAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
-
-        jpVistaBuscar.add(jpBoton1);
-        jpBoton1.setBounds(460, 560, 100, 30);
-
-        jpBoton2.setBackground(new java.awt.Color(244, 231, 187));
-        jpBoton2.setPreferredSize(new java.awt.Dimension(100, 30));
-        jpBoton2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jlBuscar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlBuscar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlBuscar2.setText("Buscar");
-        jlBuscar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlBuscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlBuscar2.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlBuscar2.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlBuscar2.setPreferredSize(new java.awt.Dimension(67, 24));
-        jpBoton2.add(jlBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
-
-        jpVistaBuscar.add(jpBoton2);
-        jpBoton2.setBounds(460, 50, 100, 30);
-
-        jRadioButton1.setText("Buscar por mes");
-        jpVistaBuscar.add(jRadioButton1);
-        jRadioButton1.setBounds(30, 30, 140, 23);
-
-        jRadioButton2.setText("Buscar por codigo");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jpVistaBuscar.add(jRadioButton2);
-        jRadioButton2.setBounds(30, 60, 130, 23);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jpVistaBuscar.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 100, 540, 210);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
-        jpVistaBuscar.add(jScrollPane3);
-        jScrollPane3.setBounds(30, 386, 166, 200);
-
-        jlDescServicio1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jlDescServicio1.setText("Descripcion del Servicio:");
-        jpVistaBuscar.add(jlDescServicio1);
-        jlDescServicio1.setBounds(30, 360, 178, 18);
-
-        jpAlojamiento.add(jpVistaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
 
         jpbNuevoAlojamiento.setBackground(new java.awt.Color(244, 231, 187));
         jpbNuevoAlojamiento.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -507,52 +621,70 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         
     int dia = jdcInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
     int mes = jdcInicio.getCalendar().get(Calendar.MONTH);
-    int año = jdcInicio.getCalendar().get(Calendar.YEAR);
-//    LocalDate fecha = año-mes-dia; 
+    int anio = jdcInicio.getCalendar().get(Calendar.YEAR);
+    int dia2 = jdcFin.getCalendar().get(Calendar.DAY_OF_MONTH);
+    int mes2 = jdcFin.getCalendar().get(Calendar.MONTH);
+    int anio2 = jdcFin.getCalendar().get(Calendar.YEAR);
     
-            int dia1= jdcInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
-//    LocalDate fecha1= LocalDate.parse(jdcInicio1.getDate());
-//    LocalDate fecha2=LocalDate.parse(jdcFin1.getDate());
-//        System.out.println("fecha1 parse: "+fecha1);
-//        System.out.println("fecha2 parse: "+fecha2);
+    String f1= anio+"-"+mes+"-"+dia;
+            System.out.println("f1: "+f1);
+    String f2= anio+"-"+mes+"-"+dia;
+            System.out.println("f2: "+f2);
+            
+            
+    java.util.Date fecha1 = jdcInicio.getDate();
+    Instant instant = fecha1.toInstant();
+    LocalDate fe1 = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+    
+    java.util.Date fecha2 = jdcFin.getDate();
+    Instant inst = fecha2.toInstant();
+    LocalDate fe2 = inst.atZone(ZoneId.systemDefault()).toLocalDate();
+//    Date fecha1= Date.valueOf(f1);
+//    Date fecha2=Date.valueOf(f2);
+       
+
+
+
+//    LocalDate fecha1 = LocalDate.parse(f1,formatter);
+//    
+//    LocalDate fecha2 = LocalDate.parse(f2,formatter);
+    
+            System.out.println("fecha1 parse: "+fecha1);
+            System.out.println("fecha2 parse: "+fecha2);
+            System.out.println("fe1: "+fe1);
+            System.out.println("fe2: "+fe2);
     String tipo = jtfTipo.getText()+" - "+jtfNombreAlojamiento.getText();
-        System.out.println("tipo concat: "+tipo);
+            System.out.println("tipo concat: "+tipo);
     Ciudad ciu = (Ciudad)jcbCiudad.getSelectedItem();
             System.out.println("cbx: " + ciu);
             
     String servicio= jtaDescServicio.getText();
-        System.out.println("descripcion: "+servicio);
+            System.out.println("descripcion: "+servicio);
         
-        System.out.println("Precio sin parse: "+ jtfPrecio.getText());
-        String num = jtfPrecio.getText();
-        double importe= Double.parseDouble(num);
+            System.out.println("Precio sin parse: "+ jtfPrecio.getText());
+    String num = jtfPrecio.getText();
+    double importe= Double.parseDouble(num);
         
-        System.out.println("importe parse:"+ importe);
-        System.out.println("importe: " + importe);
-//    Alojamiento al = new Alojamiento(fecha1, fecha2, tipo, servicio , true, importe, ciu);
-    
-    
+            System.out.println("importe parse:"+ importe);
+            System.out.println("importe: " + importe);
+       
+            
+    Alojamiento al = new Alojamiento(fe1, fe2, tipo, servicio , true, importe, ciu);
+            System.out.println("importe parse:"+ al);
+    Alojamiento_Data ad = new Alojamiento_Data();
+    ad.guardarAlojamiento(al);
     
     
     
     }//GEN-LAST:event_jlGuardar1MouseClicked
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jlAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAtrasMouseClicked
+    private void jlbAtrasVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbAtrasVBMouseClicked
         
         jpVistaBuscar.setEnabled(false);
-        jpVistaBuscar.setVisible(false);
-        jpbBuscarAlojamiento.setEnabled(true);
-        jpbBuscarAlojamiento.setVisible(true);
-        jpbNuevoAlojamiento.setEnabled(true);
-        jpbNuevoAlojamiento.setVisible(true);
-        
+        jpVistaBuscar.setVisible(false);        
         botonBuscarAlojACT();
         botonNuevoAlojACT();
-    }//GEN-LAST:event_jlAtrasMouseClicked
+    }//GEN-LAST:event_jlbAtrasVBMouseClicked
     // --------- Boton NuevoAlojamiento JT ALOJAMIENTO ---------
     private void jlbNuevoAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseClicked
         jpVistaNuevoAloja.setEnabled(true);
@@ -602,26 +734,48 @@ public class VistaAlojamiento extends javax.swing.JPanel {
               
     }//GEN-LAST:event_jlNuevo1MouseClicked
 
+    private void jrbPorFechaVBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPorFechaVBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbPorFechaVBActionPerformed
+
+    private void jrbTodoVBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodoVBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbTodoVBActionPerformed
+
+    private void jlbEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEditarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlbEditarMouseClicked
+
+    private void jlbGuardarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbGuardarVBMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlbGuardarVBMouseClicked
+
+    private void jlbEliminarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEliminarVBMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlbEliminarVBMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<Ciudad> jcbCiudad;
+    private javax.swing.JComboBox<String> jcbCiudadVB;
+    private com.toedter.calendar.JDateChooser jdcBuscarFechaVB;
     private com.toedter.calendar.JDateChooser jdcFin;
+    private com.toedter.calendar.JDateChooser jdcFinVB;
     private com.toedter.calendar.JDateChooser jdcInicio;
-    private javax.swing.JLabel jlAtras;
+    private com.toedter.calendar.JDateChooser jdcInicioVB;
     private javax.swing.JLabel jlAtrasNA;
     private javax.swing.JLabel jlBuscar2;
     private javax.swing.JLabel jlCantidadDe;
     private javax.swing.JLabel jlCiudad;
+    private javax.swing.JLabel jlCiudadVB;
     private javax.swing.JLabel jlDescServicio;
-    private javax.swing.JLabel jlDescServicio1;
+    private javax.swing.JLabel jlDescServicioVB;
     private javax.swing.JLabel jlEtc;
+    private javax.swing.JLabel jlFechFinVB;
+    private javax.swing.JLabel jlFechInicioVB;
     private javax.swing.JLabel jlFin;
     private javax.swing.JLabel jlGuardar1;
     private javax.swing.JLabel jlHabitaciones;
@@ -629,27 +783,40 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private javax.swing.JLabel jlNombreAlojamiento;
     private javax.swing.JLabel jlNuevo1;
     private javax.swing.JLabel jlPrecio;
+    private javax.swing.JLabel jlPrecioVB;
     private javax.swing.JLabel jlTemporada;
     private javax.swing.JLabel jlTipo;
+    private javax.swing.JLabel jlTipoAlojVB;
     private javax.swing.JLabel jlTitulo1;
+    private javax.swing.JLabel jlbAtrasVB;
     private javax.swing.JLabel jlbBuscarAlojamiento;
+    private javax.swing.JLabel jlbEditar;
+    private javax.swing.JLabel jlbEliminarVB;
+    private javax.swing.JLabel jlbGuardarVB;
     private javax.swing.JLabel jlbNuevoAlojamiento;
     private javax.swing.JPanel jpAlojamiento;
     private javax.swing.JPanel jpAtrasNA;
-    private javax.swing.JPanel jpBoton1;
     private javax.swing.JPanel jpBoton2;
-    private javax.swing.JPanel jpBoton3;
-    private javax.swing.JPanel jpBuscar2;
     private javax.swing.JPanel jpGuardar1;
+    private javax.swing.JPanel jpGuardarVB;
     private javax.swing.JPanel jpNuevo1;
     private javax.swing.JPanel jpVistaBuscar;
     private javax.swing.JPanel jpVistaNuevoAloja;
+    private javax.swing.JPanel jpbAtrasVB;
     private javax.swing.JPanel jpbBuscarAlojamiento;
+    private javax.swing.JPanel jpbEditar;
+    private javax.swing.JPanel jpbEliminarVB;
     private javax.swing.JPanel jpbNuevoAlojamiento;
+    private javax.swing.JRadioButton jrbPorFechaVB;
+    private javax.swing.JRadioButton jrbTodoVB;
     private javax.swing.JSpinner jsCantHabitaciones;
+    private javax.swing.JTextArea jtaDescServVB;
     private javax.swing.JTextArea jtaDescServicio;
+    private javax.swing.JTable jtableBuscar;
+    private javax.swing.JTextField jtfAlojamientoVB;
     private javax.swing.JTextField jtfNombreAlojamiento;
     private javax.swing.JTextField jtfPrecio;
+    private javax.swing.JTextField jtfPrecioVB;
     private javax.swing.JTextField jtfTipo;
     // End of variables declaration//GEN-END:variables
 
