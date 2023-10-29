@@ -4,6 +4,15 @@
  */
 package proyecto.transversal.vista;
 
+import java.awt.Component;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Calendar;
+import proyecto.transversal.accesoADatos.Ciudad_Data;
+import proyecto.transversal.entidades.Alojamiento;
+import proyecto.transversal.entidades.Ciudad;
+
 /**
  *
  * @author matia
@@ -15,6 +24,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
      */
     public VistaAlojamiento() {
         initComponents();
+        jpVistaBuscar.setEnabled(false);
+        jpVistaBuscar.setVisible(false);
+        jpVistaNuevoAloja.setEnabled(false);
+        jpVistaNuevoAloja.setVisible(false);
+        
     }
 
     /**
@@ -26,7 +40,9 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlTitulo = new javax.swing.JLabel();
+        jpAlojamiento = new javax.swing.JPanel();
+        jlTitulo1 = new javax.swing.JLabel();
+        jpVistaNuevoAloja = new javax.swing.JPanel();
         jlTemporada = new javax.swing.JLabel();
         jlInicio = new javax.swing.JLabel();
         jdcInicio = new com.toedter.calendar.JDateChooser();
@@ -36,254 +52,640 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlTipo = new javax.swing.JLabel();
         jtfNombreAlojamiento = new javax.swing.JTextField();
         jtfTipo = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jtaDescServicio = new javax.swing.JTextArea();
         jlDescServicio = new javax.swing.JLabel();
-        jcbHabilitado = new javax.swing.JCheckBox();
         jlPrecio = new javax.swing.JLabel();
         jtfPrecio = new javax.swing.JTextField();
-        jpNuevo = new javax.swing.JPanel();
-        jlNuevo = new javax.swing.JLabel();
-        jpBuscar = new javax.swing.JPanel();
-        jlBuscar = new javax.swing.JLabel();
-        jpGuardar = new javax.swing.JPanel();
-        jlGuardar = new javax.swing.JLabel();
-        jpEliminar = new javax.swing.JPanel();
-        jlEliminar = new javax.swing.JLabel();
+        jpNuevo1 = new javax.swing.JPanel();
+        jlNuevo1 = new javax.swing.JLabel();
+        jpGuardar1 = new javax.swing.JPanel();
+        jlGuardar1 = new javax.swing.JLabel();
         jlEtc = new javax.swing.JLabel();
         jsCantHabitaciones = new javax.swing.JSpinner();
         jlHabitaciones = new javax.swing.JLabel();
         jlCantidadDe = new javax.swing.JLabel();
+        jlCiudad = new javax.swing.JLabel();
+        jcbCiudad = new javax.swing.JComboBox<>();
+        jpAtrasNA = new javax.swing.JPanel();
+        jlAtrasNA = new javax.swing.JLabel();
+        jpVistaBuscar = new javax.swing.JPanel();
+        jpBoton3 = new javax.swing.JPanel();
+        jpBuscar2 = new javax.swing.JPanel();
+        jpBoton1 = new javax.swing.JPanel();
+        jlAtras = new javax.swing.JLabel();
+        jpBoton2 = new javax.swing.JPanel();
+        jlBuscar2 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jlDescServicio1 = new javax.swing.JLabel();
+        jpbNuevoAlojamiento = new javax.swing.JPanel();
+        jlbNuevoAlojamiento = new javax.swing.JLabel();
+        jpbBuscarAlojamiento = new javax.swing.JPanel();
+        jlbBuscarAlojamiento = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 255, 204));
         setMinimumSize(new java.awt.Dimension(600, 700));
         setPreferredSize(new java.awt.Dimension(600, 700));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlTitulo.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
-        jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo.setText("ALOJAMIENTO");
-        add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
+        jpAlojamiento.setBackground(new java.awt.Color(204, 204, 255));
+        jpAlojamiento.setMinimumSize(new java.awt.Dimension(600, 700));
+        jpAlojamiento.setPreferredSize(new java.awt.Dimension(600, 700));
+        jpAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlTitulo1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo1.setText("ALOJAMIENTO");
+        jpAlojamiento.add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
+
+        jpVistaNuevoAloja.setBackground(new java.awt.Color(204, 255, 204));
+        jpVistaNuevoAloja.setPreferredSize(new java.awt.Dimension(540, 600));
+        jpVistaNuevoAloja.setLayout(null);
 
         jlTemporada.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jlTemporada.setText("Temporada:");
-        add(jlTemporada, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        jpVistaNuevoAloja.add(jlTemporada);
+        jlTemporada.setBounds(50, 20, 106, 22);
 
         jlInicio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlInicio.setText("Inicio:");
-        add(jlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
+        jpVistaNuevoAloja.add(jlInicio);
+        jlInicio.setBounds(90, 70, 42, 18);
 
         jdcInicio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        add(jdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 150, 30));
+        jpVistaNuevoAloja.add(jdcInicio);
+        jdcInicio.setBounds(140, 60, 150, 30);
 
         jlFin.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlFin.setText("Fin:");
-        add(jlFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 30, 20));
+        jpVistaNuevoAloja.add(jlFin);
+        jlFin.setBounds(350, 70, 30, 20);
 
         jdcFin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        add(jdcFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 150, 30));
+        jpVistaNuevoAloja.add(jdcFin);
+        jdcFin.setBounds(380, 60, 150, 30);
 
         jlNombreAlojamiento.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlNombreAlojamiento.setText("Nombre de Alojamiento:");
-        add(jlNombreAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        jpVistaNuevoAloja.add(jlNombreAlojamiento);
+        jlNombreAlojamiento.setBounds(50, 140, 168, 18);
 
         jlTipo.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlTipo.setText("Tipo:");
-        add(jlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 40, -1));
+        jpVistaNuevoAloja.add(jlTipo);
+        jlTipo.setBounds(120, 190, 40, 18);
 
         jtfNombreAlojamiento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfNombreAlojamiento.setText("Concatenar con tipo usando \"-\"");
-        add(jtfNombreAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 320, 30));
+        jtfNombreAlojamiento.setText("ANDES");
+        jtfNombreAlojamiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreAlojamientoKeyTyped(evt);
+            }
+        });
+        jpVistaNuevoAloja.add(jtfNombreAlojamiento);
+        jtfNombreAlojamiento.setBounds(230, 130, 320, 30);
 
         jtfTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfTipo.setText("Concatenar y condicionar para txt null");
-        add(jtfTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 320, 30));
+        jtfTipo.setText("Depto");
+        jtfTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfTipoKeyTyped(evt);
+            }
+        });
+        jpVistaNuevoAloja.add(jtfTipo);
+        jtfTipo.setBounds(230, 180, 320, 30);
 
         jtaDescServicio.setColumns(20);
         jtaDescServicio.setRows(5);
-        jScrollPane1.setViewportView(jtaDescServicio);
+        jScrollPane2.setViewportView(jtaDescServicio);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 260, 250));
+        jpVistaNuevoAloja.add(jScrollPane2);
+        jScrollPane2.setBounds(40, 320, 260, 210);
 
         jlDescServicio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlDescServicio.setText("Descripcion del Servicio:");
-        add(jlDescServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
-
-        jcbHabilitado.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jcbHabilitado.setText("Habilitado");
-        add(jcbHabilitado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 110, 30));
+        jpVistaNuevoAloja.add(jlDescServicio);
+        jlDescServicio.setBounds(50, 300, 178, 18);
 
         jlPrecio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlPrecio.setText("Precio:");
-        add(jlPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
+        jpVistaNuevoAloja.add(jlPrecio);
+        jlPrecio.setBounds(320, 330, 50, 18);
 
         jtfPrecio.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtfPrecio.setText("Convertir txt a double");
-        add(jtfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 170, 30));
+        jtfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPrecioKeyTyped(evt);
+            }
+        });
+        jpVistaNuevoAloja.add(jtfPrecio);
+        jtfPrecio.setBounds(390, 320, 160, 30);
 
-        jpNuevo.setBackground(new java.awt.Color(244, 231, 187));
-        jpNuevo.setMinimumSize(new java.awt.Dimension(0, 0));
-        jpNuevo.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpNuevo1.setBackground(new java.awt.Color(244, 231, 187));
+        jpNuevo1.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jlNuevo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlNuevo.setText("Nuevo");
-        jlNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlNuevo.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlNuevo.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlNuevo.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlNuevo1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlNuevo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNuevo1.setText("Nuevo");
+        jlNuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlNuevo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlNuevo1.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlNuevo1.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlNuevo1.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlNuevo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlNuevo1MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jpNuevoLayout = new javax.swing.GroupLayout(jpNuevo);
-        jpNuevo.setLayout(jpNuevoLayout);
-        jpNuevoLayout.setHorizontalGroup(
-            jpNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpNuevo1Layout = new javax.swing.GroupLayout(jpNuevo1);
+        jpNuevo1.setLayout(jpNuevo1Layout);
+        jpNuevo1Layout.setHorizontalGroup(
+            jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevo1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jpNuevoLayout.setVerticalGroup(
-            jpNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevoLayout.createSequentialGroup()
+        jpNuevo1Layout.setVerticalGroup(
+            jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpNuevo1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        add(jpNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 660, -1, 30));
-
-        jpBuscar.setBackground(new java.awt.Color(244, 231, 187));
-        jpBuscar.setMinimumSize(new java.awt.Dimension(0, 0));
-        jpBuscar.setPreferredSize(new java.awt.Dimension(100, 30));
-
-        jlBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlBuscar.setText("Buscar");
-        jlBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlBuscar.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlBuscar.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlBuscar.setPreferredSize(new java.awt.Dimension(67, 24));
-
-        javax.swing.GroupLayout jpBuscarLayout = new javax.swing.GroupLayout(jpBuscar);
-        jpBuscar.setLayout(jpBuscarLayout);
-        jpBuscarLayout.setHorizontalGroup(
-            jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jpBuscarLayout.setVerticalGroup(
-            jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, -1, 30));
+        jpVistaNuevoAloja.add(jpNuevo1);
+        jpNuevo1.setBounds(40, 570, 100, 30);
 
-        jpGuardar.setBackground(new java.awt.Color(244, 231, 187));
-        jpGuardar.setMinimumSize(new java.awt.Dimension(0, 0));
-        jpGuardar.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpGuardar1.setBackground(new java.awt.Color(244, 231, 187));
+        jpGuardar1.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jlGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlGuardar.setText("Guardar");
-        jlGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlGuardar.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlGuardar.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlGuardar.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlGuardar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlGuardar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlGuardar1.setText("Guardar");
+        jlGuardar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlGuardar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlGuardar1.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlGuardar1.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlGuardar1.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlGuardar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlGuardar1MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jpGuardarLayout = new javax.swing.GroupLayout(jpGuardar);
-        jpGuardar.setLayout(jpGuardarLayout);
-        jpGuardarLayout.setHorizontalGroup(
-            jpGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpGuardarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout jpGuardar1Layout = new javax.swing.GroupLayout(jpGuardar1);
+        jpGuardar1.setLayout(jpGuardar1Layout);
+        jpGuardar1Layout.setHorizontalGroup(
+            jpGuardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlGuardar1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
-        jpGuardarLayout.setVerticalGroup(
-            jpGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpGuardarLayout.createSequentialGroup()
+        jpGuardar1Layout.setVerticalGroup(
+            jpGuardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpGuardar1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        add(jpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, -1, 30));
-
-        jpEliminar.setBackground(new java.awt.Color(244, 231, 187));
-        jpEliminar.setMinimumSize(new java.awt.Dimension(0, 0));
-        jpEliminar.setPreferredSize(new java.awt.Dimension(100, 30));
-
-        jlEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlEliminar.setText("Eliminar");
-        jlEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlEliminar.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlEliminar.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlEliminar.setPreferredSize(new java.awt.Dimension(67, 24));
-
-        javax.swing.GroupLayout jpEliminarLayout = new javax.swing.GroupLayout(jpEliminar);
-        jpEliminar.setLayout(jpEliminarLayout);
-        jpEliminarLayout.setHorizontalGroup(
-            jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jpEliminarLayout.setVerticalGroup(
-            jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 660, -1, 30));
+        jpVistaNuevoAloja.add(jpGuardar1);
+        jpGuardar1.setBounds(390, 480, 160, 50);
 
         jlEtc.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         jlEtc.setText("(Hotel, Dpto, Casa, etc.)");
-        add(jlEtc, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
-        add(jsCantHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 70, 30));
+        jpVistaNuevoAloja.add(jlEtc);
+        jlEtc.setBounds(80, 210, 114, 13);
+
+        jsCantHabitaciones.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jpVistaNuevoAloja.add(jsCantHabitaciones);
+        jsCantHabitaciones.setBounds(430, 410, 70, 30);
 
         jlHabitaciones.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlHabitaciones.setText("Habitaciones:");
-        add(jlHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
+        jpVistaNuevoAloja.add(jlHabitaciones);
+        jlHabitaciones.setBounds(320, 420, 96, 18);
 
         jlCantidadDe.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jlCantidadDe.setText("Cantidad de");
-        add(jlCantidadDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, -1));
+        jpVistaNuevoAloja.add(jlCantidadDe);
+        jlCantidadDe.setBounds(320, 400, 85, 18);
+
+        jlCiudad.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlCiudad.setText("Ciudad:");
+        jpVistaNuevoAloja.add(jlCiudad);
+        jlCiudad.setBounds(110, 250, 54, 18);
+
+        jpVistaNuevoAloja.add(jcbCiudad);
+        jcbCiudad.setBounds(230, 240, 320, 30);
+
+        jpAtrasNA.setBackground(new java.awt.Color(244, 231, 187));
+        jpAtrasNA.setPreferredSize(new java.awt.Dimension(100, 30));
+
+        jlAtrasNA.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlAtrasNA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlAtrasNA.setText("Atras");
+        jlAtrasNA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlAtrasNA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlAtrasNA.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlAtrasNA.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlAtrasNA.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlAtrasNA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlAtrasNAMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpAtrasNALayout = new javax.swing.GroupLayout(jpAtrasNA);
+        jpAtrasNA.setLayout(jpAtrasNALayout);
+        jpAtrasNALayout.setHorizontalGroup(
+            jpAtrasNALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtrasNALayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlAtrasNA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpAtrasNALayout.setVerticalGroup(
+            jpAtrasNALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtrasNALayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlAtrasNA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jpVistaNuevoAloja.add(jpAtrasNA);
+        jpAtrasNA.setBounds(460, 570, 100, 30);
+
+        jpAlojamiento.add(jpVistaNuevoAloja, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
+
+        jpVistaBuscar.setBackground(new java.awt.Color(255, 204, 153));
+        jpVistaBuscar.setMinimumSize(new java.awt.Dimension(540, 520));
+        jpVistaBuscar.setPreferredSize(new java.awt.Dimension(540, 520));
+        jpVistaBuscar.setLayout(null);
+
+        jpBoton3.setBackground(new java.awt.Color(244, 231, 187));
+        jpBoton3.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBoton3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpVistaBuscar.add(jpBoton3);
+        jpBoton3.setBounds(310, 560, 100, 30);
+
+        jpBuscar2.setBackground(new java.awt.Color(244, 231, 187));
+        jpBuscar2.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBuscar2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpVistaBuscar.add(jpBuscar2);
+        jpBuscar2.setBounds(310, 520, 100, 30);
+
+        jpBoton1.setBackground(new java.awt.Color(244, 231, 187));
+        jpBoton1.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBoton1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlAtras.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlAtras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlAtras.setText("Atras");
+        jlAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlAtras.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlAtras.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlAtras.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlAtrasMouseClicked(evt);
+            }
+        });
+        jpBoton1.add(jlAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        jpVistaBuscar.add(jpBoton1);
+        jpBoton1.setBounds(460, 560, 100, 30);
+
+        jpBoton2.setBackground(new java.awt.Color(244, 231, 187));
+        jpBoton2.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBoton2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlBuscar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlBuscar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlBuscar2.setText("Buscar");
+        jlBuscar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlBuscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlBuscar2.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlBuscar2.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlBuscar2.setPreferredSize(new java.awt.Dimension(67, 24));
+        jpBoton2.add(jlBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        jpVistaBuscar.add(jpBoton2);
+        jpBoton2.setBounds(460, 50, 100, 30);
+
+        jRadioButton1.setText("Buscar por mes");
+        jpVistaBuscar.add(jRadioButton1);
+        jRadioButton1.setBounds(30, 30, 140, 23);
+
+        jRadioButton2.setText("Buscar por codigo");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jpVistaBuscar.add(jRadioButton2);
+        jRadioButton2.setBounds(30, 60, 130, 23);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jpVistaBuscar.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 100, 540, 210);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jpVistaBuscar.add(jScrollPane3);
+        jScrollPane3.setBounds(30, 386, 166, 200);
+
+        jlDescServicio1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlDescServicio1.setText("Descripcion del Servicio:");
+        jpVistaBuscar.add(jlDescServicio1);
+        jlDescServicio1.setBounds(30, 360, 178, 18);
+
+        jpAlojamiento.add(jpVistaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
+
+        jpbNuevoAlojamiento.setBackground(new java.awt.Color(244, 231, 187));
+        jpbNuevoAlojamiento.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpbNuevoAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbNuevoAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbNuevoAlojamiento.setText("Agregar Alojamiento");
+        jlbNuevoAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbNuevoAlojamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbNuevoAlojamiento.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbNuevoAlojamiento.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbNuevoAlojamiento.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbNuevoAlojamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbNuevoAlojamientoMouseClicked(evt);
+            }
+        });
+        jpbNuevoAlojamiento.add(jlbNuevoAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
+
+        jpAlojamiento.add(jpbNuevoAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 230, 90));
+
+        jpbBuscarAlojamiento.setBackground(new java.awt.Color(244, 231, 187));
+        jpbBuscarAlojamiento.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpbBuscarAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbBuscarAlojamiento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbBuscarAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbBuscarAlojamiento.setText("Buscar Alojamiento");
+        jlbBuscarAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbBuscarAlojamiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbBuscarAlojamiento.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbBuscarAlojamiento.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbBuscarAlojamiento.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbBuscarAlojamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbBuscarAlojamientoMouseClicked(evt);
+            }
+        });
+        jpbBuscarAlojamiento.add(jlbBuscarAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
+
+        jpAlojamiento.add(jpbBuscarAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 230, 90));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
+    //------------ PESTAÑA NuevoAlojamiento NOMBRE-ALOJAMIENTO ------------
+    private void jtfNombreAlojamientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreAlojamientoKeyTyped
+    int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122;
+        boolean letrasMay = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+	boolean caracteres = key == 39; //apostrofe
+	boolean enie = key == 209 || key == 241;
+        if (!(letrasMin || letrasMay || espacio || caracteres || enie)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfNombreAlojamientoKeyTyped
+
+    private void jtfTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTipoKeyTyped
+        int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122 || key == 164;
+        boolean letrasMay = key >= 65 && key <= 90 || key == 165;
+        boolean enie = key == 209 || key == 241;
+        if (!(letrasMin || letrasMay || enie)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfTipoKeyTyped
+
+    private void jlGuardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGuardar1MouseClicked
+        System.out.println("fecha1: "+jdcInicio.getDate());
+        System.out.println("fecha2: "+jdcFin.getDate());
+        
+    int dia = jdcInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
+    int mes = jdcInicio.getCalendar().get(Calendar.MONTH);
+    int año = jdcInicio.getCalendar().get(Calendar.YEAR);
+//    LocalDate fecha = año-mes-dia; 
+    
+            int dia1= jdcInicio.getCalendar().get(Calendar.DAY_OF_MONTH);
+//    LocalDate fecha1= LocalDate.parse(jdcInicio1.getDate());
+//    LocalDate fecha2=LocalDate.parse(jdcFin1.getDate());
+//        System.out.println("fecha1 parse: "+fecha1);
+//        System.out.println("fecha2 parse: "+fecha2);
+    String tipo = jtfTipo.getText()+" - "+jtfNombreAlojamiento.getText();
+        System.out.println("tipo concat: "+tipo);
+    Ciudad ciu = (Ciudad)jcbCiudad.getSelectedItem();
+            System.out.println("cbx: " + ciu);
+            
+    String servicio= jtaDescServicio.getText();
+        System.out.println("descripcion: "+servicio);
+        
+        System.out.println("Precio sin parse: "+ jtfPrecio.getText());
+        String num = jtfPrecio.getText();
+        double importe= Double.parseDouble(num);
+        
+        System.out.println("importe parse:"+ importe);
+        System.out.println("importe: " + importe);
+//    Alojamiento al = new Alojamiento(fecha1, fecha2, tipo, servicio , true, importe, ciu);
+    
+    
+    
+    
+    
+    }//GEN-LAST:event_jlGuardar1MouseClicked
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jlAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAtrasMouseClicked
+        
+        jpVistaBuscar.setEnabled(false);
+        jpVistaBuscar.setVisible(false);
+        jpbBuscarAlojamiento.setEnabled(true);
+        jpbBuscarAlojamiento.setVisible(true);
+        jpbNuevoAlojamiento.setEnabled(true);
+        jpbNuevoAlojamiento.setVisible(true);
+        
+        botonBuscarAlojACT();
+        botonNuevoAlojACT();
+    }//GEN-LAST:event_jlAtrasMouseClicked
+    // --------- Boton NuevoAlojamiento JT ALOJAMIENTO ---------
+    private void jlbNuevoAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseClicked
+        jpVistaNuevoAloja.setEnabled(true);
+        jpVistaNuevoAloja.setVisible(true);
+        cargarComboCiudad();
+        
+        botonBuscarAlojDES();
+        botonNuevoAlojDES();
+    }//GEN-LAST:event_jlbNuevoAlojamientoMouseClicked
+    // --------- Boton BuscarAlojamiento JT ALOJAMIENTO ---------
+    private void jlbBuscarAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbBuscarAlojamientoMouseClicked
+        jpVistaBuscar.setEnabled(true);
+        jpVistaBuscar.setVisible(true);
+        botonBuscarAlojDES();
+        botonNuevoAlojDES();
+        
+    }//GEN-LAST:event_jlbBuscarAlojamientoMouseClicked
+    // --------- Boton Atras JTABLA NuevoAlojamiento ---------
+    private void jlAtrasNAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAtrasNAMouseClicked
+        jpVistaNuevoAloja.setEnabled(false);
+        jpVistaNuevoAloja.setVisible(false);
+        botonBuscarAlojACT();
+        botonNuevoAlojACT();
+        
+    }//GEN-LAST:event_jlAtrasNAMouseClicked
+
+    private void jtfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioKeyTyped
+      int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46; //punto 46 , coma 44
+        if (!(numeros || punto)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPrecioKeyTyped
+
+    private void jlNuevo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevo1MouseClicked
+       
+       jdcInicio.setCalendar(null);
+       jdcFin.setCalendar(null);
+       jcbCiudad.removeAllItems();
+       cargarComboCiudad();
+       jtfNombreAlojamiento.setText("");
+       jtfTipo.setText("");
+       jtaDescServicio.setText("");
+       jtfPrecio.setText("");
+       jsCantHabitaciones.setValue(1);
+              
+    }//GEN-LAST:event_jlNuevo1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JCheckBox jcbHabilitado;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JComboBox<Ciudad> jcbCiudad;
     private com.toedter.calendar.JDateChooser jdcFin;
     private com.toedter.calendar.JDateChooser jdcInicio;
-    private javax.swing.JLabel jlBuscar;
+    private javax.swing.JLabel jlAtras;
+    private javax.swing.JLabel jlAtrasNA;
+    private javax.swing.JLabel jlBuscar2;
     private javax.swing.JLabel jlCantidadDe;
+    private javax.swing.JLabel jlCiudad;
     private javax.swing.JLabel jlDescServicio;
-    private javax.swing.JLabel jlEliminar;
+    private javax.swing.JLabel jlDescServicio1;
     private javax.swing.JLabel jlEtc;
     private javax.swing.JLabel jlFin;
-    private javax.swing.JLabel jlGuardar;
+    private javax.swing.JLabel jlGuardar1;
     private javax.swing.JLabel jlHabitaciones;
     private javax.swing.JLabel jlInicio;
     private javax.swing.JLabel jlNombreAlojamiento;
-    private javax.swing.JLabel jlNuevo;
+    private javax.swing.JLabel jlNuevo1;
     private javax.swing.JLabel jlPrecio;
     private javax.swing.JLabel jlTemporada;
     private javax.swing.JLabel jlTipo;
-    private javax.swing.JLabel jlTitulo;
-    private javax.swing.JPanel jpBuscar;
-    private javax.swing.JPanel jpEliminar;
-    private javax.swing.JPanel jpGuardar;
-    private javax.swing.JPanel jpNuevo;
+    private javax.swing.JLabel jlTitulo1;
+    private javax.swing.JLabel jlbBuscarAlojamiento;
+    private javax.swing.JLabel jlbNuevoAlojamiento;
+    private javax.swing.JPanel jpAlojamiento;
+    private javax.swing.JPanel jpAtrasNA;
+    private javax.swing.JPanel jpBoton1;
+    private javax.swing.JPanel jpBoton2;
+    private javax.swing.JPanel jpBoton3;
+    private javax.swing.JPanel jpBuscar2;
+    private javax.swing.JPanel jpGuardar1;
+    private javax.swing.JPanel jpNuevo1;
+    private javax.swing.JPanel jpVistaBuscar;
+    private javax.swing.JPanel jpVistaNuevoAloja;
+    private javax.swing.JPanel jpbBuscarAlojamiento;
+    private javax.swing.JPanel jpbNuevoAlojamiento;
     private javax.swing.JSpinner jsCantHabitaciones;
     private javax.swing.JTextArea jtaDescServicio;
     private javax.swing.JTextField jtfNombreAlojamiento;
     private javax.swing.JTextField jtfPrecio;
     private javax.swing.JTextField jtfTipo;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboCiudad(){
+        
+        Ciudad_Data cd= new Ciudad_Data();
+        for(Ciudad ciudad : cd.obtenerCiudad()){
+            jcbCiudad.addItem(ciudad);
+        }
+    }
+    // --------- JPB NUEVO ALOJ ------------------------
+    private void botonNuevoAlojACT(){
+        for (Component comp : jpbNuevoAlojamiento.getComponents()) {
+            comp.setEnabled(true);
+            comp.setVisible(true);
+        }  
+    }
+    
+    private void botonNuevoAlojDES(){
+         for (Component comp : jpbNuevoAlojamiento.getComponents()) {
+            comp.setEnabled(false);
+            comp.setVisible(false);
+         }    
+    }
+    // --------- JPB BUSCAR ALOJ ------------------------
+    private void botonBuscarAlojACT(){
+        for (Component comp : jpbBuscarAlojamiento.getComponents()) {
+            comp.setEnabled(true);
+            comp.setVisible(true);
+        }  
+    }
+    
+     private void botonBuscarAlojDES(){
+         for (Component comp : jpbBuscarAlojamiento.getComponents()) {
+            comp.setEnabled(false);
+            comp.setVisible(false);
+         }    
+    }
 }
