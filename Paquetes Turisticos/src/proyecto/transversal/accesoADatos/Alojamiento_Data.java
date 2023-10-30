@@ -334,8 +334,7 @@ public class Alojamiento_Data {
     
      public ArrayList<Alojamiento> buscarAlojamientoCompleto() {
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
-        String sql = "SELECT idAlojamiento, Fecha_Inicio, Fecha_Salida, Tipo_Alojamiento, Servicio, Importe_Diario, Ciudad_Destino"
-                + " FROM alojamiento";
+        String sql = "SELECT * FROM alojamiento";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
