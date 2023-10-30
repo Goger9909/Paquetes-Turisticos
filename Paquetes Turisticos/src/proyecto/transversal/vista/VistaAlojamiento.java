@@ -4,6 +4,7 @@
 package proyecto.transversal.vista;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.DatabaseMetaData;
@@ -617,6 +618,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlbNuevoAlojamientoMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlbNuevoAlojamientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlbNuevoAlojamientoMouseExited(evt);
+            }
         });
         jpbNuevoAlojamiento.add(jlbNuevoAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
 
@@ -638,6 +645,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlbBuscarAlojamiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlbBuscarAlojamientoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlbBuscarAlojamientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlbBuscarAlojamientoMouseExited(evt);
             }
         });
         jpbBuscarAlojamiento.add(jlbBuscarAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
@@ -780,6 +793,15 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jdcFinVB.setEnabled(false);
         jtfAlojamientoVB.setEditable(false);
         jtfPrecioVB.setEditable(false);
+        
+        
+        jtaDescServVB.setText("");
+        jdcInicioVB.setCalendar(null);
+        jdcFinVB.setCalendar(null);
+        jtfAlojamientoVB.setText("");
+        jtfPrecioVB.setText("");
+        jcbCiudadVB.setEnabled(false);
+        jcbCiudadVB.removeAll();
     }//GEN-LAST:event_jlbAtrasVBMouseClicked
     // --------- Boton NuevoAlojamiento JT ALOJAMIENTO ---------
     private void jlbNuevoAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseClicked
@@ -951,7 +973,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
             return;
         }
-        JOptionPane.showMessageDialog(null, "Alojamiento eliminado");
+        
     }//GEN-LAST:event_jlbGuardarVBMouseClicked
 
     private void jlbEliminarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEliminarVBMouseClicked
@@ -971,7 +993,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "El registro fue borrado");
             return;
         }  
-        
+        JOptionPane.showMessageDialog(null, "Alojamiento eliminado");
         
     }//GEN-LAST:event_jlbEliminarVBMouseClicked
 // --------- LISTENER DE JDATECHOOSER INICIO ------------------
@@ -1033,6 +1055,26 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private void jdcInicioVBPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioVBPropertyChange
         jdcFinVB.setMinSelectableDate(jdcInicioVB.getDate());
     }//GEN-LAST:event_jdcInicioVBPropertyChange
+
+    private void jlbNuevoAlojamientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseEntered
+        jlbNuevoAlojamiento.setFont(jlbNuevoAlojamiento.getFont().deriveFont(Font.PLAIN));
+        jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_jlbNuevoAlojamientoMouseEntered
+
+    private void jlbBuscarAlojamientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbBuscarAlojamientoMouseExited
+        jlbNuevoAlojamiento.setFont(jlbNuevoAlojamiento.getFont().deriveFont(Font.PLAIN));
+        jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_jlbBuscarAlojamientoMouseExited
+
+    private void jlbBuscarAlojamientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbBuscarAlojamientoMouseEntered
+        jlbBuscarAlojamiento.setFont(jlbBuscarAlojamiento.getFont().deriveFont(Font.PLAIN));
+        jlbBuscarAlojamiento.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_jlbBuscarAlojamientoMouseEntered
+
+    private void jlbNuevoAlojamientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseExited
+        jlbNuevoAlojamiento.setFont(jlbNuevoAlojamiento.getFont().deriveFont(Font.PLAIN));
+        jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_jlbNuevoAlojamientoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
