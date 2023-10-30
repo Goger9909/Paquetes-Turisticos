@@ -491,7 +491,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Cliquear 2 veses para modificar"/>
+            <Property name="text" type="java.lang.String" value="Cliquear 2 veces para modificar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jBuscarCiudad">

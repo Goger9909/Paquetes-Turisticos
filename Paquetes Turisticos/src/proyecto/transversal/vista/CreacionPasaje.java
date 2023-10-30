@@ -263,7 +263,7 @@ public class CreacionPasaje extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Cliquear 2 veses para modificar");
+        jLabel8.setText("Cliquear 2 veces para modificar");
 
         jBuscarCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
