@@ -58,6 +58,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Estado.setBackground(new java.awt.Color(63, 72, 204));
         Estado.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 EstadoMouseDragged(evt);
@@ -70,6 +71,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         labelPrecentacion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelPrecentacion.setForeground(new java.awt.Color(255, 255, 255));
         labelPrecentacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         labelSesion.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
