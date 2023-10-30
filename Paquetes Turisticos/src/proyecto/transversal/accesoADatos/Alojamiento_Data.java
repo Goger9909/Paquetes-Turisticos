@@ -54,22 +54,28 @@ public class Alojamiento_Data {
     }
 
     public void modificarAlojamiento(Alojamiento alojamiento) {
-        String sql = " UPDATE alojamiento SET Fecha_Inicio=? , Fecha_Salida=? , Tipo_Alojamiento=? , "
-                + "Servicio=? , Importe_Diario=? , Ciudad_Destino=? , Estado=?"
-                + "WHERE idAlojamiento=?";
+        String sql = " UPDATE alojamiento SET Fecha_Inicio= ? , Fecha_Salida= ? , Tipo_Alojamiento= ? , "
+                + "Servicio= ? , Importe_Diario= ? , Ciudad_Destino= ? , Estado= ? "
+                + "WHERE idAlojamiento= ? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setDate(1, Date.valueOf(alojamiento.getFechaIn()));
+            System.out.println("alojaf1:"+alojamiento.getFechaIn());
             ps.setDate(2, Date.valueOf(alojamiento.getFechaOn()));
             ps.setString(3, alojamiento.getTipoAlojamiento());
+            System.out.println("tipo:"+alojamiento.getTipoAlojamiento());
             ps.setString(4, alojamiento.getServicio());
             ps.setDouble(5, alojamiento.getImporteDiario());
             ps.setInt(6, alojamiento.getCiudadDest().getIdCiudad());
+            System.out.println("ciud:"+alojamiento.getCiudadDest().getIdCiudad());
             ps.setBoolean(7, alojamiento.isEstado());
+            System.out.println("estado:"+alojamiento.isEstado());
             ps.setInt(8, alojamiento.getIdAlojamiento());
-
+            System.out.println("idaloj"+alojamiento.getIdAlojamiento());
+            
+            
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Alojamiento modificado");

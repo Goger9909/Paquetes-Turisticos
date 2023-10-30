@@ -921,7 +921,8 @@ public class VistaAlojamiento extends javax.swing.JPanel {
                 System.out.println("id: "+idAloj);
             String tipoAlojamiento = jtfAlojamientoVB.getText();
                 System.out.println("Aloja: "+tipoAlojamiento);
-            Ciudad ciudadDest = (Ciudad) jcbCiudadVB.getSelectedItem();
+            Ciudad ciudadDest = (Ciudad)jcbCiudadVB.getSelectedItem();
+//                Ciudad ciu = ciudadDest.getIdCiudad();
                 System.out.println("ciudad"+ ciudadDest);
             double importeDiario = Double.parseDouble(jtfPrecioVB.getText());
                 System.out.println("double:"+ importeDiario);
@@ -935,17 +936,33 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             Alojamiento_Data ad = new Alojamiento_Data();
             ad.modificarAlojamiento(al);
             
+            borrarFilas();
+            
 //            JOptionPane.showMessageDialog(null, "Se guardo el registro");
         } catch (NullPointerException | NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
             return;
         }
-        
+        JOptionPane.showMessageDialog(null, "Alojamiento eliminado");
     }//GEN-LAST:event_jlbGuardarVBMouseClicked
 
     private void jlbEliminarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEliminarVBMouseClicked
         
-        
+      try {      
+           
+            int filaSeleccionada = jtableBuscar.getSelectedRow();
+            int idAloj = (Integer) jtableBuscar.getValueAt(filaSeleccionada, 0);
+             
+            Alojamiento_Data ad = new Alojamiento_Data();
+            ad.desactivarAlojamiento(idAloj);
+            
+            borrarFilas();
+            
+//            JOptionPane.showMessageDialog(null, "Se guardo el registro");
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "El registro fue borrado");
+            return;
+        }  
         
         
     }//GEN-LAST:event_jlbEliminarVBMouseClicked
