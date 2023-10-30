@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.*;
+import java.time.*;
 import javax.swing.JOptionPane;
 import proyecto.transversal.entidades.Alojamiento;
 import proyecto.transversal.entidades.Ciudad;
@@ -318,6 +318,107 @@ public class Alojamiento_Data {
                 alojamiento.setServicio(rs.getString("Servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
                 System.out.println(alojamientos);
+                alojamientos.add(alojamiento);
+              
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
+      
+        return alojamientos;
+    }
+     
+      
+    
+     public ArrayList<Alojamiento> buscarAlojamientoCompleto() {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+        String sql = "SELECT idAlojamiento, Fecha_Inicio, Fecha_Salida, Tipo_Alojamiento, Servicio, Importe_Diario, Ciudad_Destino"
+                + " FROM alojamiento";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){     
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                Ciudad_Data ciu = new Ciudad_Data();
+                Ciudad ciudad = ciu.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                
+                alojamientos.add(alojamiento);
+              
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
+      
+        return alojamientos;
+    }
+     
+     public ArrayList<Alojamiento> buscarAlojamientoInactivo() {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+        String sql = "SELECT * FROM alojamiento WHERE Estado = false";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){     
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                Ciudad_Data ciu = new Ciudad_Data();
+                Ciudad ciudad = ciu.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                
+                alojamientos.add(alojamiento);
+                alojamientos.add(alojamiento);
+              
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
+      
+        return alojamientos;
+    }
+     
+     public ArrayList<Alojamiento> buscarAlojamientoActivo() {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+        String sql = "SELECT * FROM alojamiento WHERE Estado = true";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){     
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                Ciudad_Data ciu = new Ciudad_Data();
+                Ciudad ciudad = ciu.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                
+                alojamientos.add(alojamiento);
                 alojamientos.add(alojamiento);
               
             }
