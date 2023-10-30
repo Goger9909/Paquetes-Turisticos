@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     public String persona;
     private boolean ingreso = false;
     private static Login instanciaLogin;
+    public int XMouse, yMouse;//pocicion del mouse
     /**
      * Creates new form Login
      */
@@ -32,7 +33,7 @@ public class Login extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
-        
+        Menu.getInstancia().setEnabled(false);
 
     }
 
@@ -66,6 +67,16 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(370, 420));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtUsuario.setForeground(java.awt.Color.gray);
@@ -303,7 +314,8 @@ public class Login extends javax.swing.JFrame {
         
         if (ingreso == true) {
             this.dispose();
-//            
+              Menu.getInstancia().setEnabled(true);
+              Menu.getInstancia().toFront();
               Menu.getInstancia().activarButton();
               Menu.getInstancia().setNombrePersona(nombre, apellido);
               
@@ -408,10 +420,25 @@ public class Login extends javax.swing.JFrame {
     private void labelCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCerrarMouseClicked
         // TODO add your handling code here:
         dispose();
+        Menu.getInstancia().toFront();
+        Menu.getInstancia().setEnabled(true);
         Menu.getInstancia().revalidate();
         Menu.getInstancia().repaint();
         Menu.getInstancia().iniciarSesion();
     }//GEN-LAST:event_labelCerrarMouseClicked
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        // TODO add your handling code here:
+         XMouse = evt.getX();
+         yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - XMouse, y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments

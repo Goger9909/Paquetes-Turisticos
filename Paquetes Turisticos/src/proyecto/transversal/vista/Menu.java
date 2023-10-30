@@ -453,7 +453,10 @@ public class Menu extends javax.swing.JFrame {
         if (labelSesion.getText().equalsIgnoreCase("CERRAR SESIÓN")) {
             //permitir = true;
             labelPrecentacion.setText("");
+            panelPrincipal.removeAll();
             labelSesion.setText(correcto());
+            
+            anularButton();
         } else if (labelSesion.getText().equalsIgnoreCase("INICIAR SESIÓN")) {
             //permitir = false;
             labelSesion.setText(incorrecto());
@@ -683,5 +686,12 @@ public void setNombrePersona(String nombre, String apellido) {
     public static String correcto() {
         return "INICIAR SESIÓN";
     }
-
+     public void moverPaneles(){
+        jPanel1.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 600, 700));
+        jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 300, 700));
+    }
+    public void moverOriginal(){
+        jPanel1.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 600, 700));
+        jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 700));
+    }
 }
