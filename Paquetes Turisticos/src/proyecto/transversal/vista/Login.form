@@ -91,7 +91,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ingrese su Usuario"/>
+                <Property name="text" type="java.lang.String" value="Mati"/>
               </Properties>
               <Events>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtUsuarioMousePressed"/>
@@ -107,7 +107,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="****"/>
+                <Property name="text" type="java.lang.String" value="4444"/>
               </Properties>
               <Events>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPasswordMousePressed"/>

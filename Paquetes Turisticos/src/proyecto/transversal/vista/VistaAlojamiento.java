@@ -290,6 +290,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
         jtaDescServVB.setColumns(20);
         jtaDescServVB.setRows(5);
+        jtaDescServVB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtaDescServVBKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(jtaDescServVB);
 
         jpVistaBuscar.add(jScrollPane3);
@@ -299,11 +304,23 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlDescServicioVB.setText("Descripcion del Servicio:");
         jpVistaBuscar.add(jlDescServicioVB);
         jlDescServicioVB.setBounds(30, 300, 178, 18);
+
+        jtfAlojamientoVB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfAlojamientoVBKeyTyped(evt);
+            }
+        });
         jpVistaBuscar.add(jtfAlojamientoVB);
         jtfAlojamientoVB.setBounds(230, 400, 340, 30);
 
         jpVistaBuscar.add(jcbCiudadVB);
         jcbCiudadVB.setBounds(230, 460, 340, 30);
+
+        jtfPrecioVB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPrecioVBKeyTyped(evt);
+            }
+        });
         jpVistaBuscar.add(jtfPrecioVB);
         jtfPrecioVB.setBounds(230, 520, 140, 30);
         jpVistaBuscar.add(jdcBuscarFechaVB);
@@ -1075,6 +1092,37 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlbNuevoAlojamiento.setFont(jlbNuevoAlojamiento.getFont().deriveFont(Font.PLAIN));
         jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 0, 18));
     }//GEN-LAST:event_jlbNuevoAlojamientoMouseExited
+
+    private void jtaDescServVBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaDescServVBKeyTyped
+        int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122;
+        boolean letrasMay = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+        boolean caracteres = key == 39; //apostrofe
+        boolean enie = key == 209 || key == 241;
+        if (!(letrasMin || letrasMay || espacio || caracteres || enie)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtaDescServVBKeyTyped
+
+    private void jtfAlojamientoVBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlojamientoVBKeyTyped
+      int key = evt.getKeyChar();
+        boolean letrasMin = key >= 97 && key <= 122 || key == 164;
+        boolean letrasMay = key >= 65 && key <= 90 || key == 165;
+        boolean enie = key == 209 || key == 241;
+        if (!(letrasMin || letrasMay || enie)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfAlojamientoVBKeyTyped
+
+    private void jtfPrecioVBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioVBKeyTyped
+       int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46; //punto 46 , coma 44
+        if (!(numeros || punto)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPrecioVBKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
