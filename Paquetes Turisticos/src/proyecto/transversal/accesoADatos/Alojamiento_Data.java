@@ -385,7 +385,7 @@ public class Alojamiento_Data {
                 alojamiento.setEstado(rs.getBoolean("Estado"));
                 
                 alojamientos.add(alojamiento);
-                alojamientos.add(alojamiento);
+                
               
             }
             ps.close();
@@ -418,7 +418,7 @@ public class Alojamiento_Data {
                 alojamiento.setEstado(rs.getBoolean("Estado"));
                 
                 alojamientos.add(alojamiento);
-                alojamientos.add(alojamiento);
+                
               
             }
             ps.close();
@@ -427,6 +427,39 @@ public class Alojamiento_Data {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
         }
       
+        return alojamientos;
+    }
+     
+     public List<Alojamiento> buscarAlojamientoFechaTVB(LocalDate fechain) {
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
+     
+        String sql = "SELECT * FROM alojamiento WHERE Fecha_Inicio >= ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, java.sql.Date.valueOf(fechain));
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){ 
+                
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaIn(rs.getDate("Fecha_Inicio").toLocalDate());
+                alojamiento.setFechaOn(rs.getDate("Fecha_Salida").toLocalDate());
+                alojamiento.setTipoAlojamiento(rs.getString("Tipo_Alojamiento"));
+                alojamiento.setServicio(rs.getString("Servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("Importe_Diario"));
+                Ciudad_Data ciu = new Ciudad_Data();
+                Ciudad ciudad = ciu.buscarCiudadPorID(rs.getInt("Ciudad_Destino"));
+                alojamiento.setCiudadDest(ciudad);
+                alojamiento.setEstado(rs.getBoolean("Estado"));
+                
+                alojamientos.add(alojamiento);
+               
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos" + ex);
+        }
         return alojamientos;
     }
 }

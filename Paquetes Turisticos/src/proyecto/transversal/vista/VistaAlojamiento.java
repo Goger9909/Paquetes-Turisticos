@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+
  */
 package proyecto.transversal.vista;
 
@@ -9,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.DatabaseMetaData;
 import java.util.*;
-
 import java.text.SimpleDateFormat;
 
 import java.time.Instant;
@@ -34,10 +32,12 @@ import proyecto.transversal.entidades.Ciudad;
  */
 public class VistaAlojamiento extends javax.swing.JPanel {
 
-    private DefaultTableModel modelo =  new DefaultTableModel();
-    
-    
-    
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int filas, int columnas) {
+            return false;
+        }
+    };
+
     public VistaAlojamiento() {
         initComponents();
         jpVistaBuscar.setEnabled(false);
@@ -77,8 +77,8 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlbGuardarVB = new javax.swing.JLabel();
         jpbAtrasVB = new javax.swing.JPanel();
         jlbAtrasVB = new javax.swing.JLabel();
-        jpBoton2 = new javax.swing.JPanel();
-        jlBuscar2 = new javax.swing.JLabel();
+        jpBotonBuscarVB = new javax.swing.JPanel();
+        jlbBuscarBotonVB = new javax.swing.JLabel();
         jrbPorFechaVB = new javax.swing.JRadioButton();
         jrbTodoVB = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -219,34 +219,39 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpbAtrasVB);
         jpbAtrasVB.setBounds(460, 580, 110, 30);
 
-        jpBoton2.setBackground(new java.awt.Color(0, 0, 102));
-        jpBoton2.setPreferredSize(new java.awt.Dimension(100, 30));
-        jpBoton2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpBotonBuscarVB.setBackground(new java.awt.Color(0, 0, 102));
+        jpBotonBuscarVB.setPreferredSize(new java.awt.Dimension(100, 30));
+        jpBotonBuscarVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlBuscar2.setBackground(new java.awt.Color(0, 0, 102));
-        jlBuscar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlBuscar2.setForeground(new java.awt.Color(255, 255, 255));
-        jlBuscar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlBuscar2.setText("Buscar");
-        jlBuscar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jlBuscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlBuscar2.setMaximumSize(new java.awt.Dimension(67, 24));
-        jlBuscar2.setMinimumSize(new java.awt.Dimension(67, 24));
-        jlBuscar2.setPreferredSize(new java.awt.Dimension(67, 24));
-        jpBoton2.add(jlBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+        jlbBuscarBotonVB.setBackground(new java.awt.Color(0, 0, 102));
+        jlbBuscarBotonVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbBuscarBotonVB.setForeground(new java.awt.Color(255, 255, 255));
+        jlbBuscarBotonVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbBuscarBotonVB.setText("Buscar");
+        jlbBuscarBotonVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlbBuscarBotonVB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbBuscarBotonVB.setMaximumSize(new java.awt.Dimension(67, 24));
+        jlbBuscarBotonVB.setMinimumSize(new java.awt.Dimension(67, 24));
+        jlbBuscarBotonVB.setPreferredSize(new java.awt.Dimension(67, 24));
+        jlbBuscarBotonVB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbBuscarBotonVBMouseClicked(evt);
+            }
+        });
+        jpBotonBuscarVB.add(jlbBuscarBotonVB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        jpVistaBuscar.add(jpBoton2);
-        jpBoton2.setBounds(470, 30, 100, 30);
+        jpVistaBuscar.add(jpBotonBuscarVB);
+        jpBotonBuscarVB.setBounds(470, 30, 100, 30);
 
         jrbPorFechaVB.setForeground(new java.awt.Color(255, 255, 255));
-        jrbPorFechaVB.setText("POR FECHA");
+        jrbPorFechaVB.setText("POR FECHA PROXIMA");
         jrbPorFechaVB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbPorFechaVBActionPerformed(evt);
             }
         });
         jpVistaBuscar.add(jrbPorFechaVB);
-        jrbPorFechaVB.setBounds(110, 40, 110, 28);
+        jrbPorFechaVB.setBounds(110, 40, 140, 23);
 
         jrbTodoVB.setForeground(new java.awt.Color(255, 255, 255));
         jrbTodoVB.setText("TODO");
@@ -256,7 +261,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             }
         });
         jpVistaBuscar.add(jrbTodoVB);
-        jrbTodoVB.setBounds(30, 40, 70, 28);
+        jrbTodoVB.setBounds(30, 40, 70, 23);
 
         jtableBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,6 +274,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtableBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableBuscarMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtableBuscar);
 
         jpVistaBuscar.add(jScrollPane1);
@@ -288,7 +298,6 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jtfAlojamientoVB);
         jtfAlojamientoVB.setBounds(230, 400, 340, 30);
 
-        jcbCiudadVB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jpVistaBuscar.add(jcbCiudadVB);
         jcbCiudadVB.setBounds(230, 460, 340, 30);
         jpVistaBuscar.add(jtfPrecioVB);
@@ -310,6 +319,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlCiudadVB.setText("Ciudad:");
         jpVistaBuscar.add(jlCiudadVB);
         jlCiudadVB.setBounds(230, 440, 54, 18);
+
+        jdcInicioVB.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcInicioVBPropertyChange(evt);
+            }
+        });
         jpVistaBuscar.add(jdcInicioVB);
         jdcInicioVB.setBounds(290, 300, 120, 30);
         jpVistaBuscar.add(jdcFinVB);
@@ -649,12 +664,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     //------------ PESTAÑA NuevoAlojamiento NOMBRE-ALOJAMIENTO ------------
     private void jtfNombreAlojamientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreAlojamientoKeyTyped
-    int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
         boolean letrasMin = key >= 97 && key <= 122;
         boolean letrasMay = key >= 65 && key <= 90;
         boolean espacio = key == 32;
-	boolean caracteres = key == 39; //apostrofe
-	boolean enie = key == 209 || key == 241;
+        boolean caracteres = key == 39; //apostrofe
+        boolean enie = key == 209 || key == 241;
         if (!(letrasMin || letrasMay || espacio || caracteres || enie)) {
             evt.consume();
         }
@@ -671,7 +686,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfTipoKeyTyped
 
     private void jlGuardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGuardar1MouseClicked
-    
+
         Date fIni = jdcInicio.getDate();
         Date fFin = jdcFin.getDate();
         Date minimo = jdcInicio.getMinSelectableDate();
@@ -737,23 +752,31 @@ public class VistaAlojamiento extends javax.swing.JPanel {
                 vuelta = vuelta + 1;
                 System.out.println("aloja: " + al);
             }
-            JOptionPane.showMessageDialog(null, "descomentar el metodo");
+            
             JOptionPane.showMessageDialog(null, "Se guardaron " + vuelta + " registros.");
         } catch (NullPointerException | NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
             return;
         }
 
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     }//GEN-LAST:event_jlGuardar1MouseClicked
 
     private void jlbAtrasVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbAtrasVBMouseClicked
-        
+
         jpVistaBuscar.setEnabled(false);
-        jpVistaBuscar.setVisible(false);        
+        jpVistaBuscar.setVisible(false);
         botonBuscarAlojACT();
         botonNuevoAlojACT();
+
+        jrbTodoVB.setSelected(true);
+
+        jtaDescServVB.setEditable(false);
+        jdcInicioVB.setEnabled(false);
+        jdcFinVB.setEnabled(false);
+        jtfAlojamientoVB.setEditable(false);
+        jtfPrecioVB.setEditable(false);
     }//GEN-LAST:event_jlbAtrasVBMouseClicked
     // --------- Boton NuevoAlojamiento JT ALOJAMIENTO ---------
     private void jlbNuevoAlojamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNuevoAlojamientoMouseClicked
@@ -761,7 +784,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.setVisible(true);
         jdcInicio.setMinSelectableDate(new Date());
         cargarComboCiudad();
-        
+
         botonBuscarAlojDES();
         botonNuevoAlojDES();
     }//GEN-LAST:event_jlbNuevoAlojamientoMouseClicked
@@ -771,7 +794,14 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.setVisible(true);
         botonBuscarAlojDES();
         botonNuevoAlojDES();
-        
+
+        jtaDescServVB.setEditable(false);
+        jdcInicioVB.setEnabled(false);
+        jdcFinVB.setEnabled(false);
+        jtfAlojamientoVB.setEditable(false);
+        jtfPrecioVB.setEditable(false);
+        jcbCiudadVB.setEnabled(false);
+
     }//GEN-LAST:event_jlbBuscarAlojamientoMouseClicked
     // --------- Boton Atras JTABLA NuevoAlojamiento ---------
     private void jlAtrasNAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAtrasNAMouseClicked
@@ -779,11 +809,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.setVisible(false);
         botonBuscarAlojACT();
         botonNuevoAlojACT();
-        
+
     }//GEN-LAST:event_jlAtrasNAMouseClicked
 
     private void jtfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioKeyTyped
-      int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
         boolean numeros = key >= 48 && key <= 57;
         boolean punto = key == 46; //punto 46 , coma 44
         if (!(numeros || punto)) {
@@ -792,44 +822,192 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfPrecioKeyTyped
 
     private void jlNuevo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevo1MouseClicked
-       
-       jdcInicio.setCalendar(null);
-       jdcFin.setCalendar(null);
-       jcbCiudad.removeAllItems();
-       cargarComboCiudad();
-       jtfNombreAlojamiento.setText("");
-       jtfTipo.setText("");
-       jtaDescServicio.setText("");
-       jtfPrecio.setText("");
-       jsCantHabitaciones.setValue(1);
-              
+
+        jdcInicio.setCalendar(null);
+        jdcFin.setCalendar(null);
+        jcbCiudad.removeAllItems();
+        cargarComboCiudad();
+        jtfNombreAlojamiento.setText("");
+        jtfTipo.setText("");
+        jtaDescServicio.setText("");
+        jtfPrecio.setText("");
+        jsCantHabitaciones.setValue(1);
+
     }//GEN-LAST:event_jlNuevo1MouseClicked
 
     private void jrbPorFechaVBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbPorFechaVBActionPerformed
-        // TODO add your handling code here:
+        jrbTodoVB.setSelected(false);
+        jdcBuscarFechaVB.setEnabled(true);
     }//GEN-LAST:event_jrbPorFechaVBActionPerformed
 
     private void jrbTodoVBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodoVBActionPerformed
-        // TODO add your handling code here:
+        jrbPorFechaVB.setSelected(false);
+        jdcBuscarFechaVB.setEnabled(false);
     }//GEN-LAST:event_jrbTodoVBActionPerformed
 
     private void jlbEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEditarMouseClicked
-        // TODO add your handling code here:
+
+        if (jlbEditar.getText().equals("Editar")) {
+            jlbEditar.setText("Cancelar");
+            jtaDescServVB.setEditable(true);
+            jdcInicioVB.setEnabled(true);
+            jdcFinVB.setEnabled(true);
+            jtfAlojamientoVB.setEditable(true);
+            jtfPrecioVB.setEditable(true);
+            jcbCiudadVB.setEnabled(true);
+            jcbCiudadVB.removeAllItems();
+            cargarComboCiudadVB();
+        }else 
+        if (jlbEditar.getText().equals("Cancelar")) {
+            jlbEditar.setText("Editar");
+            jtaDescServVB.setEditable(false);
+            jdcInicioVB.setEnabled(false);
+            jdcFinVB.setEnabled(false);
+            jtfAlojamientoVB.setEditable(false);
+            jtfPrecioVB.setEditable(false);
+            jcbCiudadVB.setEnabled(false);
+            jcbCiudadVB.removeAll();
+            int filaSeleccionada = jtableBuscar.getSelectedRow();
+            Ciudad ciudadDest = (Ciudad) jtableBuscar.getValueAt(filaSeleccionada, 4);
+            jcbCiudadVB.addItem(ciudadDest);
+            
+        }
     }//GEN-LAST:event_jlbEditarMouseClicked
 
     private void jlbGuardarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbGuardarVBMouseClicked
-        // TODO add your handling code here:
+       
+        Date fIni = jdcInicioVB.getDate();
+        Date fFin = jdcFinVB.getDate();
+        Date minimo = jdcInicioVB.getMinSelectableDate();
+        Date maximo = jdcInicioVB.getMaxSelectableDate();
+        Date minimo2 = jdcFinVB.getMinSelectableDate();
+        Date maximo2 = jdcInicioVB.getMaxSelectableDate();
+
+        try {
+            if (fIni != null) {
+                // Verificar si la fecha seleccionada está dentro del rango permitido
+                if (minimo != null && maximo != null) {
+                    if (fIni.before(minimo) || fIni.after(maximo)) {
+                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no esta permitida");
+                        jdcInicioVB.setDate(null);
+                        jdcFinVB.setDate(null);
+                        return;
+                    }
+                }
+            }
+            if (fFin != null) {
+                // Verificar si la fecha seleccionada está dentro del rango permitido
+                if (minimo2 != null && maximo2 != null) {
+                    if (fFin.before(minimo2) || fFin.after(maximo2)) {
+                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no esta permitida");
+                        jdcFinVB.setDate(null);
+
+                        return;
+                    }
+                }
+            }
+
+            java.util.Date fecha1 = jdcInicioVB.getDate();
+            Instant instant = fecha1.toInstant();
+            LocalDate fe1 = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+            java.util.Date fecha2 = jdcFinVB.getDate();
+            Instant inst = fecha2.toInstant();
+            LocalDate fe2 = inst.atZone(ZoneId.systemDefault()).toLocalDate();
+                System.out.println("fe1: "+fe1);
+                System.out.println("fe2: "+fe2);
+            int filaSeleccionada = jtableBuscar.getSelectedRow();
+            int idAloj = (Integer) jtableBuscar.getValueAt(filaSeleccionada, 0);
+                System.out.println("id: "+idAloj);
+            String tipoAlojamiento = jtfAlojamientoVB.getText();
+                System.out.println("Aloja: "+tipoAlojamiento);
+            Ciudad ciudadDest = (Ciudad) jcbCiudadVB.getSelectedItem();
+                System.out.println("ciudad"+ ciudadDest);
+            double importeDiario = Double.parseDouble(jtfPrecioVB.getText());
+                System.out.println("double:"+ importeDiario);
+            boolean estado = (Boolean) jtableBuscar.getValueAt(filaSeleccionada, 6);
+                System.out.println("estado: "+ estado);
+            String servicio = (String) jtaDescServVB.getText();
+                System.out.println("servicio"+servicio);
+            
+            Alojamiento al = new Alojamiento(idAloj, fe1, fe2, tipoAlojamiento, servicio, estado, importeDiario, ciudadDest);
+//           
+            Alojamiento_Data ad = new Alojamiento_Data();
+            ad.modificarAlojamiento(al);
+            
+//            JOptionPane.showMessageDialog(null, "Se guardo el registro");
+        } catch (NullPointerException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            return;
+        }
+        
     }//GEN-LAST:event_jlbGuardarVBMouseClicked
 
     private void jlbEliminarVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbEliminarVBMouseClicked
-        // TODO add your handling code here:
+        
+        
+        
+        
     }//GEN-LAST:event_jlbEliminarVBMouseClicked
 // --------- LISTENER DE JDATECHOOSER INICIO ------------------
     private void jdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioPropertyChange
 
-    jdcFin.setMinSelectableDate(jdcInicio.getDate());
-        
+        jdcFin.setMinSelectableDate(jdcInicio.getDate());
+
     }//GEN-LAST:event_jdcInicioPropertyChange
+
+    private void jlbBuscarBotonVBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbBuscarBotonVBMouseClicked
+
+        if (jrbTodoVB.isSelected()) {
+            borrarFilas();
+            cargarDatosCompleto();
+        } else if (jrbPorFechaVB.isSelected()) {
+            if (jdcBuscarFechaVB.getDate() != null) {
+                java.util.Date fecha = jdcBuscarFechaVB.getDate();
+                Instant instant = fecha.toInstant();
+                LocalDate fechaVB = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+                borrarFilas();
+                cargarDatosPorFecha(fechaVB);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una fecha");
+
+            }
+        } else {
+
+        }
+
+    }//GEN-LAST:event_jlbBuscarBotonVBMouseClicked
+
+    private void jtableBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableBuscarMouseClicked
+        jcbCiudadVB.removeAllItems();
+        int filaSeleccionada = jtableBuscar.getSelectedRow();
+        if (filaSeleccionada != -1) {
+
+            int idAloj = (Integer) jtableBuscar.getValueAt(filaSeleccionada, 0);
+            String tipoAlojamiento = (String) jtableBuscar.getValueAt(filaSeleccionada, 1);
+            LocalDate fechaIn = (LocalDate) jtableBuscar.getValueAt(filaSeleccionada, 2);
+            LocalDate fechaOn = (LocalDate) jtableBuscar.getValueAt(filaSeleccionada, 3);
+            Ciudad ciudadDest = (Ciudad) jtableBuscar.getValueAt(filaSeleccionada, 4);
+            double importeDiario = (Double) jtableBuscar.getValueAt(filaSeleccionada, 5);
+            boolean estado = (Boolean) jtableBuscar.getValueAt(filaSeleccionada, 6);
+            String servicio = (String) jtableBuscar.getValueAt(filaSeleccionada, 7);
+
+            jtfAlojamientoVB.setText(tipoAlojamiento);
+            jdcInicioVB.setDate(java.sql.Date.valueOf(fechaIn));
+            jdcFinVB.setDate(java.sql.Date.valueOf(fechaOn));
+            jtfPrecioVB.setText(String.valueOf(importeDiario));
+            jtaDescServVB.setText(servicio);
+            jcbCiudadVB.addItem(ciudadDest);
+
+        }
+
+
+    }//GEN-LAST:event_jtableBuscarMouseClicked
+
+    private void jdcInicioVBPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioVBPropertyChange
+        jdcFinVB.setMinSelectableDate(jdcInicioVB.getDate());
+    }//GEN-LAST:event_jdcInicioVBPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -837,14 +1015,13 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<Ciudad> jcbCiudad;
-    private javax.swing.JComboBox<String> jcbCiudadVB;
+    private javax.swing.JComboBox<Ciudad> jcbCiudadVB;
     private com.toedter.calendar.JDateChooser jdcBuscarFechaVB;
     private com.toedter.calendar.JDateChooser jdcFin;
     private com.toedter.calendar.JDateChooser jdcFinVB;
     private com.toedter.calendar.JDateChooser jdcInicio;
     private com.toedter.calendar.JDateChooser jdcInicioVB;
     private javax.swing.JLabel jlAtrasNA;
-    private javax.swing.JLabel jlBuscar2;
     private javax.swing.JLabel jlCantidadDe;
     private javax.swing.JLabel jlCiudad;
     private javax.swing.JLabel jlCiudadVB;
@@ -867,13 +1044,14 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private javax.swing.JLabel jlTitulo1;
     private javax.swing.JLabel jlbAtrasVB;
     private javax.swing.JLabel jlbBuscarAlojamiento;
+    private javax.swing.JLabel jlbBuscarBotonVB;
     private javax.swing.JLabel jlbEditar;
     private javax.swing.JLabel jlbEliminarVB;
     private javax.swing.JLabel jlbGuardarVB;
     private javax.swing.JLabel jlbNuevoAlojamiento;
     private javax.swing.JPanel jpAlojamiento;
     private javax.swing.JPanel jpAtrasNA;
-    private javax.swing.JPanel jpBoton2;
+    private javax.swing.JPanel jpBotonBuscarVB;
     private javax.swing.JPanel jpGuardar1;
     private javax.swing.JPanel jpGuardarVB;
     private javax.swing.JPanel jpNuevo1;
@@ -897,54 +1075,64 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     private javax.swing.JTextField jtfTipo;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarComboCiudad(){
-        
-        Ciudad_Data cd= new Ciudad_Data();
-        for(Ciudad ciudad : cd.obtenerCiudad()){
+    private void cargarComboCiudad() {
+
+        Ciudad_Data cd = new Ciudad_Data();
+        for (Ciudad ciudad : cd.obtenerCiudad()) {
             jcbCiudad.addItem(ciudad);
+
         }
     }
+
+    private void cargarComboCiudadVB() {
+
+        Ciudad_Data cd = new Ciudad_Data();
+        for (Ciudad ciudad : cd.obtenerCiudad()) {
+
+            jcbCiudadVB.addItem(ciudad);
+        }
+    }
+
     // --------- JPB NUEVO ALOJ ------------------------
-    private void botonNuevoAlojACT(){
+    private void botonNuevoAlojACT() {
         for (Component comp : jpbNuevoAlojamiento.getComponents()) {
             comp.setEnabled(true);
             comp.setVisible(true);
-        }  
+        }
     }
-    
-    private void botonNuevoAlojDES(){
-         for (Component comp : jpbNuevoAlojamiento.getComponents()) {
+
+    private void botonNuevoAlojDES() {
+        for (Component comp : jpbNuevoAlojamiento.getComponents()) {
             comp.setEnabled(false);
             comp.setVisible(false);
-         }    
+        }
     }
+
     // --------- JPB BUSCAR ALOJ ------------------------
-    private void botonBuscarAlojACT(){
+    private void botonBuscarAlojACT() {
         for (Component comp : jpbBuscarAlojamiento.getComponents()) {
             comp.setEnabled(true);
             comp.setVisible(true);
-        }  
+        }
     }
-    
-     private void botonBuscarAlojDES(){
-         for (Component comp : jpbBuscarAlojamiento.getComponents()) {
+
+    private void botonBuscarAlojDES() {
+        for (Component comp : jpbBuscarAlojamiento.getComponents()) {
             comp.setEnabled(false);
             comp.setVisible(false);
-         }    
+        }
     }
-     
-     private void cambiofecha(){
-         if(jdcInicio != null){
-        jdcFin.setMinSelectableDate(jdcInicio.getDate());
-         }
-         
-     }
-     
+
+    private void cambiofecha() {
+        if (jdcInicio != null) {
+            jdcFin.setMinSelectableDate(jdcInicio.getDate());
+        }
+
+    }
+
 // -------- METODOS jpVistaBuscar -----------------
-    
-     //-------- Tabla --------
-     
-     private void armarCabecera(){
+    //-------- Tabla --------
+    private void armarCabecera() {
         modelo.addColumn("ID");
         modelo.addColumn("Alojamiento");
         modelo.addColumn("Fecha Inicio");
@@ -954,17 +1142,32 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         modelo.addColumn("Estado");
         modelo.addColumn("Servicio");
         jtableBuscar.setModel(modelo);
-     }
-     
-     private void cargarDatos(List<Alojamiento> alojamiento){
-         ArrayList<Alojamiento> aloja = new ArrayList<>();
-         Alojamiento_Data ald = new Alojamiento_Data();
-//         for(Alojamiento aloja : ald.){
-             
-         }
-         
-//         modelo.addRow(new Object[alojamiento.getIdAlojamiento(), alojamiento.getTipoAlojamiento(), alojamiento.getFechaIn(), alojamiento.getFechaOn(), alojamiento.getCiudadDest(), alojamiento.getImporteDiario(), alojamiento.isEstado(), alojamiento.getServicio()]);
-//     }
-    
-     
+    }
+
+    private void cargarDatosCompleto() {
+        Alojamiento_Data ald = new Alojamiento_Data();
+        for (Alojamiento alojam : ald.buscarAlojamientoCompleto()) {
+            modelo.addRow(new Object[]{alojam.getIdAlojamiento(), alojam.getTipoAlojamiento(), alojam.getFechaIn(),
+                alojam.getFechaOn(), alojam.getCiudadDest(), alojam.getImporteDiario(), alojam.isEstado(), alojam.getServicio()});
+        }
+
+    }
+
+    private void cargarDatosPorFecha(LocalDate fecha) {
+        Alojamiento_Data ald = new Alojamiento_Data();
+        for (Alojamiento alojam : ald.buscarAlojamientoFechaTVB(fecha)) {
+
+            modelo.addRow(new Object[]{alojam.getIdAlojamiento(), alojam.getTipoAlojamiento(), alojam.getFechaIn(),
+                alojam.getFechaOn(), alojam.getCiudadDest(), alojam.getImporteDiario(), alojam.isEstado(), alojam.getServicio()});
+        }
+    }
+
+    private void borrarFilas() {
+        int filas = jtableBuscar.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+
+    }
+
 }
