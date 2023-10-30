@@ -148,7 +148,7 @@ public class Pasaje_Data {
                 pasaje.setNombre_ciudad_origen(nombre_ciudad_origen);
                 pasaje.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
+//                JOptionPane.showMessageDialog(null, "No existe un pasaje con ese id");
             }
             ps.close();
         } catch (SQLException ex) {

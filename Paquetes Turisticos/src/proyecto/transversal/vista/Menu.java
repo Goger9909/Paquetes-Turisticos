@@ -2,8 +2,11 @@ package proyecto.transversal.vista;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 
 public class Menu extends javax.swing.JFrame {
 
@@ -40,7 +43,15 @@ public class Menu extends javax.swing.JFrame {
         labelPaquete = new javax.swing.JLabel();
         panelVenta = new javax.swing.JPanel();
         labelVenta = new javax.swing.JLabel();
-        panelPrincipal = new javax.swing.JPanel();
+        ImageIcon icono=new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+        Image imagen=icono.getImage();
+        panelPrincipal = new javax.swing.JPanel(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -148,10 +159,13 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 50));
 
-        panelButton.setBackground(new java.awt.Color(153, 255, 255));
+        panelButton.setBackground(new java.awt.Color(63, 72, 204));
         panelButton.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelCiudad.setBackground(new java.awt.Color(0, 0, 102));
+
         labelCiudad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelCiudad.setForeground(new java.awt.Color(255, 255, 255));
         labelCiudad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCiudad.setText("CIUDAD");
         labelCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -172,16 +186,23 @@ public class Menu extends javax.swing.JFrame {
         panelCiudad.setLayout(panelCiudadLayout);
         panelCiudadLayout.setHorizontalGroup(
             panelCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCiudadLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelCiudadLayout.setVerticalGroup(
             panelCiudadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCiudadLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelButton.add(panelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 517, -1, -1));
+        panelButton.add(panelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
+
+        panelPasaje.setBackground(new java.awt.Color(0, 0, 102));
 
         labelPasaje.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelPasaje.setForeground(new java.awt.Color(255, 255, 255));
         labelPasaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPasaje.setText("PASAJE");
         labelPasaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -205,16 +226,23 @@ public class Menu extends javax.swing.JFrame {
         panelPasaje.setLayout(panelPasajeLayout);
         panelPasajeLayout.setHorizontalGroup(
             panelPasajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPasajeLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelPasaje, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelPasajeLayout.setVerticalGroup(
             panelPasajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPasaje, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPasajeLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelPasaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelButton.add(panelPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 459, 218, -1));
+        panelButton.add(panelPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 218, -1));
+
+        panelAlojamiento.setBackground(new java.awt.Color(0, 0, 102));
 
         labelAlojamiento.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelAlojamiento.setForeground(new java.awt.Color(255, 255, 255));
         labelAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAlojamiento.setText("ALOJAMIENTO");
         labelAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -235,16 +263,23 @@ public class Menu extends javax.swing.JFrame {
         panelAlojamiento.setLayout(panelAlojamientoLayout);
         panelAlojamientoLayout.setHorizontalGroup(
             panelAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlojamientoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelAlojamientoLayout.setVerticalGroup(
             panelAlojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelAlojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlojamientoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelButton.add(panelAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 401, 218, -1));
+        panelButton.add(panelAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 218, -1));
+
+        panelPaquete.setBackground(new java.awt.Color(0, 0, 102));
 
         labelPaquete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        labelPaquete.setForeground(new java.awt.Color(255, 255, 255));
         labelPaquete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPaquete.setText("PAQUETE");
         labelPaquete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -265,21 +300,37 @@ public class Menu extends javax.swing.JFrame {
         panelPaquete.setLayout(panelPaqueteLayout);
         panelPaqueteLayout.setHorizontalGroup(
             panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaqueteLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelPaqueteLayout.setVerticalGroup(
             panelPaqueteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaqueteLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelButton.add(panelPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 40));
+        panelButton.add(panelPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 220, 40));
 
+        panelVenta.setBackground(new java.awt.Color(0, 0, 102));
+
+        labelVenta.setBackground(new java.awt.Color(0, 0, 102));
         labelVenta.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        labelVenta.setText("                INICIO");
+        labelVenta.setForeground(new java.awt.Color(255, 255, 255));
+        labelVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelVenta.setText("VENTA");
+        labelVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelVentaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelVentaMouseExited(evt);
             }
         });
 
@@ -287,14 +338,18 @@ public class Menu extends javax.swing.JFrame {
         panelVenta.setLayout(panelVentaLayout);
         panelVentaLayout.setHorizontalGroup(
             panelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVentaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelVentaLayout.setVerticalGroup(
             panelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVentaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelButton.add(panelVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 220, 40));
+        panelButton.add(panelVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 220, 40));
 
         jPanel1.add(panelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 700));
 
@@ -510,6 +565,18 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labelVentaMouseClicked
 
+    private void labelVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseEntered
+        // TODO add your handling code here:
+        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
+        labelPaquete.setFont(new java.awt.Font("Arial", 0, 24));
+    }//GEN-LAST:event_labelVentaMouseEntered
+
+    private void labelVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseExited
+        // TODO add your handling code here:
+        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
+        labelPaquete.setFont(new java.awt.Font("Arial", 0, 18));
+    }//GEN-LAST:event_labelVentaMouseExited
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -580,6 +647,8 @@ public void setNombrePersona(String nombre, String apellido) {
         labelCiudad.setEnabled(false);
         labelAlojamiento.setEnabled(false);
         labelPasaje.setEnabled(false);
+        labelVenta.setEnabled(false);
+        
     }
 
     public void activarButton() {
@@ -588,6 +657,7 @@ public void setNombrePersona(String nombre, String apellido) {
         labelCiudad.setEnabled(true);
         labelAlojamiento.setEnabled(true);
         labelPasaje.setEnabled(true);
+        labelVenta.setEnabled(true);
     }
 
     /*

@@ -1,9 +1,12 @@
 package proyecto.transversal.vista;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -45,7 +48,15 @@ public class VistaVenta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new javax.swing.JPanel();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/fondo2.png"));
+        Image imagen=icono.getImage();
+        Fondo = new javax.swing.JPanel(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -82,7 +93,9 @@ public class VistaVenta extends javax.swing.JPanel {
         Fondo.setBackground(new java.awt.Color(102, 255, 102));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("VENTA DE PAQUETES");
         Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 590, 40));
@@ -181,11 +194,15 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 640, 110, 30));
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Arial", 2, 17)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Buscar por Fecha");
         Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Arial", 2, 17)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cantidad de Personas");
         Fondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 180, 30));
 
@@ -204,12 +221,12 @@ public class VistaVenta extends javax.swing.JPanel {
         Fondo.add(jCCuidad_deOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 250, -1));
 
         ano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 anoAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         Fondo.add(ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
@@ -248,8 +265,6 @@ public class VistaVenta extends javax.swing.JPanel {
         );
 
         Fondo.add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
-
-        jtPrecioUnitario.setEditable(false);
         Fondo.add(jtPrecioUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 100, -1));
 
         jtPrecioTotalDias.setEditable(false);
@@ -269,7 +284,9 @@ public class VistaVenta extends javax.swing.JPanel {
         });
         Fondo.add(cantidadPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 60, 30));
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Arial", 2, 17)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText(" Ciudad de Origen");
         Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, 30));
 

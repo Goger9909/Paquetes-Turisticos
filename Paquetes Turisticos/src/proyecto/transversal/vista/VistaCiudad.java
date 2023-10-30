@@ -52,7 +52,14 @@ public class VistaCiudad extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        panelPrincipal = new javax.swing.JPanel();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/imagenes/fondo2.png"));
+        Image imagen=icono.getImage();
+        panelPrincipal = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jScrollPane1 = new javax.swing.JScrollPane();
         listCiudades = new javax.swing.JList<>();
         labelTitulo = new javax.swing.JLabel();
@@ -111,21 +118,25 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
         labelTitulo.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitulo.setText("CIUDAD");
         panelPrincipal.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 43, 517, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de Pais");
-        panelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 115, -1, -1));
+        panelPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 115, 150, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre de Ciudad");
-        panelPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        panelPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 160, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre de Provincia");
-        panelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        panelPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jtexProvincia.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         jtexProvincia.setForeground(java.awt.Color.gray);
@@ -506,7 +517,8 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelMosCiudadesDeshabilitadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 300, 30));
 
-        labelInfo.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        labelInfo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelInfo.setForeground(new java.awt.Color(0, 0, 0));
         labelInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelPrincipal.add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 280, 20));
 
@@ -521,7 +533,8 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 540, 200));
 
-        labeCiudad.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        labeCiudad.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labeCiudad.setForeground(new java.awt.Color(0, 0, 0));
         panelPrincipal.add(labeCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 300, 20));
 
         panelCerrar.setBackground(new java.awt.Color(244, 231, 187));
