@@ -569,14 +569,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void labelVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseEntered
         // TODO add your handling code here:
-        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
-        labelPaquete.setFont(new java.awt.Font("Arial", 0, 24));
+        labelVenta.setFont(labelVenta.getFont().deriveFont(Font.PLAIN));
+        labelVenta.setFont(new java.awt.Font("Arial", 0, 24));
     }//GEN-LAST:event_labelVentaMouseEntered
 
     private void labelVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelVentaMouseExited
         // TODO add your handling code here:
-        labelPaquete.setFont(labelPaquete.getFont().deriveFont(Font.PLAIN));
-        labelPaquete.setFont(new java.awt.Font("Arial", 0, 18));
+        labelVenta.setFont(labelVenta.getFont().deriveFont(Font.PLAIN));
+        labelVenta.setFont(new java.awt.Font("Arial", 0, 18));
     }//GEN-LAST:event_labelVentaMouseExited
 
     public static void main(String args[]) {

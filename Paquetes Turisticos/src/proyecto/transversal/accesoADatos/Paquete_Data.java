@@ -50,7 +50,7 @@ public class Paquete_Data {
     public List<Paquete> ObtenerPaquete(){
          con = Conexion.getConexion();
     ArrayList<Paquete> paquetee = new ArrayList<>();
-    String sql = "SELECT * FROM paquete; ";
+    String sql = "SELECT * FROM paquete ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultado = ps.executeQuery();
@@ -206,7 +206,6 @@ public class Paquete_Data {
    public ArrayList<Paquete> ObtenerPaquetePorCiudad(String Ciudad){
               con = Conexion.getConexion();
     ArrayList<Paquete> paquetee = new ArrayList<>();
-//       String sql = "SELECT * FROM paquete; ";
     String sql = "SELECT `idPaquete`, `Ciudad_Origen`, `Ciudad_Destino`, `alojamiento`, `pasaje`, `disponible` FROM paquete JOIN ciudad ON "
             + "(paquete.Ciudad_Origen = ciudad.idCiudad) WHERE ciudad.Nombre = ? AND paquete.disponible = true";
         try {
@@ -225,7 +224,6 @@ public class Paquete_Data {
                 Pasaje pa = Pd.buscarPasajePorId(resultado.getInt("pasaje"));
                 paquet.setPasaje(pa);
                 paquet.setEstado(resultado.getBoolean("disponible"));
-                System.out.println(paquet);
                 paquetee.add(paquet);
             }
             ps.close();

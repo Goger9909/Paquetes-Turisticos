@@ -60,8 +60,6 @@ public class Paquete_Vista extends javax.swing.JPanel {
         Ciudad_Destino = new javax.swing.JComboBox<>();
         Guardar = new javax.swing.JPanel();
         jLGuardar = new javax.swing.JLabel();
-        Modificar = new javax.swing.JPanel();
-        jLModificar = new javax.swing.JLabel();
         Salir = new javax.swing.JPanel();
         jLSalir = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -127,37 +125,6 @@ public class Paquete_Vista extends javax.swing.JPanel {
         );
 
         Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
-
-        Modificar.setBackground(new java.awt.Color(0, 0, 102));
-
-        jLModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jLModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLModificar.setText("Modificar");
-        jLModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLModificarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout ModificarLayout = new javax.swing.GroupLayout(Modificar);
-        Modificar.setLayout(ModificarLayout);
-        ModificarLayout.setHorizontalGroup(
-            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        ModificarLayout.setVerticalGroup(
-            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ModificarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, 31));
 
         Salir.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -240,11 +207,6 @@ public class Paquete_Vista extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(jTable1);
 
         Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 580, 310));
@@ -380,81 +342,16 @@ public class Paquete_Vista extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jCCuidad_deOrigenActionPerformed
 
-    private void jLModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLModificarMouseClicked
-      
-       try {
-        Paquete_Data Pd = new Paquete_Data();  
-        int paquetee =  jTable1.getSelectedRow();
-        int idd = (int) jTable1.getValueAt(paquetee , 0);
-       
-        Ciudad_Data cd = new Ciudad_Data(); 
-        Pasaje_Data ps = new Pasaje_Data();
-        Alojamiento_Data alo = new Alojamiento_Data();
-        
-        String ciu = (String) jCCuidad_deOrigen.getSelectedItem();
-        Ciudad ciudadOrigen = (Ciudad) cd.busquedaPorCiudad(ciu);
-
-        
-        String ci = (String) jCiudad_Destino.getSelectedItem();
-        Ciudad ciudadDestino = (Ciudad) cd.busquedaPorCiudad(ci);
-        
-        String pas = (String) jCTipodPasaje.getSelectedItem();
-        int id_ciudad_origen = ciudadOrigen.getIdCiudad();
-        
-        Pasaje pasaje = ps.obtenerPasajes(pas,id_ciudad_origen);
-        
-        int al =  jTable2.getSelectedRow();
-        int id =  (int) jTable2.getValueAt(al, 0);
-        Alojamiento alojamiento = alo.buscarAlojamientoPorId(id);
-        alo.desactivarAlojamiento(id);
-        
-        Paquete paquete = new Paquete(idd ,ciudadOrigen, ciudadDestino, alojamiento, pasaje, true);
-        Pd.ModificarPaqueteID(paquete); 
-       }catch(Exception ex){
-       }
-        BorrarFilas1();
-        CargarTable();
-        BorrarFilas();
-    }//GEN-LAST:event_jLModificarMouseClicked
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-            if (evt.getClickCount() == 2) {
-            Ciudad_Data cd = new Ciudad_Data();
-            Alojamiento_Data aloj = new Alojamiento_Data();
-
-            int filaSeleccionada = jTable1.getSelectedRow();
-            String ciudad = (String) jTable1.getValueAt(filaSeleccionada, 1);
-            Ciudad ciudadd = cd.busquedaPorCiudad(ciudad);
-            Ciudad_Origen.setSelectedItem(ciudadd.getPais());
-            jCCuidad_deOrigen.setSelectedItem(ciudadd.getNombreCiudad());
-
-            String c = (String) jTable1.getValueAt(filaSeleccionada, 2);
-            Ciudad ci = cd.busquedaPorCiudad(c);
-            Ciudad_Destino.setSelectedItem(ci.getPais());
-            jCiudad_Destino.setSelectedItem(ci.getNombreCiudad());
-
-            String alojamiento =  (String) jTable1.getValueAt(filaSeleccionada,3); 
-            for (Alojamiento alo : aloj.alojamientoPorCiudadyAlojamiento(ci, alojamiento)) {
-            modeloA.addRow(new Object[]{alo.getIdAlojamiento(),alo.getTipoAlojamiento(),alo.getServicio(),
-                alo.getImporteDiario()});}
-            
-            String pasaje =  (String) jTable1.getValueAt(filaSeleccionada, 4);
-            jCTipodPasaje.setSelectedItem(pasaje);
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Ciudad_Destino;
     private javax.swing.JComboBox<String> Ciudad_Origen;
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel Guardar;
-    private javax.swing.JPanel Modificar;
     private javax.swing.JPanel Salir;
     private javax.swing.JComboBox<String> jCCuidad_deOrigen;
     private javax.swing.JComboBox<String> jCTipodPasaje;
     private javax.swing.JComboBox<String> jCiudad_Destino;
     private javax.swing.JLabel jLGuardar;
-    private javax.swing.JLabel jLModificar;
     private javax.swing.JLabel jLSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
