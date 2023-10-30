@@ -243,6 +243,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpBotonBuscarVB);
         jpBotonBuscarVB.setBounds(470, 30, 100, 30);
 
+        jrbPorFechaVB.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jrbPorFechaVB.setForeground(new java.awt.Color(255, 255, 255));
         jrbPorFechaVB.setText("POR FECHA PROXIMA");
         jrbPorFechaVB.addActionListener(new java.awt.event.ActionListener() {
@@ -251,8 +252,9 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             }
         });
         jpVistaBuscar.add(jrbPorFechaVB);
-        jrbPorFechaVB.setBounds(110, 40, 140, 23);
+        jrbPorFechaVB.setBounds(110, 40, 160, 23);
 
+        jrbTodoVB.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jrbTodoVB.setForeground(new java.awt.Color(255, 255, 255));
         jrbTodoVB.setText("TODO");
         jrbTodoVB.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +265,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jrbTodoVB);
         jrbTodoVB.setBounds(30, 40, 70, 23);
 
+        jtableBuscar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jtableBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -861,10 +864,15 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         if (jlbEditar.getText().equals("Cancelar")) {
             jlbEditar.setText("Editar");
             jtaDescServVB.setEditable(false);
+            jtaDescServVB.setText("");
             jdcInicioVB.setEnabled(false);
+            jdcInicioVB.setCalendar(null);
             jdcFinVB.setEnabled(false);
+            jdcFinVB.setCalendar(null);
             jtfAlojamientoVB.setEditable(false);
+            jtfAlojamientoVB.setText("");
             jtfPrecioVB.setEditable(false);
+            jtfPrecioVB.setText("");
             jcbCiudadVB.setEnabled(false);
             jcbCiudadVB.removeAll();
             int filaSeleccionada = jtableBuscar.getSelectedRow();
@@ -1163,7 +1171,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
     private void cargarDatosCompleto() {
         Alojamiento_Data ald = new Alojamiento_Data();
-        for (Alojamiento alojam : ald.buscarAlojamientoCompleto()) {
+        for (Alojamiento alojam : ald.buscarAlojamientoActivo()) {
             modelo.addRow(new Object[]{alojam.getIdAlojamiento(), alojam.getTipoAlojamiento(), alojam.getFechaIn(),
                 alojam.getFechaOn(), alojam.getCiudadDest(), alojam.getImporteDiario(), alojam.isEstado(), alojam.getServicio()});
         }

@@ -439,7 +439,7 @@ public class Alojamiento_Data {
      public List<Alojamiento> buscarAlojamientoFechaTVB(LocalDate fechain) {
         ArrayList<Alojamiento> alojamientos = new ArrayList<>();
      
-        String sql = "SELECT * FROM alojamiento WHERE Fecha_Inicio >= ?";
+        String sql = "SELECT * FROM alojamiento WHERE Fecha_Inicio >= ? AND Estado = 1 ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, java.sql.Date.valueOf(fechain));
