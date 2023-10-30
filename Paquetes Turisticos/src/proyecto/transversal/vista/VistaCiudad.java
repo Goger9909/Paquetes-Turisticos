@@ -188,9 +188,10 @@ public class VistaCiudad extends javax.swing.JPanel {
         });
         panelPrincipal.add(jtexPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 250, -1));
 
-        panelEliminar.setBackground(new java.awt.Color(244, 231, 187));
+        panelEliminar.setBackground(new java.awt.Color(0, 0, 102));
 
         labelEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelEliminar.setForeground(new java.awt.Color(255, 255, 255));
         labelEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelEliminar.setText("ELIMINAR");
         labelEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -220,9 +221,11 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
 
-        panelGuardar.setBackground(new java.awt.Color(244, 231, 187));
+        panelGuardar.setBackground(new java.awt.Color(0, 0, 102));
 
+        labelGuardar.setBackground(new java.awt.Color(0, 0, 102));
         labelGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelGuardar.setForeground(new java.awt.Color(255, 255, 255));
         labelGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGuardar.setText("GUARDAR");
         labelGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -252,7 +255,7 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 30));
 
-        panelModificar.setBackground(new java.awt.Color(244, 231, 187));
+        panelModificar.setBackground(new java.awt.Color(0, 0, 102));
 
         labelModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -284,9 +287,10 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, 30));
 
-        panelNuevo.setBackground(new java.awt.Color(244, 231, 187));
+        panelNuevo.setBackground(new java.awt.Color(0, 0, 102));
 
         labelNuevo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelNuevo.setForeground(new java.awt.Color(255, 255, 255));
         labelNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNuevo.setText("NUEVO");
         labelNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -316,9 +320,10 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, 30));
 
-        panelBusProvincia.setBackground(new java.awt.Color(244, 231, 187));
+        panelBusProvincia.setBackground(new java.awt.Color(0, 0, 102));
 
         labelBusProvincia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelBusProvincia.setForeground(new java.awt.Color(255, 255, 255));
         labelBusProvincia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBusProvincia.setText("Busqueda por Provincia");
         labelBusProvincia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -348,9 +353,10 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelBusProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 185, 30));
 
-        panelBusPais.setBackground(new java.awt.Color(244, 231, 187));
+        panelBusPais.setBackground(new java.awt.Color(0, 0, 102));
 
         labelBusPais.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelBusPais.setForeground(new java.awt.Color(255, 255, 255));
         labelBusPais.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBusPais.setText("Busqueda por Pais");
         labelBusPais.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -453,9 +459,10 @@ public class VistaCiudad extends javax.swing.JPanel {
         panelPrincipal.add(panelXProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 640, 30, 30));
         panelPrincipal.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 580, 10));
 
-        panelMosCiudadesHabilitadas.setBackground(new java.awt.Color(244, 231, 187));
+        panelMosCiudadesHabilitadas.setBackground(new java.awt.Color(0, 0, 102));
 
         labelMosCiudadesHabilitadas.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labelMosCiudadesHabilitadas.setForeground(new java.awt.Color(255, 255, 255));
         labelMosCiudadesHabilitadas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMosCiudadesHabilitadas.setText("MOSTRAR CIUDADES HABILITADAS");
         labelMosCiudadesHabilitadas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -537,9 +544,10 @@ public class VistaCiudad extends javax.swing.JPanel {
         labeCiudad.setForeground(new java.awt.Color(0, 0, 0));
         panelPrincipal.add(labeCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 300, 20));
 
-        panelCerrar.setBackground(new java.awt.Color(244, 231, 187));
+        panelCerrar.setBackground(new java.awt.Color(0, 0, 102));
 
         labelCerrar.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        labelCerrar.setForeground(new java.awt.Color(255, 255, 255));
         labelCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCerrar.setText("CERRAR MUESTRAS");
         labelCerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -569,9 +577,10 @@ public class VistaCiudad extends javax.swing.JPanel {
 
         panelPrincipal.add(panelCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 170, 30));
 
-        panelSalir.setBackground(new java.awt.Color(244, 231, 187));
+        panelSalir.setBackground(new java.awt.Color(0, 0, 102));
 
         labelSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelSalir.setForeground(new java.awt.Color(255, 255, 255));
         labelSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSalir.setText("SALIR");
         labelSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

@@ -2,8 +2,11 @@
 package proyecto.transversal.vista;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Alojamiento_Data;
@@ -44,7 +47,14 @@ public class Paquete_Vista extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new javax.swing.JPanel();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/imagenes/fondo2.png"));
+        Image imagen=icono.getImage();
+        Fondo = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jLabel1 = new javax.swing.JLabel();
         Ciudad_Origen = new javax.swing.JComboBox<>();
         Ciudad_Destino = new javax.swing.JComboBox<>();
@@ -69,8 +79,9 @@ public class Paquete_Vista extends javax.swing.JPanel {
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Paquete");
-        Fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 20, 108, 33));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("PAQUETE");
+        Fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 20, 120, 33));
 
         Ciudad_Origen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +97,10 @@ public class Paquete_Vista extends javax.swing.JPanel {
         });
         Fondo.add(Ciudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 140, -1));
 
+        Guardar.setBackground(new java.awt.Color(0, 0, 102));
+
         jLGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jLGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLGuardar.setText("Guardar");
         jLGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -114,7 +128,10 @@ public class Paquete_Vista extends javax.swing.JPanel {
 
         Fondo.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
 
+        Modificar.setBackground(new java.awt.Color(0, 0, 102));
+
         jLModificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLModificar.setForeground(new java.awt.Color(255, 255, 255));
         jLModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLModificar.setText("Modificar");
         jLModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -142,8 +159,11 @@ public class Paquete_Vista extends javax.swing.JPanel {
 
         Fondo.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, 31));
 
+        Salir.setBackground(new java.awt.Color(0, 0, 102));
+
         jLSalir.setBackground(new java.awt.Color(0, 0, 255));
         jLSalir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLSalir.setForeground(new java.awt.Color(255, 255, 255));
         jLSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLSalir.setText("salir");
         jLSalir.setToolTipText("");
@@ -178,13 +198,15 @@ public class Paquete_Vista extends javax.swing.JPanel {
 
         Fondo.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 60, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cuidad de origen");
-        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 130, 20));
+        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 150, 20));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cuidad de destino");
-        Fondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 140, 20));
+        Fondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, 20));
 
         jCCuidad_deOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,11 +222,12 @@ public class Paquete_Vista extends javax.swing.JPanel {
         });
         Fondo.add(jCiudad_Destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 250, -1));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tipo de pasaje");
-        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, 20));
+        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 120, 20));
 
-        Fondo.add(jCTipodPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 180, -1));
+        Fondo.add(jCTipodPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 180, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,7 +262,7 @@ public class Paquete_Vista extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable2);
 
-        Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 570, 110));
+        Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 570, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

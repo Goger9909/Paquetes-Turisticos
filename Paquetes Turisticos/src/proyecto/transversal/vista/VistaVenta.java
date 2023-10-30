@@ -122,7 +122,10 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 600, 140));
 
+        panelComprar.setBackground(new java.awt.Color(0, 0, 102));
+
         labelComprar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelComprar.setForeground(new java.awt.Color(255, 255, 255));
         labelComprar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelComprar.setText("COMPRAR");
         labelComprar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -146,7 +149,10 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(panelComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 110, 30));
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 102));
+
         Eliminar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
         Eliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Eliminar.setText("ELIMINAR");
         Eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -170,7 +176,10 @@ public class VistaVenta extends javax.swing.JPanel {
 
         Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 110, 30));
 
+        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
+
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("SALIR");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -232,10 +241,11 @@ public class VistaVenta extends javax.swing.JPanel {
         Fondo.add(ano, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
         Fondo.add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
-        jpBuscar.setBackground(new java.awt.Color(244, 231, 187));
+        jpBuscar.setBackground(new java.awt.Color(0, 0, 102));
         jpBuscar.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jlBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jlBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlBuscar.setText("Buscar");
         jlBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

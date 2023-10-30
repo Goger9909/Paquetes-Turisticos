@@ -210,7 +210,7 @@
         <Container class="javax.swing.JPanel" name="panelEliminar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -237,6 +237,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="ELIMINAR"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -259,7 +262,7 @@
         <Container class="javax.swing.JPanel" name="panelGuardar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -283,8 +286,14 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="labelGuardar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="0" red="0" type="rgb"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="GUARDAR"/>
@@ -308,7 +317,7 @@
         <Container class="javax.swing.JPanel" name="panelModificar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -357,7 +366,7 @@
         <Container class="javax.swing.JPanel" name="panelNuevo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -384,6 +393,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="NUEVO"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -406,7 +418,7 @@
         <Container class="javax.swing.JPanel" name="panelBusProvincia">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -433,6 +445,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Busqueda por Provincia"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -455,7 +470,7 @@
         <Container class="javax.swing.JPanel" name="panelBusPais">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -481,6 +496,9 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Busqueda por Pais"/>
@@ -613,7 +631,7 @@
         <Container class="javax.swing.JPanel" name="panelMosCiudadesHabilitadas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -639,6 +657,9 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="15" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="MOSTRAR CIUDADES HABILITADAS"/>
@@ -775,7 +796,7 @@
         <Container class="javax.swing.JPanel" name="panelCerrar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -802,6 +823,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="15" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="CERRAR MUESTRAS"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -824,7 +848,7 @@
         <Container class="javax.swing.JPanel" name="panelSalir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="bb" green="e7" red="f4" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -850,6 +874,9 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
