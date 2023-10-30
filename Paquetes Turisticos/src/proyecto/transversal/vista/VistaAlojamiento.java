@@ -5,6 +5,8 @@
 package proyecto.transversal.vista;
 
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.DatabaseMetaData;
 import java.util.*;
 
@@ -18,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Calendar;
 import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.transversal.accesoADatos.Alojamiento_Data;
@@ -55,8 +58,19 @@ public class VistaAlojamiento extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpAlojamiento = new javax.swing.JPanel();
-        jpVistaBuscar = new javax.swing.JPanel();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/imagenes/fondo2.png"));
+        Image imagen=icono.getImage();
+        jpAlojamiento = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
+        jpVistaBuscar = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jpbEditar = new javax.swing.JPanel();
         jlbEditar = new javax.swing.JLabel();
         jpGuardarVB = new javax.swing.JPanel();
@@ -86,7 +100,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpbEliminarVB = new javax.swing.JPanel();
         jlbEliminarVB = new javax.swing.JLabel();
         jlTitulo1 = new javax.swing.JLabel();
-        jpVistaNuevoAloja = new javax.swing.JPanel();
+        jpVistaNuevoAloja = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jlTemporada = new javax.swing.JLabel();
         jlInicio = new javax.swing.JLabel();
         jdcInicio = new com.toedter.calendar.JDateChooser();
@@ -131,11 +150,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.setPreferredSize(new java.awt.Dimension(540, 520));
         jpVistaBuscar.setLayout(null);
 
-        jpbEditar.setBackground(new java.awt.Color(244, 231, 187));
+        jpbEditar.setBackground(new java.awt.Color(0, 0, 102));
         jpbEditar.setPreferredSize(new java.awt.Dimension(100, 30));
         jpbEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbEditar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbEditar.setForeground(new java.awt.Color(255, 255, 255));
         jlbEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbEditar.setText("Editar");
         jlbEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -153,11 +173,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpbEditar);
         jpbEditar.setBounds(470, 300, 100, 70);
 
-        jpGuardarVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpGuardarVB.setBackground(new java.awt.Color(0, 0, 102));
         jpGuardarVB.setPreferredSize(new java.awt.Dimension(100, 30));
         jpGuardarVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbGuardarVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbGuardarVB.setForeground(new java.awt.Color(255, 255, 255));
         jlbGuardarVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbGuardarVB.setText("Guardar");
         jlbGuardarVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -175,11 +196,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpGuardarVB);
         jpGuardarVB.setBounds(400, 500, 170, 50);
 
-        jpbAtrasVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpbAtrasVB.setBackground(new java.awt.Color(0, 0, 102));
         jpbAtrasVB.setPreferredSize(new java.awt.Dimension(100, 30));
         jpbAtrasVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbAtrasVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbAtrasVB.setForeground(new java.awt.Color(255, 255, 255));
         jlbAtrasVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbAtrasVB.setText("Atras");
         jlbAtrasVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -197,11 +219,13 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpbAtrasVB);
         jpbAtrasVB.setBounds(460, 580, 110, 30);
 
-        jpBoton2.setBackground(new java.awt.Color(244, 231, 187));
+        jpBoton2.setBackground(new java.awt.Color(0, 0, 102));
         jpBoton2.setPreferredSize(new java.awt.Dimension(100, 30));
         jpBoton2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jlBuscar2.setBackground(new java.awt.Color(0, 0, 102));
         jlBuscar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlBuscar2.setForeground(new java.awt.Color(255, 255, 255));
         jlBuscar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlBuscar2.setText("Buscar");
         jlBuscar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -214,6 +238,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jpBoton2);
         jpBoton2.setBounds(470, 30, 100, 30);
 
+        jrbPorFechaVB.setForeground(new java.awt.Color(255, 255, 255));
         jrbPorFechaVB.setText("POR FECHA");
         jrbPorFechaVB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,8 +246,9 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             }
         });
         jpVistaBuscar.add(jrbPorFechaVB);
-        jrbPorFechaVB.setBounds(110, 40, 110, 23);
+        jrbPorFechaVB.setBounds(110, 40, 110, 28);
 
+        jrbTodoVB.setForeground(new java.awt.Color(255, 255, 255));
         jrbTodoVB.setText("TODO");
         jrbTodoVB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +256,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             }
         });
         jpVistaBuscar.add(jrbTodoVB);
-        jrbTodoVB.setBounds(30, 40, 70, 23);
+        jrbTodoVB.setBounds(30, 40, 70, 28);
 
         jtableBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -301,10 +327,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaBuscar.add(jlFechFinVB);
         jlFechFinVB.setBounds(230, 350, 50, 20);
 
-        jpbEliminarVB.setBackground(new java.awt.Color(244, 231, 187));
+        jpbEliminarVB.setBackground(new java.awt.Color(0, 0, 102));
         jpbEliminarVB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbEliminarVB.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbEliminarVB.setForeground(new java.awt.Color(255, 255, 255));
         jlbEliminarVB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbEliminarVB.setText("Eliminar");
         jlbEliminarVB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -325,6 +352,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpAlojamiento.add(jpVistaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
 
         jlTitulo1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        jlTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         jlTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo1.setText("ALOJAMIENTO");
         jpAlojamiento.add(jlTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 20));
@@ -334,11 +362,13 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.setLayout(null);
 
         jlTemporada.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlTemporada.setForeground(new java.awt.Color(255, 255, 255));
         jlTemporada.setText("Temporada:");
         jpVistaNuevoAloja.add(jlTemporada);
         jlTemporada.setBounds(50, 20, 106, 22);
 
         jlInicio.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlInicio.setForeground(new java.awt.Color(255, 255, 255));
         jlInicio.setText("Inicio:");
         jpVistaNuevoAloja.add(jlInicio);
         jlInicio.setBounds(90, 70, 42, 18);
@@ -353,6 +383,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jdcInicio.setBounds(140, 60, 150, 30);
 
         jlFin.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlFin.setForeground(new java.awt.Color(255, 255, 255));
         jlFin.setText("Fin:");
         jpVistaNuevoAloja.add(jlFin);
         jlFin.setBounds(350, 70, 30, 20);
@@ -362,11 +393,13 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jdcFin.setBounds(380, 60, 150, 30);
 
         jlNombreAlojamiento.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlNombreAlojamiento.setForeground(new java.awt.Color(255, 255, 255));
         jlNombreAlojamiento.setText("Nombre de Alojamiento:");
         jpVistaNuevoAloja.add(jlNombreAlojamiento);
         jlNombreAlojamiento.setBounds(50, 140, 168, 18);
 
         jlTipo.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlTipo.setForeground(new java.awt.Color(255, 255, 255));
         jlTipo.setText("Tipo:");
         jpVistaNuevoAloja.add(jlTipo);
         jlTipo.setBounds(120, 190, 40, 18);
@@ -415,10 +448,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.add(jtfPrecio);
         jtfPrecio.setBounds(390, 320, 160, 30);
 
-        jpNuevo1.setBackground(new java.awt.Color(244, 231, 187));
+        jpNuevo1.setBackground(new java.awt.Color(0, 0, 102));
         jpNuevo1.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jlNuevo1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlNuevo1.setForeground(new java.awt.Color(255, 255, 255));
         jlNuevo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlNuevo1.setText("Nuevo");
         jlNuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -448,10 +482,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.add(jpNuevo1);
         jpNuevo1.setBounds(40, 570, 110, 30);
 
-        jpGuardar1.setBackground(new java.awt.Color(244, 231, 187));
+        jpGuardar1.setBackground(new java.awt.Color(0, 0, 102));
         jpGuardar1.setPreferredSize(new java.awt.Dimension(100, 30));
 
+        jlGuardar1.setBackground(new java.awt.Color(255, 255, 255));
         jlGuardar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlGuardar1.setForeground(new java.awt.Color(255, 255, 255));
         jlGuardar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlGuardar1.setText("Guardar");
         jlGuardar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -482,6 +518,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpGuardar1.setBounds(390, 480, 160, 50);
 
         jlEtc.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jlEtc.setForeground(new java.awt.Color(255, 255, 255));
         jlEtc.setText("(Hotel, Dpto, Casa, etc.)");
         jpVistaNuevoAloja.add(jlEtc);
         jlEtc.setBounds(80, 210, 114, 13);
@@ -501,6 +538,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jlCantidadDe.setBounds(320, 400, 85, 18);
 
         jlCiudad.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jlCiudad.setForeground(new java.awt.Color(255, 255, 255));
         jlCiudad.setText("Ciudad:");
         jpVistaNuevoAloja.add(jlCiudad);
         jlCiudad.setBounds(110, 250, 54, 18);
@@ -508,10 +546,11 @@ public class VistaAlojamiento extends javax.swing.JPanel {
         jpVistaNuevoAloja.add(jcbCiudad);
         jcbCiudad.setBounds(230, 240, 320, 30);
 
-        jpAtrasNA.setBackground(new java.awt.Color(244, 231, 187));
+        jpAtrasNA.setBackground(new java.awt.Color(0, 0, 102));
         jpAtrasNA.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jlAtrasNA.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlAtrasNA.setForeground(new java.awt.Color(255, 255, 255));
         jlAtrasNA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlAtrasNA.setText("Atras");
         jlAtrasNA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -543,11 +582,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
         jpAlojamiento.add(jpVistaNuevoAloja, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 630));
 
-        jpbNuevoAlojamiento.setBackground(new java.awt.Color(244, 231, 187));
+        jpbNuevoAlojamiento.setBackground(new java.awt.Color(0, 0, 102));
         jpbNuevoAlojamiento.setPreferredSize(new java.awt.Dimension(100, 30));
         jpbNuevoAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbNuevoAlojamiento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbNuevoAlojamiento.setForeground(new java.awt.Color(255, 255, 255));
         jlbNuevoAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbNuevoAlojamiento.setText("Agregar Alojamiento");
         jlbNuevoAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -564,11 +604,12 @@ public class VistaAlojamiento extends javax.swing.JPanel {
 
         jpAlojamiento.add(jpbNuevoAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 230, 90));
 
-        jpbBuscarAlojamiento.setBackground(new java.awt.Color(244, 231, 187));
+        jpbBuscarAlojamiento.setBackground(new java.awt.Color(0, 0, 102));
         jpbBuscarAlojamiento.setPreferredSize(new java.awt.Dimension(100, 30));
         jpbBuscarAlojamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlbBuscarAlojamiento.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlbBuscarAlojamiento.setForeground(new java.awt.Color(255, 255, 255));
         jlbBuscarAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbBuscarAlojamiento.setText("Buscar Alojamiento");
         jlbBuscarAlojamiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
