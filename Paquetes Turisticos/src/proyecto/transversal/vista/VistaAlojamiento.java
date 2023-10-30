@@ -781,7 +781,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             Alojamiento_Data ad = new Alojamiento_Data();
             int vuelta = 0;
             for (int i = 1; i <= contador; i++) {
-                //ad.guardarAlojamiento(al);
+                ad.guardarAlojamiento(al);
                 vuelta = vuelta + 1;
                 System.out.println("aloja: " + al);
             }
@@ -1006,7 +1006,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             borrarFilas();
             
 //            JOptionPane.showMessageDialog(null, "Se guardo el registro");
-        } catch (Exception ex) {
+        } catch (Exception   ex) {
             JOptionPane.showMessageDialog(null, "El registro fue borrado");
             return;
         }  
