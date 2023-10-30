@@ -1006,7 +1006,7 @@ public class VistaAlojamiento extends javax.swing.JPanel {
             borrarFilas();
             
 //            JOptionPane.showMessageDialog(null, "Se guardo el registro");
-        } catch (NullPointerException | NumberFormatException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "El registro fue borrado");
             return;
         }  
